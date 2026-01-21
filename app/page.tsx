@@ -1,7 +1,5 @@
-'use client'
-
 import React, { useState } from 'react';
-import { ArrowRight, Check, Receipt, Clock, DollarSign } from 'lucide-react';
+import { ArrowRight, Check, Receipt, Clock, DollarSign, Users } from 'lucide-react';
 
 export default function OPALanding() {
   const [email, setEmail] = useState('');
@@ -10,6 +8,7 @@ export default function OPALanding() {
 
   const handleSubmit = () => {
     if (email && role) {
+      // Store in state for demo - in production, send to your backend
       console.log('Signup:', { email, role });
       setSubmitted(true);
     }
@@ -114,7 +113,7 @@ export default function OPALanding() {
         </div>
       </section>
 
-      {/* Social Proof */}
+      {/* Social Proof Placeholder */}
       <section className="px-6 py-16 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-400 uppercase text-sm font-medium mb-8">Trusted by production teams</p>
@@ -223,6 +222,39 @@ export default function OPALanding() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Roadmap Section */}
+      <section className="px-6 py-16 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">
+            What's Coming Next
+          </h2>
+          <p className="text-slate-600 text-center mb-12 max-w-2xl mx-auto">
+            We're building OPA alongside production professionals. Here's what's on deck:
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Vendor Payment Tracking</h3>
+              <p className="text-slate-600">Know who's been paid, who's waiting, and when.</p>
+            </div>
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Budget vs. Actual Reporting</h3>
+              <p className="text-slate-600">Real-time spend tracking against your show budget.</p>
+            </div>
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Purchase Order Management</h3>
+              <p className="text-slate-600">Generate, track, and reconcile POs without the paperwork.</p>
+            </div>
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Call Sheet Integration</h3>
+              <p className="text-slate-600">Connect your daily logistics to your spending.</p>
+            </div>
+          </div>
+          <p className="text-center text-slate-600 mt-8 italic">
+            Want a say in what we build next? Join the beta and tell us what you need.
+          </p>
         </div>
       </section>
 
