@@ -40,7 +40,9 @@ export default function OPALanding() {
             <div className="absolute -bottom-1 left-0 w-8 h-1 bg-gradient-to-r from-pink-500 to-transparent group-hover:w-12 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(236,72,153,0.8)]"></div>
           </div>
           <a 
-            href="#early-access" 
+            href="https://form.typeform.com/to/Zj1Pex72"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-slate-400 hover:text-cyan-400 transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]"
           >
             Request Access
