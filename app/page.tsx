@@ -63,9 +63,6 @@ export default function OPALanding() {
               That's why we fixed it.
             </span>
           </h2>
-          <p className="text-xl text-slate-400 mb-4 max-w-3xl leading-relaxed">
-            If you've ever wrapped a job at 2am with a camera roll full of receipts and zero patience left — this is for you.
-          </p>
           <p className="text-lg text-slate-300 mb-10 max-w-2xl leading-relaxed">
             OPA is your digital production office assistant that tracks petty cash, reimbursements, and receipts in real time — the way production actually works.
           </p>
