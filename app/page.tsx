@@ -68,7 +68,9 @@ export default function OPALanding() {
             OPA is your digital production office assistant that tracks petty cash, reimbursements, and receipts in real time — the way production actually works.
           </p>
           <a 
-            href="#early-access" 
+            href="https://form.typeform.com/to/Zj1Pex72"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-slate-950 px-8 py-4 rounded-full text-lg font-bold hover:shadow-[0_0_40px_rgba(6,182,212,0.6),0_0_60px_rgba(236,72,153,0.4)] hover:scale-105 transition-all duration-300 shadow-lg relative overflow-hidden"
           >
             <span className="relative z-10">Request Early Access</span>
@@ -264,7 +266,7 @@ export default function OPALanding() {
           </div>
 
           <a
-            href="https://forms.gle/your-typeform-link"
+            href="https://form.typeform.com/to/Zj1Pex72"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-slate-950 px-10 py-5 rounded-full text-xl font-bold hover:shadow-[0_0_50px_rgba(6,182,212,0.6),0_0_70px_rgba(236,72,153,0.4)] hover:scale-105 transition-all duration-300 relative overflow-hidden"
