@@ -56,11 +56,11 @@ export default function OPALanding() {
         <div className="max-w-5xl mx-auto relative">
           <h2 className="text-6xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-slate-50 to-cyan-400 bg-clip-text text-transparent">
-              Built for People Who
+              We Hate Petty Cash.
             </span>
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
-              Actually Run Production
+            <span className="text-slate-400 text-4xl md:text-5xl font-bold">
+              That's why we fixed it.
             </span>
           </h2>
           <p className="text-xl text-slate-400 mb-4 max-w-3xl leading-relaxed">
