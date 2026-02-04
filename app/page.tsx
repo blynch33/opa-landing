@@ -514,7 +514,6 @@ const faqs = [
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [email, setEmail] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   useEffect(() => {
@@ -528,12 +527,6 @@ export default function Home() {
   // Close mobile menu on route change or link click
   const handleNavClick = () => {
     setMobileMenuOpen(false);
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Connect to your Typeform or email capture
-    window.open(`https://form.typeform.com/to/Zj1Pex72?email=${encodeURIComponent(email)}`, '_blank');
   };
 
   return (
@@ -870,19 +863,14 @@ export default function Home() {
             Join production professionals who are already working smarter. 
             Early access is free—just bring your honest feedback.
           </p>
-          <form style={styles.ctaForm} onSubmit={handleSubmit}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={styles.ctaInput}
-              required
-            />
-            <button type="submit" className="btn btn-warm btn-large">
-              Get Early Access →
-            </button>
-          </form>
+          <a 
+            href="https://form.typeform.com/to/Zj1Pex72" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn btn-warm btn-large"
+          >
+            Get Early Access →
+          </a>
           <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.7 }}>
             No credit card required. No commitment. Just better production accounting.
           </p>
