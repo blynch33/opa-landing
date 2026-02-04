@@ -1,290 +1,931 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check, Receipt, Clock, DollarSign, Camera, FileText, TrendingUp, Download, Edit3 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
-export default function OPALanding() {
-  useEffect(() => {
-    // Intersection observer for fade-in animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-    );
+// ===== STYLES =====
+const styles = {
+  // Navigation
+  nav: {
+    position: 'fixed' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    padding: '16px 0',
+    transition: 'all 0.3s ease',
+  },
+  navScrolled: {
+    background: 'rgba(250, 249, 245, 0.95)',
+    backdropFilter: 'blur(10px)',
+    boxShadow: '0 2px 20px rgba(13, 27, 42, 0.08)',
+  },
+  navInner: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  logo: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.75rem',
+    fontWeight: 500,
+    color: 'var(--forest)',
+    letterSpacing: '-0.03em',
+  },
+  navLinks: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '32px',
+  },
+  navLink: {
+    fontSize: '0.95rem',
+    color: 'var(--ink)',
+    transition: 'color 0.2s ease',
+    cursor: 'pointer',
+  },
+  
+  // Hero Section
+  hero: {
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '120px',
+    paddingBottom: 'var(--space-5xl)',
+    position: 'relative' as const,
+    overflow: 'hidden',
+  },
+  heroContent: {
+    maxWidth: '720px',
+    position: 'relative' as const,
+    zIndex: 2,
+  },
+  heroEyebrow: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '8px 16px',
+    background: 'rgba(19, 70, 17, 0.08)',
+    borderRadius: '100px',
+    fontSize: '0.9rem',
+    fontWeight: 500,
+    color: 'var(--forest)',
+    marginBottom: '24px',
+  },
+  heroTitle: {
+    fontSize: 'clamp(2.75rem, 7vw, 4.5rem)',
+    fontFamily: 'var(--font-display)',
+    fontWeight: 400,
+    lineHeight: 1.1,
+    marginBottom: '24px',
+    color: 'var(--ink)',
+  },
+  heroTitleAccent: {
+    fontStyle: 'italic',
+    color: 'var(--forest)',
+  },
+  heroDescription: {
+    fontSize: '1.25rem',
+    color: 'var(--sage)',
+    marginBottom: '40px',
+    lineHeight: 1.7,
+  },
+  heroCTA: {
+    display: 'flex',
+    flexWrap: 'wrap' as const,
+    gap: '16px',
+    marginBottom: '48px',
+  },
+  heroProof: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px',
+    fontSize: '0.9rem',
+    color: 'var(--sage)',
+  },
+  heroVisual: {
+    position: 'absolute' as const,
+    right: '-10%',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '55%',
+    maxWidth: '700px',
+    zIndex: 1,
+    opacity: 0.9,
+  },
+  
+  // Section Base
+  section: {
+    padding: 'var(--space-5xl) 0',
+  },
+  sectionDark: {
+    background: 'var(--ink)',
+    color: 'var(--porcelain)',
+  },
+  sectionForest: {
+    background: 'linear-gradient(135deg, var(--forest) 0%, #1a5c15 100%)',
+    color: 'var(--porcelain)',
+  },
+  sectionHeader: {
+    textAlign: 'center' as const,
+    marginBottom: 'var(--space-4xl)',
+  },
+  sectionEyebrow: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.8rem',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.15em',
+    color: 'var(--terracotta)',
+    marginBottom: '12px',
+  },
+  sectionTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: 'clamp(2rem, 4vw, 3rem)',
+    fontWeight: 400,
+    marginBottom: '16px',
+  },
+  sectionSubtitle: {
+    fontSize: '1.15rem',
+    color: 'var(--sage)',
+    maxWidth: '600px',
+    margin: '0 auto',
+  },
+  
+  // Problem Section
+  problemGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '32px',
+  },
+  problemCard: {
+    background: 'var(--white)',
+    borderRadius: 'var(--radius-xl)',
+    padding: '40px',
+    boxShadow: 'var(--shadow-md)',
+  },
+  problemIcon: {
+    width: '56px',
+    height: '56px',
+    background: 'linear-gradient(135deg, var(--terracotta-light) 0%, var(--blush) 100%)',
+    borderRadius: 'var(--radius-lg)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.75rem',
+    marginBottom: '20px',
+  },
+  problemTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.35rem',
+    fontWeight: 500,
+    marginBottom: '12px',
+  },
+  problemDesc: {
+    color: 'var(--sage)',
+    lineHeight: 1.7,
+  },
+  
+  // Features Section
+  featureGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gap: '24px',
+  },
+  featureCard: {
+    background: 'rgba(255, 255, 255, 0.06)',
+    borderRadius: 'var(--radius-xl)',
+    padding: '36px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    transition: 'all 0.3s ease',
+  },
+  featureIcon: {
+    width: '48px',
+    height: '48px',
+    background: 'linear-gradient(135deg, var(--honey) 0%, var(--terracotta) 100%)',
+    borderRadius: 'var(--radius-md)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.5rem',
+    marginBottom: '20px',
+  },
+  featureTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.25rem',
+    fontWeight: 500,
+    marginBottom: '12px',
+    color: 'var(--porcelain)',
+  },
+  featureDesc: {
+    color: 'var(--sage-light)',
+    lineHeight: 1.7,
+    fontSize: '0.95rem',
+  },
+  
+  // How It Works
+  stepsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '48px',
+    position: 'relative' as const,
+  },
+  stepCard: {
+    textAlign: 'center' as const,
+    position: 'relative' as const,
+  },
+  stepNumber: {
+    width: '64px',
+    height: '64px',
+    background: 'var(--forest)',
+    color: 'var(--white)',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.5rem',
+    fontWeight: 500,
+    margin: '0 auto 24px',
+  },
+  stepTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.35rem',
+    fontWeight: 500,
+    marginBottom: '12px',
+  },
+  stepDesc: {
+    color: 'var(--sage)',
+    lineHeight: 1.7,
+  },
+  
+  // Testimonials
+  testimonialGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+    gap: '32px',
+  },
+  testimonialCard: {
+    background: 'var(--white)',
+    borderRadius: 'var(--radius-xl)',
+    padding: '36px',
+    boxShadow: 'var(--shadow-md)',
+  },
+  testimonialQuote: {
+    fontSize: '1.1rem',
+    lineHeight: 1.8,
+    marginBottom: '24px',
+    fontStyle: 'italic',
+  },
+  testimonialAuthor: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px',
+  },
+  testimonialAvatar: {
+    width: '48px',
+    height: '48px',
+    borderRadius: '50%',
+    background: 'linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'var(--white)',
+    fontFamily: 'var(--font-display)',
+    fontWeight: 500,
+  },
+  testimonialName: {
+    fontWeight: 600,
+    marginBottom: '2px',
+  },
+  testimonialRole: {
+    fontSize: '0.85rem',
+    color: 'var(--sage)',
+  },
+  
+  // FAQ
+  faqGrid: {
+    maxWidth: '800px',
+    margin: '0 auto',
+  },
+  faqItem: {
+    background: 'var(--white)',
+    borderRadius: 'var(--radius-lg)',
+    marginBottom: '16px',
+    overflow: 'hidden',
+    boxShadow: 'var(--shadow-sm)',
+  },
+  faqQuestion: {
+    width: '100%',
+    padding: '24px 32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.1rem',
+    fontWeight: 500,
+    textAlign: 'left' as const,
+    color: 'var(--ink)',
+  },
+  faqAnswer: {
+    padding: '0 32px 24px',
+    color: 'var(--sage)',
+    lineHeight: 1.7,
+  },
+  
+  // CTA Section
+  ctaSection: {
+    textAlign: 'center' as const,
+    padding: 'var(--space-5xl) 0',
+  },
+  ctaTitle: {
+    fontFamily: 'var(--font-display)',
+    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+    fontWeight: 400,
+    marginBottom: '24px',
+    color: 'var(--porcelain)',
+  },
+  ctaSubtitle: {
+    fontSize: '1.2rem',
+    opacity: 0.85,
+    marginBottom: '40px',
+    maxWidth: '500px',
+    margin: '0 auto 40px',
+  },
+  ctaForm: {
+    display: 'flex',
+    gap: '12px',
+    maxWidth: '480px',
+    margin: '0 auto',
+    flexWrap: 'wrap' as const,
+    justifyContent: 'center',
+  },
+  ctaInput: {
+    flex: '1 1 260px',
+    padding: '16px 20px',
+    fontSize: '1rem',
+    borderRadius: 'var(--radius-md)',
+    border: 'none',
+    background: 'rgba(255, 255, 255, 0.1)',
+    color: 'var(--porcelain)',
+  },
+  
+  // Footer
+  footer: {
+    background: 'var(--porcelain)',
+    color: 'var(--ink)',
+    padding: 'var(--space-4xl) 0 var(--space-xl)',
+    borderTop: '1px solid rgba(13, 27, 42, 0.1)',
+  },
+  footerInner: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap' as const,
+    gap: '48px',
+    marginBottom: 'var(--space-3xl)',
+  },
+  footerBrand: {
+    maxWidth: '320px',
+  },
+  footerLogo: {
+    fontFamily: 'var(--font-display)',
+    fontSize: '1.75rem',
+    fontWeight: 500,
+    marginBottom: '16px',
+    color: 'var(--forest)',
+  },
+  footerTagline: {
+    color: 'var(--sage)',
+    lineHeight: 1.7,
+  },
+  footerLinks: {
+    display: 'flex',
+    gap: '64px',
+  },
+  footerColumn: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '12px',
+  },
+  footerColumnTitle: {
+    fontWeight: 600,
+    marginBottom: '8px',
+  },
+  footerLink: {
+    color: 'var(--sage)',
+    transition: 'color 0.2s ease',
+    cursor: 'pointer',
+  },
+  footerBottom: {
+    borderTop: '1px solid rgba(13, 27, 42, 0.1)',
+    paddingTop: 'var(--space-xl)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap' as const,
+    gap: '16px',
+  },
+  footerCopyright: {
+    color: 'var(--sage)',
+    fontSize: '0.9rem',
+  },
+};
 
-    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+// ===== COMPONENTS =====
+
+const Receipt = () => (
+  <svg viewBox="0 0 320 400" fill="none" style={{ width: '100%', height: 'auto' }}>
+    {/* Receipt Background */}
+    <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" fill="#FFFFFF" />
+    <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" stroke="#E8E8E8" strokeWidth="1" fill="none" />
     
-    return () => {
-      observer.disconnect();
+    {/* Header */}
+    <text x="160" y="50" textAnchor="middle" fontFamily="Fraunces" fontSize="32" fontWeight="500" fill="#134611">opa</text>
+    <text x="160" y="75" textAnchor="middle" fontFamily="Inter" fontSize="10" fill="#839788" letterSpacing="2">PETTY CASH TRACKING</text>
+    
+    {/* Divider */}
+    <line x1="50" y1="100" x2="270" y2="100" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
+    
+    {/* Line Items */}
+    <text x="50" y="135" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Coffee Run (Crew)</text>
+    <text x="270" y="135" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$47.50</text>
+    
+    <text x="50" y="165" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Gaff Tape (3x Rolls)</text>
+    <text x="270" y="165" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$89.97</text>
+    
+    <text x="50" y="195" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Craft Services Supplies</text>
+    <text x="270" y="195" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$156.00</text>
+    
+    <text x="50" y="225" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Parking - Location Scout</text>
+    <text x="270" y="225" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$24.00</text>
+    
+    {/* Divider */}
+    <line x1="50" y1="255" x2="270" y2="255" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
+    
+    {/* Total */}
+    <text x="50" y="290" fontFamily="Inter" fontSize="16" fontWeight="600" fill="#0D1B2A">TOTAL</text>
+    <text x="270" y="290" textAnchor="end" fontFamily="JetBrains Mono" fontSize="20" fontWeight="600" fill="#134611">$317.47</text>
+    
+    {/* Status Tag */}
+    <rect x="90" y="310" width="140" height="32" rx="16" fill="rgba(45, 106, 79, 0.1)" />
+    <text x="160" y="331" textAnchor="middle" fontFamily="Inter" fontSize="13" fontWeight="500" fill="#2D6A4F">✓ Reconciled</text>
+    
+    {/* Footer */}
+    <text x="160" y="365" textAnchor="middle" fontFamily="Inter" fontSize="11" fill="#839788">Nice work today ✨</text>
+  </svg>
+);
+
+const PaperCrane = ({ style }: { style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 80 80" fill="none" style={{ width: '48px', height: '48px', ...style }}>
+    <path d="M40 10 L65 40 L40 70 L15 40 Z" fill="#D4A855" stroke="#C4725F" strokeWidth="2"/>
+    <path d="M40 10 L40 70" stroke="#C4725F" strokeWidth="1.5"/>
+    <path d="M15 40 L65 40" stroke="#C4725F" strokeWidth="1.5"/>
+    <circle cx="32" cy="35" r="2.5" fill="#0D1B2A"/>
+    <path d="M28 48 Q40 54 52 48" stroke="#0D1B2A" strokeWidth="2" fill="none"/>
+  </svg>
+);
+
+// ===== FAQ DATA =====
+const faqs = [
+  {
+    question: "Is this just for petty cash, or does it handle more?",
+    answer: "We're starting with petty cash because that's where the chaos usually begins. But OPA is designed to grow into a full production office toolkit—envelopes, POs, budget tracking, and more. Get in early and help shape what comes next."
+  },
+  {
+    question: "What if I'm not tech-savvy?",
+    answer: "Perfect. We built OPA for people who'd rather be on set than debugging software. If you can take a photo of a receipt, you can use OPA. No training required, no 47-step setup process."
+  },
+  {
+    question: "How is this different from Excel?",
+    answer: "Excel is a blank canvas that requires you to build everything from scratch—and maintain it forever. OPA already knows how production works: envelopes, line items, petty cash reconciliation. You focus on the work, not the spreadsheet."
+  },
+  {
+    question: "Can I try it before committing?",
+    answer: "Absolutely. We're offering early access to production professionals who want to help shape the product. No credit card, no commitment. Just honest feedback in exchange for free access."
+  },
+  {
+    question: "Is my data secure?",
+    answer: "Yes. We use bank-level encryption and your data is never shared with third parties. We know production budgets are sensitive—they're safe with us."
+  },
+];
+
+// ===== MAIN PAGE =====
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [email, setEmail] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  // Close mobile menu on route change or link click
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Connect to your Typeform or email capture
+    window.open(`https://form.typeform.com/to/Zj1Pex72?email=${encodeURIComponent(email)}`, '_blank');
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 relative overflow-hidden">
-      {/* Grain texture overlay */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIvPjwvc3ZnPg==')]"></div>
-
-      {/* Header */}
-      <nav className="relative z-20 px-6 py-5 border-b border-slate-800/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="relative group">
-            <h1 className="text-3xl font-black tracking-tighter text-cyan-400 uppercase transition-all duration-300 group-hover:text-cyan-300">
-              OPA
-            </h1>
-            <div className="absolute -bottom-1 left-0 w-8 h-1 bg-gradient-to-r from-pink-500 to-transparent group-hover:w-12 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(236,72,153,0.8)]"></div>
+    <>
+      {/* ===== NAVIGATION ===== */}
+      <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
+        <div className="container">
+          <div style={styles.navInner}>
+            <a href="/" style={styles.logo}>opa</a>
+            
+            {/* Desktop Nav */}
+            <div style={styles.navLinks} className="nav-links">
+              <a href="#features" style={styles.navLink}>Features</a>
+              <a href="#how-it-works" style={styles.navLink}>How It Works</a>
+              <a href="#faq" style={styles.navLink}>FAQ</a>
+              <a href="#cta" className="btn btn-primary">Get Early Access</a>
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                display: 'none',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '8px',
+                fontSize: '1.5rem',
+              }}
+              className="mobile-menu-btn"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? '✕' : '☰'}
+            </button>
           </div>
-          <a 
-            href="https://form.typeform.com/to/Zj1Pex72"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-slate-400 hover:text-cyan-400 transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]"
-          >
-            Request Access
-          </a>
+          
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              background: 'var(--porcelain)',
+              padding: '24px',
+              boxShadow: 'var(--shadow-lg)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+            }}>
+              <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
+              <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
+              <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
+              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Get Early Access</a>
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative z-10 px-6 pt-20 pb-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10 pointer-events-none"></div>
-        <div className="max-w-5xl mx-auto relative">
-          <h2 className="text-6xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-slate-50 to-cyan-400 bg-clip-text text-transparent">
-              We Hate Petty Cash.
-            </span>
-            <br />
-            <span className="text-slate-400 text-4xl md:text-5xl font-bold">
-              That's why we fixed it.
-            </span>
-          </h2>
-          <p className="text-lg text-slate-300 mb-10 max-w-2xl leading-relaxed">
-            OPA is your digital production office assistant that tracks petty cash, reimbursements, and receipts in real time — the way production actually works.
-          </p>
-          <a 
-            href="https://form.typeform.com/to/Zj1Pex72"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-slate-950 px-8 py-4 rounded-full text-lg font-bold hover:shadow-[0_0_40px_rgba(6,182,212,0.6),0_0_60px_rgba(236,72,153,0.4)] hover:scale-105 transition-all duration-300 shadow-lg relative overflow-hidden"
-          >
-            <span className="relative z-10">Request Early Access</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
-        </div>
-      </section>
-
-      {/* Problem Section */}
-      <section className="fade-in opacity-0 translate-y-8 transition-all duration-700 relative z-10 px-6 py-20 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent border-y border-slate-800/50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black mb-6 text-cyan-400 tracking-tight">
-            The Problem You Already Know
-          </h2>
-          <p className="text-2xl font-bold mb-12 text-slate-200">
-            Production doesn't fall apart at prep. It falls apart at wrap.
-          </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300">
-              <p className="text-slate-200">Camera roll receipt chaos</p>
+      {/* ===== HERO ===== */}
+      <section style={styles.hero}>
+        <div className="container">
+          <div style={styles.heroContent}>
+            <div style={styles.heroEyebrow}>
+              <PaperCrane />
+              <span>Now in Early Access</span>
             </div>
-            
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300" style={{ animationDelay: '100ms' }}>
-              <p className="text-slate-200 text-lg font-medium">"I'll fix this later"</p>
+            <h1 style={styles.heroTitle}>
+              The production office{' '}
+              <span style={styles.heroTitleAccent}>everyone</span> deserves.
+            </h1>
+            <p style={styles.heroDescription}>
+              Wrap day shouldn't mean spreadsheet nightmares. OPA handles your petty cash, 
+              receipts, and budget tracking—so you can focus on making great things.
+            </p>
+            <div style={styles.heroCTA}>
+              <a href="#cta" className="btn btn-primary btn-large">
+                Get Early Access
+              </a>
+              <a href="#how-it-works" className="btn btn-secondary btn-large">
+                See How It Works
+              </a>
             </div>
-            
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300" style={{ animationDelay: '200ms' }}>
-              <p className="text-slate-200 text-lg font-medium">"Wait, how much did I give you?"</p>
-            </div>
-            
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300" style={{ animationDelay: '300ms' }}>
-              <p className="text-slate-200">Mislabeled Dropbox scans</p>
-            </div>
-            
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300" style={{ animationDelay: '400ms' }}>
-              <p className="text-slate-200">Excel hell — rebuilding the same spreadsheet every job</p>
-            </div>
-            
-            <div className="p-5 bg-slate-800/30 border-l-2 border-pink-500 rounded backdrop-blur-sm hover:bg-slate-800/50 hover:translate-x-2 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:border-pink-400 transition-all duration-300" style={{ animationDelay: '500ms' }}>
-              <p className="text-slate-200 text-lg font-medium">"What is this charge?"</p>
+            <div style={styles.heroProof}>
+              <span>🎬</span>
+              <span>Built by production people, for production people</span>
             </div>
           </div>
-
-          <p className="text-lg text-slate-400 italic mt-10 text-center">
-            You've done this job. You know exactly what we're talking about.
-          </p>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="fade-in opacity-0 translate-y-8 transition-all duration-700 relative z-10 px-6 py-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black mb-16 text-cyan-400 tracking-tight">
-            What OPA Actually Does
-          </h2>
-          
-          <div className="space-y-8">
-            {[
-              {
-                emoji: '📁',
-                title: 'Job-Based Tracking That Makes Sense',
-                description: 'Everything lives inside a job folder — company info, job number, crew position, and expenses. No floating receipts. No mixing jobs. No camera roll archaeology.'
-              },
-              {
-                emoji: '💵',
-                title: 'Petty Cash Envelopes That Don\'t Lie',
-                description: 'Open an envelope, log the starting amount, and OPA tracks your running spend, remaining balance, and every receipt tied to a line item. You always know where the money went — before wrap.'
-              },
-              {
-                emoji: '💳',
-                title: 'Reimbursements Without the Guesswork',
-                description: 'Log reimbursements separately from petty cash with card last-four, actual receipt date, and editable line numbers. So accounting can reconcile without blowing you up.'
-              },
-              {
-                emoji: '📸',
-                title: 'Receipts, Captured Once',
-                description: 'Snap receipts in-app with smart cropping. No re-sorting. No re-naming. No re-uploading at wrap. Done.'
-              },
-              {
-                emoji: '🧾',
-                title: 'Line Numbers You Don\'t Have to Fight',
-                description: 'OPA suggests standard production line items — because they\'re usually the same — but lets you override anything when a job does something weird. You stay in control.'
-              },
-              {
-                emoji: '📊',
-                title: 'Budget Visibility That Actually Helps',
-                description: 'Keep your budget up to date with easy-to-see line totals across all envelopes. Know where you stand on every category without building a pivot table.'
-              },
-              {
-                emoji: '📤',
-                title: 'Wrap-Ready Exports',
-                description: 'When the job\'s done, OPA exports clean PDFs that look like real production paperwork — not a phone dump that accounting has to fix.'
-              }
-            ].map((feature, i) => (
-              <div 
-                key={i}
-                className="group relative grid md:grid-cols-[auto,1fr] gap-6 p-8 rounded-2xl bg-gradient-to-br from-cyan-500/5 to-pink-500/5 border border-slate-800/50 hover:border-cyan-500/50 hover:shadow-[0_0_60px_rgba(6,182,212,0.2),0_0_40px_rgba(236,72,153,0.15)] transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="absolute left-0 top-0 w-1 h-0 bg-gradient-to-b from-cyan-500 to-pink-500 group-hover:h-full transition-all duration-500 rounded-l-2xl group-hover:shadow-[0_0_15px_rgba(6,182,212,0.8)]"></div>
-                <div className="text-cyan-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(6,182,212,0.8)] transition-all duration-300 text-5xl">
-                  {feature.emoji}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black mb-3 text-slate-50 tracking-tight group-hover:text-cyan-300 transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-400 text-lg leading-relaxed group-hover:text-slate-300 transition-colors">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Section */}
-      <section className="fade-in opacity-0 translate-y-8 transition-all duration-700 relative z-10 px-6 py-20 my-16">
-        <div className="max-w-4xl mx-auto bg-slate-900/50 backdrop-blur-sm rounded-3xl p-12 border border-slate-800/50 text-center hover:border-cyan-500/30 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] transition-all duration-500">
-          <h2 className="text-4xl font-black mb-8 text-cyan-400 tracking-tight">
-            Why This Matters
-          </h2>
-          <p className="text-xl text-slate-300 mb-6 leading-relaxed">
-            Production hasn't modernized the messiest part of the job: tracking money in the field.
-          </p>
-          <p className="text-xl text-slate-300 leading-relaxed">
-            OPA fixes the part everyone hates but everyone has to do — so you can stop rebuilding expense reports at 2am and actually go home.
-          </p>
-        </div>
-      </section>
-
-      {/* Audience Section */}
-      <section className="fade-in opacity-0 translate-y-8 transition-all duration-700 relative z-10 px-6 py-20">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black mb-12 text-cyan-400 tracking-tight text-center">
-            Who This Is For
-          </h2>
-          
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {[
-              'Production Managers',
-              'Coordinators',
-              'Line Producers',
-              'Freelancers juggling multiple jobs',
-              'Anyone trusted with money on set'
-            ].map((audience, i) => (
-              <div 
-                key={i}
-                className="p-6 bg-slate-800/20 border-2 border-transparent rounded-xl text-center hover:border-cyan-500 hover:bg-cyan-500/5 hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-300"
-              >
-                <h3 className="font-bold text-slate-100">
-                  {audience}
-                </h3>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-cyan-400 bg-clip-text text-transparent mt-12 text-center">
-            If you've ever said "I'll clean this up later" — this is for you.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="early-access" className="fade-in opacity-0 translate-y-8 transition-all duration-700 relative z-10 px-6 py-24 my-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950 rounded-3xl"></div>
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
-        <div className="max-w-4xl mx-auto relative text-center">
-          <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-50 tracking-tight">
-            Early Access
-          </h2>
-          <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-            OPA is being built by people who have done this job. Early access means:
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-            {[
-              'Using it before anyone else',
-              'Helping decide what ships next',
-              'Finally having a system that respects production reality'
-            ].map((benefit, i) => (
-              <div key={i} className="flex items-center justify-center gap-3 text-slate-300">
-                <Check className="w-6 h-6 text-green-400 flex-shrink-0 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
-                <span>{benefit}</span>
-              </div>
-            ))}
+        {/* Hero Visual - Hidden on mobile */}
+        <div style={styles.heroVisual} className="hero-visual">
+          <div style={{ 
+            transform: 'rotate(-8deg)', 
+            filter: 'drop-shadow(0 20px 40px rgba(13, 27, 42, 0.15))',
+            animation: 'float 6s ease-in-out infinite'
+          }}>
+            <Receipt />
           </div>
-
-          <a
-            href="https://form.typeform.com/to/Zj1Pex72"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-pink-500 text-slate-950 px-10 py-5 rounded-full text-xl font-bold hover:shadow-[0_0_50px_rgba(6,182,212,0.6),0_0_70px_rgba(236,72,153,0.4)] hover:scale-105 transition-all duration-300 relative overflow-hidden"
-          >
-            <span className="relative z-10">Request Early Access</span>
-            <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative z-10 px-6 py-8 border-t border-slate-800/50">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-slate-500">
-            © 2025 OPA. Built for production, by production.
+      {/* ===== PROBLEM SECTION ===== */}
+      <section style={styles.section} id="problem">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionEyebrow}>Sound familiar?</div>
+            <h2 style={styles.sectionTitle}>We've been in your shoes.</h2>
+            <p style={styles.sectionSubtitle}>
+              These aren't hypothetical problems. We've lived them. Now we're fixing them.
+            </p>
+          </div>
+          
+          <div style={styles.problemGrid}>
+            <div style={styles.problemCard}>
+              <div style={styles.problemIcon}>📦</div>
+              <h3 style={styles.problemTitle}>The Camera Roll of Doom</h3>
+              <p style={styles.problemDesc}>
+                327 receipt photos. No labels. Due in accounting by Friday. 
+                You know exactly which circle of Excel hell awaits.
+              </p>
+            </div>
+            
+            <div style={styles.problemCard}>
+              <div style={styles.problemIcon}>😰</div>
+              <h3 style={styles.problemTitle}>Wrap Day Panic</h3>
+              <p style={styles.problemDesc}>
+                Everyone's exhausted. Everyone's impatient. And somehow you're still 
+                reconciling petty cash at 11pm while craft services gets packed up around you.
+              </p>
+            </div>
+            
+            <div style={styles.problemCard}>
+              <div style={styles.problemIcon}>📊</div>
+              <h3 style={styles.problemTitle}>Spreadsheet Archaeology</h3>
+              <p style={styles.problemDesc}>
+                "Where did that $200 go?" Opening seven versions of the same Excel file, 
+                praying one of them has the answer. Spoiler: none of them do.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURES SECTION ===== */}
+      <section style={{ ...styles.section, ...styles.sectionDark }} id="features">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>What OPA Does</div>
+            <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
+              Your calm in the chaos.
+            </h2>
+            <p style={{ ...styles.sectionSubtitle, color: 'var(--sage-light)' }}>
+              OPA thinks the way production managers think—receipts first, line items second. 
+              No paradigm shifts required.
+            </p>
+          </div>
+          
+          <div style={styles.featureGrid}>
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>📸</div>
+              <h3 style={styles.featureTitle}>Snap & Sort</h3>
+              <p style={styles.featureDesc}>
+                Photo a receipt. OPA pulls the details. Assign it to an envelope. Done. 
+                No more camera roll archaeology.
+              </p>
+            </div>
+            
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>📁</div>
+              <h3 style={styles.featureTitle}>Smart Envelopes</h3>
+              <p style={styles.featureDesc}>
+                Organize by department, by day, by whatever makes sense for your show. 
+                See totals at a glance. Always know where you stand.
+              </p>
+            </div>
+            
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>💰</div>
+              <h3 style={styles.featureTitle}>Budget Visibility</h3>
+              <p style={styles.featureDesc}>
+                Real-time spending by line item. No more end-of-week surprises. 
+                Know exactly where every dollar went.
+              </p>
+            </div>
+            
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>✨</div>
+              <h3 style={styles.featureTitle}>Quiet Controls</h3>
+              <p style={styles.featureDesc}>
+                Date adjustments that actually make sense for production accounting. 
+                Back-date when you need to. OPA understands.
+              </p>
+            </div>
+            
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>📤</div>
+              <h3 style={styles.featureTitle}>Export Ready</h3>
+              <p style={styles.featureDesc}>
+                When accounting asks for "the spreadsheet," you'll have it. 
+                Clean, formatted, ready to send.
+              </p>
+            </div>
+            
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>🔒</div>
+              <h3 style={styles.featureTitle}>Production-Grade Security</h3>
+              <p style={styles.featureDesc}>
+                Your budget data stays yours. Bank-level encryption. 
+                No sharing, no selling, no nonsense.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HOW IT WORKS ===== */}
+      <section style={styles.section} id="how-it-works">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionEyebrow}>How It Works</div>
+            <h2 style={styles.sectionTitle}>Three steps to sanity.</h2>
+            <p style={styles.sectionSubtitle}>
+              No training sessions. No onboarding calls. 
+              If you can take a photo, you're already an expert.
+            </p>
+          </div>
+          
+          <div style={styles.stepsGrid}>
+            <div style={styles.stepCard}>
+              <div style={styles.stepNumber}>1</div>
+              <h3 style={styles.stepTitle}>Snap the receipt</h3>
+              <p style={styles.stepDesc}>
+                Take a photo. OPA reads the details—vendor, amount, date. 
+                You just confirm and move on.
+              </p>
+            </div>
+            
+            <div style={styles.stepCard}>
+              <div style={styles.stepNumber}>2</div>
+              <h3 style={styles.stepTitle}>Assign to an envelope</h3>
+              <p style={styles.stepDesc}>
+                Camera Dept, Craft Services, Props—whatever makes sense. 
+                Track spending by department or day.
+              </p>
+            </div>
+            
+            <div style={styles.stepCard}>
+              <div style={styles.stepNumber}>3</div>
+              <h3 style={styles.stepTitle}>Reconcile in seconds</h3>
+              <p style={styles.stepDesc}>
+                When wrap comes, your totals are ready. Export to Excel. 
+                Send to accounting. Go home on time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TRUST SIGNAL ===== */}
+      <section style={{ ...styles.section, background: 'var(--blush-light)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{ 
+            maxWidth: '700px', 
+            margin: '0 auto',
+          }}>
+            <div style={{ 
+              fontSize: '3rem', 
+              marginBottom: '24px',
+            }}>
+              🎬
+            </div>
+            <h2 style={{ 
+              fontFamily: 'var(--font-display)', 
+              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', 
+              fontWeight: 400, 
+              marginBottom: '20px',
+              lineHeight: 1.3,
+            }}>
+              Built by someone who's been in your shoes at 11pm the night before wrap is due.
+            </h2>
+            <p style={{ 
+              fontSize: '1.1rem', 
+              color: 'var(--sage)', 
+              lineHeight: 1.7,
+              maxWidth: '550px',
+              margin: '0 auto',
+            }}>
+              OPA exists because we got tired of the same Excel nightmare on every show. 
+              We're building the tool we wish we'd had.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section style={styles.section} id="faq">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionEyebrow}>Questions</div>
+            <h2 style={styles.sectionTitle}>We've got answers.</h2>
+          </div>
+          
+          <div style={styles.faqGrid}>
+            {faqs.map((faq, index) => (
+              <div key={index} style={styles.faqItem}>
+                <button 
+                  style={styles.faqQuestion}
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <span>{faq.question}</span>
+                  <span style={{ 
+                    transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0)',
+                    transition: 'transform 0.2s ease'
+                  }}>
+                    ↓
+                  </span>
+                </button>
+                {openFaq === index && (
+                  <div style={styles.faqAnswer}>{faq.answer}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FINAL CTA ===== */}
+      <section style={{ ...styles.sectionForest, ...styles.ctaSection }} id="cta">
+        <div className="container">
+          <PaperCrane style={{ margin: '0 auto 24px', opacity: 0.9 }} />
+          <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
+          <p style={styles.ctaSubtitle}>
+            Join production professionals who are already working smarter. 
+            Early access is free—just bring your honest feedback.
+          </p>
+          <form style={styles.ctaForm} onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.ctaInput}
+              required
+            />
+            <button type="submit" className="btn btn-warm btn-large">
+              Get Early Access →
+            </button>
+          </form>
+          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.7 }}>
+            No credit card required. No commitment. Just better production accounting.
           </p>
         </div>
+      </section>
+
+      {/* ===== FOOTER ===== */}
+      <footer style={styles.footer}>
+        <div className="container">
+          <div style={styles.footerInner}>
+            <div style={styles.footerBrand}>
+              <div style={styles.footerLogo}>opa</div>
+              <p style={styles.footerTagline}>
+                The production office everyone deserves. Built by production people, for production people.
+              </p>
+            </div>
+            
+            <div style={styles.footerLinks}>
+              <div style={styles.footerColumn}>
+                <div style={styles.footerColumnTitle}>Product</div>
+                <a href="#features" style={styles.footerLink}>Features</a>
+                <a href="#how-it-works" style={styles.footerLink}>How It Works</a>
+                <a href="#faq" style={styles.footerLink}>FAQ</a>
+              </div>
+              <div style={styles.footerColumn}>
+                <div style={styles.footerColumnTitle}>Company</div>
+                <a href="/about" style={styles.footerLink}>About</a>
+                <a href="/privacy" style={styles.footerLink}>Privacy</a>
+                <a href="/terms" style={styles.footerLink}>Terms</a>
+              </div>
+            </div>
+          </div>
+          
+          <div style={styles.footerBottom}>
+            <div style={styles.footerCopyright}>
+              © {new Date().getFullYear()} OPA. Made with ☕ in production offices everywhere.
+            </div>
+            <div style={{ display: 'flex', gap: '24px' }}>
+              <a href="mailto:hello@useopa.com" style={styles.footerLink}>hello@useopa.com</a>
+            </div>
+          </div>
+        </div>
       </footer>
-    </div>
+    </>
   );
 }

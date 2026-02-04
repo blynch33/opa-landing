@@ -1,27 +1,18 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata = {
-  title: 'OPA — Built for People Who Actually Run Production',
-  description: 'Digital production office assistant that tracks petty cash, reimbursements, and receipts in real time. Stop rebuilding expense reports at 2am.',
-  keywords: 'production management, petty cash tracking, receipt management, production coordinator tools, film production software',
+export const metadata: Metadata = {
+  title: 'OPA — The Production Office Everyone Deserves',
+  description: 'Finally, production accounting that doesn\'t make you want to cry. Petty cash tracking, receipt management, and budget visibility for film & TV professionals.',
+  keywords: ['production accounting', 'petty cash', 'film production', 'TV production', 'receipt tracking', 'production management', 'entertainment accounting'],
   authors: [{ name: 'OPA' }],
   openGraph: {
-    title: 'OPA — Built for People Who Actually Run Production',
-    description: 'Stop chasing receipts. Digital assistant for production managers, coordinators, and PAs.',
+    title: 'OPA — The Production Office Everyone Deserves',
+    description: 'Finally, production accounting that doesn\'t make you want to cry. Petty cash tracking for film & TV professionals.',
     url: 'https://useopa.com',
     siteName: 'OPA',
+    locale: 'en_US',
+    type: 'website',
     images: [
       {
         url: '/og-image.png',
@@ -30,31 +21,39 @@ export const metadata = {
         alt: 'OPA - Production Office Assistant',
       },
     ],
-    locale: 'en_US',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OPA — Built for People Who Actually Run Production',
-    description: 'Stop chasing receipts. Digital assistant for production managers, coordinators, and PAs.',
+    title: 'OPA — The Production Office Everyone Deserves',
+    description: 'Finally, production accounting that doesn\'t make you want to cry.',
     images: ['/og-image.png'],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
-    icon: '/favicon.png',
+    icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-}
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" 
+          rel="stylesheet" 
+        />
+      </head>
+      <body>
         {children}
       </body>
     </html>
