@@ -742,6 +742,16 @@ export default function Home() {
                 signature blocks. Ready to send, not cobbled together.
               </p>
             </div>
+
+            <div style={{ ...styles.featureCard, gridColumn: '1 / -1' }}>
+              <div style={styles.featureLabel}>AICP Integration</div>
+              <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
+              <p style={styles.featureDesc}>
+                AICP budget lines come standard — Pages A through P. Every receipt maps to the
+                right line number. Custom lines when you need them. Your accountant gets exactly
+                what they expect.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -789,37 +799,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== TRUST SIGNAL ===== */}
-      <section style={{ ...styles.section, background: 'var(--blush-light)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <div style={{
-            maxWidth: '700px',
-            margin: '0 auto',
-          }}>
+      {/* ===== ORIGIN ===== */}
+      <section style={{
+        ...styles.section,
+        background: 'var(--porcelain)',
+        borderTop: '1px solid rgba(13, 27, 42, 0.08)',
+        borderBottom: '1px solid rgba(13, 27, 42, 0.08)',
+      }}>
+        <div className="container">
+          <div style={{ maxWidth: '700px' }}>
             <div style={{
-              fontSize: '3rem',
-              marginBottom: '24px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.75rem',
+              textTransform: 'uppercase' as const,
+              letterSpacing: '0.1em',
+              color: 'var(--terracotta)',
+              marginBottom: '16px',
             }}>
-              🎬
+              Los Angeles, CA
             </div>
             <h2 style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
               fontWeight: 400,
-              marginBottom: '20px',
+              marginBottom: '16px',
               lineHeight: 1.3,
+              color: 'var(--ink)',
             }}>
-              Built by someone who's been in your shoes at 11pm the night before wrap is due.
+              Made by producers and coordinators between jobs.
             </h2>
             <p style={{
               fontSize: '1.1rem',
               color: 'var(--sage)',
               lineHeight: 1.7,
-              maxWidth: '550px',
-              margin: '0 auto',
             }}>
-              OPA exists because we got tired of the same Excel nightmare on every show.
-              We're building the tool we wish we'd had.
+              We got tired of the same spreadsheet on every show. So we built something better.
             </p>
           </div>
         </div>
