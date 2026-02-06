@@ -149,36 +149,36 @@ const styles = {
     margin: '0 auto',
   },
 
-  // Problem Section
-  problemGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '32px',
+  // Moments Section
+  momentsGrid: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '24px',
+    maxWidth: '720px',
+    margin: '0 auto',
   },
-  problemCard: {
+  momentCard: {
     background: 'var(--white)',
     borderRadius: 'var(--radius-xl)',
-    padding: '40px',
+    padding: '40px 40px 40px 44px',
     boxShadow: 'var(--shadow-md)',
+    borderLeft: '4px solid var(--forest-light)',
   },
-  problemIcon: {
-    width: '56px',
-    height: '56px',
-    background: 'linear-gradient(135deg, var(--terracotta-light) 0%, var(--blush) 100%)',
-    borderRadius: 'var(--radius-lg)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '1.75rem',
-    marginBottom: '20px',
+  momentTimestamp: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.85rem',
+    color: 'var(--terracotta)',
+    letterSpacing: '0.02em',
+    marginBottom: '8px',
   },
-  problemTitle: {
+  momentTitle: {
     fontFamily: 'var(--font-display)',
     fontSize: '1.35rem',
     fontWeight: 500,
     marginBottom: '12px',
+    color: 'var(--ink)',
   },
-  problemDesc: {
+  momentDesc: {
     color: 'var(--sage)',
     lineHeight: 1.7,
   },
@@ -657,42 +657,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== PROBLEM SECTION ===== */}
-      <section style={styles.section} id="problem">
+      {/* ===== YOUR DAY WITH OPA ===== */}
+      <section style={styles.section} id="your-day">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Sound familiar?</div>
-            <h2 style={styles.sectionTitle}>We've been in your shoes.</h2>
-            <p style={styles.sectionSubtitle}>
-              These aren't hypothetical problems. We've lived them. Now we're fixing them.
-            </p>
+            <div style={styles.sectionEyebrow}>Your day</div>
+            <h2 style={styles.sectionTitle}>A day with OPA.</h2>
           </div>
 
-          <div style={styles.problemGrid}>
-            <div style={styles.problemCard}>
-              <div style={styles.problemIcon}>📦</div>
-              <h3 style={styles.problemTitle}>The Camera Roll of Doom</h3>
-              <p style={styles.problemDesc}>
-                327 receipt photos. No labels. Due in accounting by Friday.
-                You know exactly which circle of Excel hell awaits.
+          <div style={styles.momentsGrid}>
+            <div style={styles.momentCard}>
+              <div style={styles.momentTimestamp}>6:47 AM</div>
+              <h3 style={styles.momentTitle}>On set before the sun</h3>
+              <p style={styles.momentDesc}>
+                You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
+                One less thing rattling around in your head.
               </p>
             </div>
 
-            <div style={styles.problemCard}>
-              <div style={styles.problemIcon}>😰</div>
-              <h3 style={styles.problemTitle}>Wrap Day Panic</h3>
-              <p style={styles.problemDesc}>
-                Everyone's exhausted. Everyone's impatient. And somehow you're still
-                reconciling petty cash at 11pm while craft services gets packed up around you.
+            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
+              <div style={styles.momentTimestamp}>2:13 PM</div>
+              <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
+              <p style={styles.momentDesc}>
+                Art dept's been uploading all morning. They're $847 from their limit.
+                You Zelle more cash before they even ask. Crisis averted.
               </p>
             </div>
 
-            <div style={styles.problemCard}>
-              <div style={styles.problemIcon}>📊</div>
-              <h3 style={styles.problemTitle}>Spreadsheet Archaeology</h3>
-              <p style={styles.problemDesc}>
-                "Where did that $200 go?" Opening seven versions of the same Excel file,
-                praying one of them has the answer. Spoiler: none of them do.
+            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
+              <div style={styles.momentTimestamp}>11:34 PM</div>
+              <h3 style={styles.momentTitle}>Wrap chaos</h3>
+              <p style={styles.momentDesc}>
+                Producer texts you 7 receipts in various states of legibility. You bulk upload
+                to OPA, they're logged. You'll deal with it tomorrow when you're human again.
               </p>
             </div>
           </div>
