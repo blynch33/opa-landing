@@ -57,6 +57,8 @@ const styles = {
     maxWidth: '720px',
     position: 'relative' as const,
     zIndex: 2,
+    textAlign: 'center' as const,
+    margin: '0 auto',
   },
   heroTitle: {
     fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
@@ -67,7 +69,6 @@ const styles = {
     color: 'var(--ink)',
   },
   heroTitleAccent: {
-    fontStyle: 'italic',
     color: 'var(--forest)',
   },
   heroDescription: {
@@ -81,6 +82,7 @@ const styles = {
     flexWrap: 'wrap' as const,
     gap: '16px',
     marginBottom: '0',
+    justifyContent: 'center',
   },
   heroVisual: {
     position: 'absolute' as const,
@@ -311,7 +313,7 @@ const Receipt = () => (
     <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" stroke="#E8E8E8" strokeWidth="1" fill="none" />
 
     {/* Header */}
-    <text x="160" y="50" textAnchor="middle" fontFamily="Fraunces" fontSize="32" fontWeight="500" fill="#134611">opa</text>
+    <text x="160" y="50" textAnchor="middle" fontFamily="DM Serif Text" fontSize="32" fontWeight="400" fill="#134611">opa</text>
     <text x="160" y="75" textAnchor="middle" fontFamily="Inter" fontSize="10" fill="#839788" letterSpacing="2">PETTY CASH TRACKING</text>
 
     {/* Divider */}

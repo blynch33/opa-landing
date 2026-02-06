@@ -9,9 +9,8 @@ export const contentType = 'image/png';
 export default async function TwitterImage() {
   const fontsDir = join(process.cwd(), 'app', 'fonts');
 
-  const [frauncesMedium, frauncesItalic, interMedium] = await Promise.all([
-    readFile(join(fontsDir, 'Fraunces-Medium.ttf')),
-    readFile(join(fontsDir, 'Fraunces-Italic.ttf')),
+  const [dmSerifText, interMedium] = await Promise.all([
+    readFile(join(fontsDir, 'DMSerifText-Regular.ttf')),
     readFile(join(fontsDir, 'Inter-Medium.ttf')),
   ]);
 
@@ -37,23 +36,13 @@ export default async function TwitterImage() {
         >
           <span
             style={{
-              fontFamily: 'Fraunces Italic',
-              fontSize: 180,
-              color: '#C4725F',
-              lineHeight: 1,
-            }}
-          >
-            o
-          </span>
-          <span
-            style={{
-              fontFamily: 'Fraunces',
+              fontFamily: 'DM Serif Text',
               fontSize: 180,
               color: '#134611',
               lineHeight: 1,
             }}
           >
-            pa
+            opa
           </span>
         </div>
 
@@ -74,15 +63,9 @@ export default async function TwitterImage() {
       ...size,
       fonts: [
         {
-          name: 'Fraunces',
-          data: frauncesMedium.buffer as ArrayBuffer,
+          name: 'DM Serif Text',
+          data: dmSerifText.buffer as ArrayBuffer,
           style: 'normal' as const,
-          weight: 500 as const,
-        },
-        {
-          name: 'Fraunces Italic',
-          data: frauncesItalic.buffer as ArrayBuffer,
-          style: 'italic' as const,
           weight: 400 as const,
         },
         {
