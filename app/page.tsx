@@ -732,39 +732,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== HOW IT WORKS ===== */}
-      <section style={styles.section} id="how-it-works">
+      {/* ===== A DAY WITH OPA ===== */}
+      <section style={styles.section} id="your-day">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Wrap</div>
-            <h2 style={styles.sectionTitle}>Three steps to sanity.</h2>
+            <h2 style={styles.sectionTitle}>A day with OPA.</h2>
           </div>
 
-          <div style={styles.stepsGrid}>
-            <div style={styles.stepCard}>
-              <div style={styles.stepNumber}>1</div>
-              <h3 style={styles.stepTitle}>Scan the receipt</h3>
-              <p style={styles.stepDesc}>
-                Take a photo. OPA reads the details—vendor, amount, date.
-                You just confirm and move on.
+          <div style={styles.momentsGrid}>
+            <div style={styles.momentCard}>
+              <div style={styles.momentTimestamp}>6:47 AM</div>
+              <h3 style={styles.momentTitle}>On set before the sun</h3>
+              <p style={styles.momentDesc}>
+                You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
+                One less thing rattling around in your head.
               </p>
             </div>
 
-            <div style={styles.stepCard}>
-              <div style={styles.stepNumber}>2</div>
-              <h3 style={styles.stepTitle}>Assign to an envelope</h3>
-              <p style={styles.stepDesc}>
-                Crafty, Styling, Production—whatever you need.
-                Track spending by envelope.
+            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
+              <div style={styles.momentTimestamp}>2:13 PM</div>
+              <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
+              <p style={styles.momentDesc}>
+                Art dept's been uploading all morning. They're $847 from their limit.
+                You Zelle more cash before they even ask. Crisis averted.
               </p>
             </div>
 
-            <div style={styles.stepCard}>
-              <div style={styles.stepNumber}>3</div>
-              <h3 style={styles.stepTitle}>Reconcile in seconds</h3>
-              <p style={styles.stepDesc}>
-                When wrap comes, your totals are ready. Export to Excel.
-                Send to accounting. On to the next.
+            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
+              <div style={styles.momentTimestamp}>11:34 PM</div>
+              <h3 style={styles.momentTitle}>Wrap chaos</h3>
+              <p style={styles.momentDesc}>
+                Producer texts you 7 receipts in various states of legibility. You bulk upload
+                to OPA, they're logged. You'll deal with it tomorrow when you're human again.
               </p>
             </div>
           </div>
@@ -842,8 +841,8 @@ export default function Home() {
       {/* ===== ORIGIN ===== */}
       <section style={{
         ...styles.section,
-        background: 'var(--ink)',
-        color: 'var(--porcelain)',
+        background: 'var(--porcelain)',
+        borderTop: '1px solid rgba(13, 27, 42, 0.08)',
         overflow: 'hidden',
         position: 'relative' as const,
       }}>
@@ -860,7 +859,7 @@ export default function Home() {
                 fontSize: '0.75rem',
                 textTransform: 'uppercase' as const,
                 letterSpacing: '0.1em',
-                color: 'var(--honey)',
+                color: 'var(--terracotta)',
                 marginBottom: '16px',
               }}>
                 Los Angeles, CA
@@ -871,13 +870,13 @@ export default function Home() {
                 fontWeight: 400,
                 marginBottom: '16px',
                 lineHeight: 1.3,
-                color: 'var(--porcelain)',
+                color: 'var(--ink)',
               }}>
                 Made on set. Built between jobs.
               </h2>
               <p style={{
                 fontSize: '1.1rem',
-                color: 'var(--sage-light)',
+                color: 'var(--sage)',
                 lineHeight: 1.7,
               }}>
                 We got tired of the same spreadsheet on every show. So we built something better.
@@ -888,9 +887,9 @@ export default function Home() {
             <div style={{
               flexShrink: 0,
               width: '280px',
-              opacity: 0.85,
+              opacity: 0.9,
               transform: 'rotate(-4deg)',
-              filter: 'drop-shadow(0 16px 40px rgba(0, 0, 0, 0.3))',
+              filter: 'drop-shadow(0 16px 40px rgba(13, 27, 42, 0.1))',
             }} className="origin-receipt">
               <Receipt />
             </div>
