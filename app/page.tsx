@@ -802,39 +802,58 @@ export default function Home() {
       {/* ===== ORIGIN ===== */}
       <section style={{
         ...styles.section,
-        background: 'var(--porcelain)',
-        borderTop: '1px solid rgba(13, 27, 42, 0.08)',
-        borderBottom: '1px solid rgba(13, 27, 42, 0.08)',
+        background: 'var(--ink)',
+        color: 'var(--porcelain)',
+        overflow: 'hidden',
+        position: 'relative' as const,
       }}>
         <div className="container">
-          <div style={{ maxWidth: '700px' }}>
-            <div style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
-              textTransform: 'uppercase' as const,
-              letterSpacing: '0.1em',
-              color: 'var(--terracotta)',
-              marginBottom: '16px',
-            }}>
-              Los Angeles, CA
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '64px',
+          }} className="origin-inner">
+            <div style={{ maxWidth: '560px', position: 'relative' as const, zIndex: 2 }}>
+              <div style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.75rem',
+                textTransform: 'uppercase' as const,
+                letterSpacing: '0.1em',
+                color: 'var(--honey)',
+                marginBottom: '16px',
+              }}>
+                Los Angeles, CA
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+                fontWeight: 400,
+                marginBottom: '16px',
+                lineHeight: 1.3,
+                color: 'var(--porcelain)',
+              }}>
+                Made by producers and coordinators between jobs.
+              </h2>
+              <p style={{
+                fontSize: '1.1rem',
+                color: 'var(--sage-light)',
+                lineHeight: 1.7,
+              }}>
+                We got tired of the same spreadsheet on every show. So we built something better.
+              </p>
             </div>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-              fontWeight: 400,
-              marginBottom: '16px',
-              lineHeight: 1.3,
-              color: 'var(--ink)',
-            }}>
-              Made by producers and coordinators between jobs.
-            </h2>
-            <p style={{
-              fontSize: '1.1rem',
-              color: 'var(--sage)',
-              lineHeight: 1.7,
-            }}>
-              We got tired of the same spreadsheet on every show. So we built something better.
-            </p>
+
+            {/* Receipt Visual */}
+            <div style={{
+              flexShrink: 0,
+              width: '280px',
+              opacity: 0.85,
+              transform: 'rotate(-4deg)',
+              filter: 'drop-shadow(0 16px 40px rgba(0, 0, 0, 0.3))',
+            }} className="origin-receipt">
+              <Receipt />
+            </div>
           </div>
         </div>
       </section>
@@ -872,7 +891,7 @@ export default function Home() {
       </section>
 
       {/* ===== FINAL CTA ===== */}
-      <section style={{ ...styles.sectionForest, ...styles.ctaSection }} id="cta">
+      <section style={{ ...styles.featureForest, ...styles.ctaSection }} id="cta">
         <div className="container">
           <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
           <p style={styles.ctaSubtitle}>

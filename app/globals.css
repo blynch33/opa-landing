@@ -307,6 +307,14 @@ a {
   .feature-grid {
     grid-template-columns: 1fr !important;
   }
+
+  .origin-receipt {
+    display: none;
+  }
+
+  .origin-inner {
+    justify-content: flex-start !important;
+  }
   
   .hero-cta {
     flex-direction: column;
