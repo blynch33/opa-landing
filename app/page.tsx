@@ -45,7 +45,7 @@ const styles = {
 
   // Hero Section
   hero: {
-    minHeight: '90vh',
+    minHeight: 'auto',
     display: 'flex',
     alignItems: 'center',
     paddingTop: '120px',
@@ -812,7 +812,7 @@ export default function Home() {
                 lineHeight: 1.3,
                 color: 'var(--porcelain)',
               }}>
-                Made by producers and coordinators between jobs.
+                Made on set. Built between jobs.
               </h2>
               <p style={{
                 fontSize: '1.1rem',
@@ -890,7 +890,7 @@ export default function Home() {
             <div style={styles.footerBrand}>
               <div style={styles.footerLogo}>opa</div>
               <p style={styles.footerTagline}>
-                Petty cash. Handled. Made on set. Built between jobs.
+                Petty cash. Handled.
               </p>
             </div>
 
