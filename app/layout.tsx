@@ -2,39 +2,27 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://useopa.com'),
   title: 'OPA — The Production Office Everyone Deserves',
-  description: 'Finally, production accounting that doesn\'t make you want to cry. Petty cash tracking, receipt management, and budget visibility for film & TV professionals.',
+  description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews. Scan receipts, assign to envelopes, reconcile, export.',
   keywords: ['production accounting', 'petty cash', 'film production', 'TV production', 'receipt tracking', 'production management', 'entertainment accounting'],
   authors: [{ name: 'OPA' }],
   openGraph: {
     title: 'OPA — The Production Office Everyone Deserves',
-    description: 'Finally, production accounting that doesn\'t make you want to cry. Petty cash tracking for film & TV professionals.',
+    description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
     url: 'https://useopa.com',
     siteName: 'OPA',
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'OPA - Production Office Assistant',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'OPA — The Production Office Everyone Deserves',
-    description: 'Finally, production accounting that doesn\'t make you want to cry.',
-    images: ['/og-image.png'],
+    description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
   },
   robots: {
     index: true,
     follow: true,
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
   },
 };
 
