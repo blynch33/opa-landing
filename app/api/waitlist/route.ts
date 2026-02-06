@@ -1,8 +1,16 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-const WAITLIST_FILE = path.join(process.cwd(), 'waitlist.json');
+function getSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !key) {
+    throw new Error('Missing Supabase environment variables');
+  }
+
+  return createClient(url, key);
+}
 
 export async function POST(request: Request) {
   try {
@@ -14,27 +22,19 @@ export async function POST(request: Request) {
 
     const cleanEmail = email.toLowerCase().trim();
 
-    // Read existing waitlist
-    let waitlist: Array<{ email: string; timestamp: string }> = [];
-    try {
-      const data = await fs.readFile(WAITLIST_FILE, 'utf-8');
-      waitlist = JSON.parse(data);
-    } catch {
-      // File doesn't exist yet
+    // Insert — unique constraint handles duplicates
+    const { error } = await getSupabase()
+      .from('waitlist')
+      .insert({ email: cleanEmail });
+
+    if (error) {
+      // Duplicate email (unique constraint violation)
+      if (error.code === '23505') {
+        return NextResponse.json({ message: 'Already on the list' }, { status: 200 });
+      }
+      console.error('Supabase error:', error);
+      return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
     }
-
-    // Check for duplicates
-    if (waitlist.some(entry => entry.email === cleanEmail)) {
-      return NextResponse.json({ message: 'Already on the list' }, { status: 200 });
-    }
-
-    // Add new entry
-    waitlist.push({
-      email: cleanEmail,
-      timestamp: new Date().toISOString(),
-    });
-
-    await fs.writeFile(WAITLIST_FILE, JSON.stringify(waitlist, null, 2));
 
     return NextResponse.json({ message: 'Added to waitlist' }, { status: 200 });
   } catch (error) {
@@ -43,12 +43,17 @@ export async function POST(request: Request) {
   }
 }
 
-// Check waitlist count
 export async function GET() {
   try {
-    const data = await fs.readFile(WAITLIST_FILE, 'utf-8');
-    const waitlist = JSON.parse(data);
-    return NextResponse.json({ count: waitlist.length });
+    const { count, error } = await getSupabase()
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) {
+      return NextResponse.json({ count: 0 });
+    }
+
+    return NextResponse.json({ count: count ?? 0 });
   } catch {
     return NextResponse.json({ count: 0 });
   }
