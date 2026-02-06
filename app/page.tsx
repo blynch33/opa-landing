@@ -727,14 +727,6 @@ export default function Home() {
               </p>
             </div>
 
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Offline Mode</div>
-              <h3 style={styles.featureTitle}>No signal? No problem.</h3>
-              <p style={styles.featureDesc}>
-                Shooting in Lancaster? No Starlink? Scan your receipts anyway. OPA saves
-                everything locally and syncs the moment you're back online.
-              </p>
-            </div>
           </div>
         </div>
       </section>
