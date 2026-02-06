@@ -184,32 +184,32 @@ const styles = {
   },
 
   // Features Section
+  featureForest: {
+    background: 'linear-gradient(135deg, var(--forest-dark) 0%, #0d3a0b 100%)',
+    color: 'var(--porcelain)',
+  },
   featureGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gridTemplateColumns: '1.2fr 1fr',
     gap: '24px',
   },
   featureCard: {
-    background: 'rgba(255, 255, 255, 0.06)',
+    background: 'rgba(255, 255, 255, 0.08)',
     borderRadius: 'var(--radius-xl)',
-    padding: '36px',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    transition: 'all 0.3s ease',
+    padding: '40px',
+    border: '1px solid rgba(255, 255, 255, 0.12)',
   },
-  featureIcon: {
-    width: '48px',
-    height: '48px',
-    background: 'linear-gradient(135deg, var(--honey) 0%, var(--terracotta) 100%)',
-    borderRadius: 'var(--radius-md)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '1.5rem',
-    marginBottom: '20px',
+  featureLabel: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.75rem',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.1em',
+    color: 'var(--honey)',
+    marginBottom: '12px',
   },
   featureTitle: {
     fontFamily: 'var(--font-display)',
-    fontSize: '1.25rem',
+    fontSize: '1.3rem',
     fontWeight: 500,
     marginBottom: '12px',
     color: 'var(--porcelain)',
@@ -697,70 +697,49 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURES SECTION ===== */}
-      <section style={{ ...styles.section, ...styles.sectionDark }} id="features">
+      <section style={{ ...styles.section, ...styles.featureForest }} id="features">
         <div className="container">
           <div style={styles.sectionHeader}>
             <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>What OPA Does</div>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
-              Built for how production actually works.
+              The toolkit.
             </h2>
-            <p style={{ ...styles.sectionSubtitle, color: 'var(--sage-light)' }}>
-              Receipts first, line items second. No paradigm shifts required.
-            </p>
           </div>
 
-          <div style={styles.featureGrid}>
+          <div style={styles.featureGrid} className="feature-grid">
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>📸</div>
-              <h3 style={styles.featureTitle}>Snap & Sort</h3>
+              <div style={styles.featureLabel}>Receipt OCR</div>
+              <h3 style={styles.featureTitle}>Scan it. It's handled.</h3>
               <p style={styles.featureDesc}>
-                Photo a receipt. OPA pulls the details. Assign it to an envelope. Done.
-                No more camera roll archaeology.
+                Take a photo of any receipt. OPA reads it and pulls the vendor, amount, date,
+                and budget line. It sorts itself. Done before you've sat down.
               </p>
             </div>
 
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>📁</div>
-              <h3 style={styles.featureTitle}>Smart Envelopes</h3>
+              <div style={styles.featureLabel}>Envelopes</div>
+              <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
               <p style={styles.featureDesc}>
-                Organize by department, by day, by whatever makes sense for your show.
-                See totals at a glance. Always know where you stand.
+                Group receipts by department, by shoot day, or by PA. However your show runs,
+                OPA matches it. See your totals update in real time.
               </p>
             </div>
 
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>💰</div>
-              <h3 style={styles.featureTitle}>Budget Visibility</h3>
+              <div style={styles.featureLabel}>Budget Tracking</div>
+              <h3 style={styles.featureTitle}>Know where you stand before anyone asks.</h3>
               <p style={styles.featureDesc}>
-                Real-time spending by line item. No more end-of-week surprises.
-                Know exactly where every dollar went.
+                See what you've spent on every line item, across every envelope. No more
+                end-of-week math. No more guessing if crafty blew through their number.
               </p>
             </div>
 
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>✨</div>
-              <h3 style={styles.featureTitle}>Quiet Controls</h3>
+              <div style={styles.featureLabel}>Top Sheet Export</div>
+              <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
               <p style={styles.featureDesc}>
-                Date adjustments that actually make sense for production accounting.
-                Back-date when you need to. OPA understands.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>📤</div>
-              <h3 style={styles.featureTitle}>Export Ready</h3>
-              <p style={styles.featureDesc}>
-                When accounting asks for "the spreadsheet," you'll have it.
-                Clean, formatted, ready to send.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>🔒</div>
-              <h3 style={styles.featureTitle}>Production-Grade Security</h3>
-              <p style={styles.featureDesc}>
-                Your budget data stays yours. Bank-level encryption.
-                No sharing, no selling, no nonsense.
+                One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
+                signature blocks. Ready to send, not cobbled together.
               </p>
             </div>
           </div>
