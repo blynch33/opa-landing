@@ -246,7 +246,7 @@ const styles = {
   footer: {
     background: 'var(--blush-light)',
     color: 'var(--ink)',
-    padding: 'var(--space-4xl) 0 var(--space-xl)',
+    padding: '20px 0',
     borderTop: '1px solid rgba(13, 27, 42, 0.06)',
   },
   footerInner: {
@@ -850,32 +850,26 @@ export default function Home() {
 
       {/* ===== FOOTER ===== */}
       <footer style={styles.footer}>
-        <div className="container">
-          <div style={styles.footerInner}>
-            <div style={styles.footerBrand}>
-              <div style={styles.footerLogo}>opa</div>
-              <p style={styles.footerTagline}>
-                Petty cash. Handled.
-              </p>
-            </div>
-
-            <div style={styles.footerLinks}>
-              <div style={styles.footerColumn}>
-                <div style={styles.footerColumnTitle}>Product</div>
-                <a href="#features" style={styles.footerLink}>Features</a>
-                <a href="#how-it-works-quick" style={styles.footerLink}>How It Works</a>
-                <a href="#faq" style={styles.footerLink}>FAQ</a>
-              </div>
-            </div>
+        <div className="container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '8px',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.1rem',
+              color: 'var(--forest)',
+            }}>opa</span>
+            <span style={{ color: 'var(--sage)', fontSize: '0.85rem' }}>
+              — Petty cash. Handled.
+            </span>
           </div>
-
-          <div style={styles.footerBottom}>
-            <div style={styles.footerCopyright}>
-              © {new Date().getFullYear()} OPA. Made in Los Angeles.
-            </div>
-            <div style={{ display: 'flex', gap: '24px' }}>
-              <a href="mailto:hello@useopa.com" style={styles.footerLink}>hello@useopa.com</a>
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '0.85rem', color: 'var(--sage)' }}>
+            <span>© {new Date().getFullYear()} OPA</span>
+            <a href="mailto:hello@useopa.com" style={styles.footerLink}>hello@useopa.com</a>
           </div>
         </div>
       </footer>
