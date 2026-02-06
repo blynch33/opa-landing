@@ -276,17 +276,21 @@ a {
 
 @media (max-width: 768px) {
   :root {
-    --space-4xl: 64px;
-    --space-5xl: 80px;
+    --space-4xl: 48px;
+    --space-5xl: 64px;
   }
-  
+
+  body {
+    font-size: 17px;
+  }
+
   .container {
     padding: 0 var(--space-md);
   }
-  
+
   .btn-large {
-    padding: 16px 28px;
-    font-size: 1rem;
+    padding: 18px 28px;
+    font-size: 1.05rem;
     width: 100%;
     justify-content: center;
   }

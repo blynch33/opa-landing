@@ -48,8 +48,8 @@ const styles = {
     minHeight: 'auto',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: '120px',
-    paddingBottom: 'var(--space-4xl)',
+    paddingTop: '104px',
+    paddingBottom: '48px',
     position: 'relative' as const,
     overflow: 'hidden',
   },
@@ -62,20 +62,22 @@ const styles = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: '8px',
-    padding: '8px 16px',
-    background: 'rgba(19, 70, 17, 0.08)',
-    borderRadius: '100px',
-    fontSize: '0.9rem',
+    padding: '0',
+    background: 'none',
+    borderRadius: '0',
+    fontSize: '0.75rem',
     fontWeight: 500,
-    color: 'var(--forest)',
-    marginBottom: '24px',
+    color: 'var(--sage)',
+    marginBottom: '16px',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.12em',
   },
   heroTitle: {
-    fontSize: 'clamp(2.75rem, 7vw, 4.5rem)',
+    fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
     fontFamily: 'var(--font-display)',
-    fontWeight: 400,
-    lineHeight: 1.1,
-    marginBottom: '24px',
+    fontWeight: 500,
+    lineHeight: 1.08,
+    marginBottom: '16px',
     color: 'var(--ink)',
   },
   heroTitleAccent: {
@@ -83,10 +85,10 @@ const styles = {
     color: 'var(--forest)',
   },
   heroDescription: {
-    fontSize: '1.25rem',
+    fontSize: '1.125rem',
     color: 'var(--sage)',
-    marginBottom: '40px',
-    lineHeight: 1.7,
+    marginBottom: '32px',
+    lineHeight: 1.6,
   },
   heroCTA: {
     display: 'flex',
@@ -111,7 +113,7 @@ const styles = {
   },
   sectionHeader: {
     textAlign: 'center' as const,
-    marginBottom: 'var(--space-3xl)',
+    marginBottom: 'var(--space-2xl)',
   },
   sectionEyebrow: {
     fontFamily: 'var(--font-mono)',
@@ -606,14 +608,11 @@ export default function Home() {
               <span style={styles.heroTitleAccent}>Handled.</span>
             </h1>
             <p style={styles.heroDescription}>
-              OPA tracks your receipts, organizes your envelopes, and reconciles your petty cash — so you can get back to the job.
+              Petty cash tracking and reconciliation for film & TV production.
             </p>
             <div style={styles.heroCTA}>
               <a href="#cta" className="btn btn-primary btn-large">
                 Join The Waitlist
-              </a>
-              <a href="#how-it-works" className="btn btn-secondary btn-large">
-                See How It Works
               </a>
             </div>
           </div>
@@ -631,41 +630,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== YOUR DAY WITH OPA ===== */}
-      <section style={styles.section} id="your-day">
+      {/* ===== HOW IT WORKS (Quick) ===== */}
+      <section style={{ ...styles.section, paddingTop: '48px', paddingBottom: '64px' }} id="how-it-works-quick">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Prep</div>
-            <h2 style={styles.sectionTitle}>A day with OPA.</h2>
+            <h2 style={styles.sectionTitle}>How it works.</h2>
           </div>
 
           <div style={styles.momentsGrid}>
             <div style={styles.momentCard}>
-              <div style={styles.momentTimestamp}>6:47 AM</div>
-              <h3 style={styles.momentTitle}>On set before the sun</h3>
+              <h3 style={styles.momentTitle}>Scan</h3>
               <p style={styles.momentDesc}>
-                You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
-                One less thing rattling around in your head.
+                Take a photo of any receipt. OPA reads the vendor, amount, and date — and files it automatically.
               </p>
             </div>
 
             <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
-              <div style={styles.momentTimestamp}>2:13 PM</div>
-              <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
+              <h3 style={styles.momentTitle}>Organize</h3>
               <p style={styles.momentDesc}>
-                Art dept's been uploading all morning. They're $847 from their limit.
-                You Zelle more cash before they even ask. Crisis averted.
+                Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.
               </p>
             </div>
 
             <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
-              <div style={styles.momentTimestamp}>11:34 PM</div>
-              <h3 style={styles.momentTitle}>Wrap chaos</h3>
+              <h3 style={styles.momentTitle}>Reconcile</h3>
               <p style={styles.momentDesc}>
-                Producer texts you 7 receipts in various states of legibility. You bulk upload
-                to OPA, they're logged. You'll deal with it tomorrow when you're human again.
+                When wrap comes, your numbers are ready. Export a clean top sheet to Excel or PDF and send it to accounting.
               </p>
             </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '32px' }}>
+            <a href="#how-it-works" style={{
+              fontSize: '0.95rem',
+              color: 'var(--forest)',
+              fontWeight: 500,
+              textDecoration: 'underline',
+              textUnderlineOffset: '4px',
+            }}>
+              See the full breakdown
+            </a>
           </div>
         </div>
       </section>
@@ -872,6 +876,28 @@ export default function Home() {
           <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.6 }}>
             No spam. No selling your email. Just a heads up when it's your turn.
           </p>
+        </div>
+      </section>
+
+      {/* ===== BOTTOM CTA (Repeat) ===== */}
+      <section style={{
+        padding: '64px 0',
+        textAlign: 'center' as const,
+        background: 'var(--porcelain)',
+      }}>
+        <div className="container">
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 400,
+            marginBottom: '24px',
+            color: 'var(--ink)',
+          }}>
+            Petty cash doesn't have to be chaos.
+          </h2>
+          <a href="#cta" className="btn btn-primary btn-large">
+            Join The Waitlist
+          </a>
         </div>
       </section>
 
