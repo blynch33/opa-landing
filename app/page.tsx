@@ -92,14 +92,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap' as const,
     gap: '16px',
-    marginBottom: '48px',
-  },
-  heroProof: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px',
-    fontSize: '0.9rem',
-    color: 'var(--sage)',
+    marginBottom: '0',
   },
   heroVisual: {
     position: 'absolute' as const,
@@ -133,12 +126,6 @@ const styles = {
     fontSize: 'clamp(2rem, 4vw, 3rem)',
     fontWeight: 400,
     marginBottom: '16px',
-  },
-  sectionSubtitle: {
-    fontSize: '1.15rem',
-    color: 'var(--sage)',
-    maxWidth: '600px',
-    margin: '0 auto',
   },
 
   // Moments Section
@@ -615,12 +602,11 @@ export default function Home() {
               <span>Now accepting early signups</span>
             </div>
             <h1 style={styles.heroTitle}>
-              The production office{' '}
-              <span style={styles.heroTitleAccent}>everyone</span> deserves.
+              Petty cash.{' '}
+              <span style={styles.heroTitleAccent}>Handled.</span>
             </h1>
             <p style={styles.heroDescription}>
-              Wrap day shouldn't mean spreadsheet nightmares. OPA handles your petty cash,
-              receipts, and budget tracking—so you can focus on making great things.
+              OPA tracks your receipts, organizes your envelopes, and reconciles your petty cash — so you can get back to the job.
             </p>
             <div style={styles.heroCTA}>
               <a href="#cta" className="btn btn-primary btn-large">
@@ -629,9 +615,6 @@ export default function Home() {
               <a href="#how-it-works" className="btn btn-secondary btn-large">
                 See How It Works
               </a>
-            </div>
-            <div style={styles.heroProof}>
-              <span>Built by production people, for production people</span>
             </div>
           </div>
         </div>
@@ -652,7 +635,7 @@ export default function Home() {
       <section style={styles.section} id="your-day">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Your day</div>
+            <div style={styles.sectionEyebrow}>Prep</div>
             <h2 style={styles.sectionTitle}>A day with OPA.</h2>
           </div>
 
@@ -691,7 +674,7 @@ export default function Home() {
       <section style={{ ...styles.section, ...styles.featureForest }} id="features">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>What OPA Does</div>
+            <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>Shoot</div>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
               The toolkit.
             </h2>
@@ -699,7 +682,7 @@ export default function Home() {
 
           <div style={styles.featureGrid} className="feature-grid">
             <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Receipt OCR</div>
+              <div style={styles.featureLabel}>Receipt Scanning</div>
               <h3 style={styles.featureTitle}>Scan it. It's handled.</h3>
               <p style={styles.featureDesc}>
                 Take a photo of any receipt. OPA reads it and pulls the vendor, amount, date,
@@ -711,8 +694,8 @@ export default function Home() {
               <div style={styles.featureLabel}>Envelopes</div>
               <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
               <p style={styles.featureDesc}>
-                Group receipts by department, by shoot day, or by PA. However your show runs,
-                OPA matches it. See your totals update in real time.
+                Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
+                Totals update in real time.
               </p>
             </div>
 
@@ -734,13 +717,22 @@ export default function Home() {
               </p>
             </div>
 
-            <div style={{ ...styles.featureCard, gridColumn: '1 / -1' }}>
+            <div style={styles.featureCard}>
               <div style={styles.featureLabel}>AICP Integration</div>
               <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
               <p style={styles.featureDesc}>
                 AICP budget lines come standard — Pages A through P. Every receipt maps to the
                 right line number. Custom lines when you need them. Your accountant gets exactly
                 what they expect.
+              </p>
+            </div>
+
+            <div style={styles.featureCard}>
+              <div style={styles.featureLabel}>Offline Mode</div>
+              <h3 style={styles.featureTitle}>No signal? No problem.</h3>
+              <p style={styles.featureDesc}>
+                Shooting in Lancaster? No Starlink? Scan your receipts anyway. OPA saves
+                everything locally and syncs the moment you're back online.
               </p>
             </div>
           </div>
@@ -751,18 +743,14 @@ export default function Home() {
       <section style={styles.section} id="how-it-works">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>How It Works</div>
+            <div style={styles.sectionEyebrow}>Wrap</div>
             <h2 style={styles.sectionTitle}>Three steps to sanity.</h2>
-            <p style={styles.sectionSubtitle}>
-              No training sessions. No onboarding calls.
-              If you can take a photo, you're already an expert.
-            </p>
           </div>
 
           <div style={styles.stepsGrid}>
             <div style={styles.stepCard}>
               <div style={styles.stepNumber}>1</div>
-              <h3 style={styles.stepTitle}>Snap the receipt</h3>
+              <h3 style={styles.stepTitle}>Scan the receipt</h3>
               <p style={styles.stepDesc}>
                 Take a photo. OPA reads the details—vendor, amount, date.
                 You just confirm and move on.
@@ -773,8 +761,8 @@ export default function Home() {
               <div style={styles.stepNumber}>2</div>
               <h3 style={styles.stepTitle}>Assign to an envelope</h3>
               <p style={styles.stepDesc}>
-                Camera Dept, Craft Services, Props—whatever makes sense.
-                Track spending by department or day.
+                Crafty, Styling, Production—whatever you need.
+                Track spending by envelope.
               </p>
             </div>
 
@@ -783,7 +771,7 @@ export default function Home() {
               <h3 style={styles.stepTitle}>Reconcile in seconds</h3>
               <p style={styles.stepDesc}>
                 When wrap comes, your totals are ready. Export to Excel.
-                Send to accounting. Go home on time.
+                Send to accounting. On to the next.
               </p>
             </div>
           </div>
@@ -902,7 +890,7 @@ export default function Home() {
             <div style={styles.footerBrand}>
               <div style={styles.footerLogo}>opa</div>
               <p style={styles.footerTagline}>
-                The production office everyone deserves. Built by production people, for production people.
+                Petty cash. Handled. Made on set. Built between jobs.
               </p>
             </div>
 

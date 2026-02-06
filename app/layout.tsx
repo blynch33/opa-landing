@@ -3,12 +3,12 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://useopa.com'),
-  title: 'OPA — The Production Office Everyone Deserves',
+  title: 'OPA — Petty Cash. Handled.',
   description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews. Scan receipts, assign to envelopes, reconcile, export.',
   keywords: ['production accounting', 'petty cash', 'film production', 'TV production', 'receipt tracking', 'production management', 'entertainment accounting'],
   authors: [{ name: 'OPA' }],
   openGraph: {
-    title: 'OPA — The Production Office Everyone Deserves',
+    title: 'OPA — Petty Cash. Handled.',
     description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
     url: 'https://useopa.com',
     siteName: 'OPA',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OPA — The Production Office Everyone Deserves',
+    title: 'OPA — Petty Cash. Handled.',
     description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
   },
   robots: {

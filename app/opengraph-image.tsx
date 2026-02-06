@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-export const alt = 'OPA — The production office everyone deserves';
+export const alt = 'OPA — Petty cash. Handled.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -33,13 +33,13 @@ export default async function OGImage() {
           style={{
             display: 'flex',
             alignItems: 'baseline',
-            marginBottom: 24,
+            marginBottom: 32,
           }}
         >
           <span
             style={{
               fontFamily: 'Fraunces Italic',
-              fontSize: 120,
+              fontSize: 180,
               color: '#C4725F',
               lineHeight: 1,
             }}
@@ -49,7 +49,7 @@ export default async function OGImage() {
           <span
             style={{
               fontFamily: 'Fraunces',
-              fontSize: 120,
+              fontSize: 180,
               color: '#134611',
               lineHeight: 1,
             }}
@@ -62,12 +62,13 @@ export default async function OGImage() {
         <span
           style={{
             fontFamily: 'Inter',
-            fontSize: 32,
+            fontSize: 42,
             color: '#839788',
+            letterSpacing: '-0.01em',
             lineHeight: 1,
           }}
         >
-          The production office everyone deserves.
+          Petty cash. Handled.
         </span>
       </div>
     ),
