@@ -244,10 +244,10 @@ const styles = {
 
   // Footer
   footer: {
-    background: 'var(--porcelain)',
+    background: 'var(--blush-light)',
     color: 'var(--ink)',
     padding: 'var(--space-4xl) 0 var(--space-xl)',
-    borderTop: '1px solid rgba(13, 27, 42, 0.1)',
+    borderTop: '1px solid rgba(13, 27, 42, 0.06)',
   },
   footerInner: {
     display: 'flex',
