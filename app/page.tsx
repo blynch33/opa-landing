@@ -45,11 +45,11 @@ const styles = {
 
   // Hero Section
   hero: {
-    minHeight: '100vh',
+    minHeight: '90vh',
     display: 'flex',
     alignItems: 'center',
     paddingTop: '120px',
-    paddingBottom: 'var(--space-5xl)',
+    paddingBottom: 'var(--space-4xl)',
     position: 'relative' as const,
     overflow: 'hidden',
   },
@@ -114,19 +114,11 @@ const styles = {
 
   // Section Base
   section: {
-    padding: 'var(--space-5xl) 0',
-  },
-  sectionDark: {
-    background: 'var(--ink)',
-    color: 'var(--porcelain)',
-  },
-  sectionForest: {
-    background: 'linear-gradient(135deg, var(--forest) 0%, #1a5c15 100%)',
-    color: 'var(--porcelain)',
+    padding: 'var(--space-4xl) 0',
   },
   sectionHeader: {
     textAlign: 'center' as const,
-    marginBottom: 'var(--space-4xl)',
+    marginBottom: 'var(--space-3xl)',
   },
   sectionEyebrow: {
     fontFamily: 'var(--font-mono)',
@@ -292,7 +284,7 @@ const styles = {
   // CTA Section
   ctaSection: {
     textAlign: 'center' as const,
-    padding: 'var(--space-5xl) 0',
+    padding: 'var(--space-4xl) 0',
   },
   ctaTitle: {
     fontFamily: 'var(--font-display)',
@@ -620,7 +612,6 @@ export default function Home() {
         <div className="container">
           <div style={styles.heroContent}>
             <div style={styles.heroEyebrow}>
-              <span>🎬</span>
               <span>Now accepting early signups</span>
             </div>
             <h1 style={styles.heroTitle}>
@@ -922,18 +913,12 @@ export default function Home() {
                 <a href="#how-it-works" style={styles.footerLink}>How It Works</a>
                 <a href="#faq" style={styles.footerLink}>FAQ</a>
               </div>
-              <div style={styles.footerColumn}>
-                <div style={styles.footerColumnTitle}>Company</div>
-                <a href="/about" style={styles.footerLink}>About</a>
-                <a href="/privacy" style={styles.footerLink}>Privacy</a>
-                <a href="/terms" style={styles.footerLink}>Terms</a>
-              </div>
             </div>
           </div>
 
           <div style={styles.footerBottom}>
             <div style={styles.footerCopyright}>
-              © {new Date().getFullYear()} OPA. Made with ☕ in production offices everywhere.
+              © {new Date().getFullYear()} OPA. Made in Los Angeles.
             </div>
             <div style={{ display: 'flex', gap: '24px' }}>
               <a href="mailto:hello@useopa.com" style={styles.footerLink}>hello@useopa.com</a>
