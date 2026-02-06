@@ -313,7 +313,7 @@ const Receipt = () => (
     <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" stroke="#E8E8E8" strokeWidth="1" fill="none" />
 
     {/* Header */}
-    <text x="160" y="50" textAnchor="middle" fontFamily="DM Serif Text" fontSize="32" fontWeight="400" fill="#134611">opa</text>
+    <text y="50" fontFamily="DM Serif Text" fontSize="32" fontWeight="400"><tspan x="131" fill="#C4725F">o</tspan><tspan fill="#134611">pa</tspan></text>
     <text x="160" y="75" textAnchor="middle" fontFamily="Inter" fontSize="10" fill="#839788" letterSpacing="2">PETTY CASH TRACKING</text>
 
     {/* Divider */}
@@ -497,7 +497,7 @@ export default function Home() {
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
         <div className="container">
           <div style={styles.navInner}>
-            <a href="/" style={styles.logo}>opa</a>
+            <a href="/" style={styles.logo}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</a>
 
             {/* Desktop Nav */}
             <div style={styles.navLinks} className="nav-links">
@@ -862,7 +862,7 @@ export default function Home() {
               fontFamily: 'var(--font-display)',
               fontSize: '1.1rem',
               color: 'var(--forest)',
-            }}>opa</span>
+            }}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</span>
             <span style={{ color: 'var(--sage)', fontSize: '0.85rem' }}>
               — Petty cash. Handled.
             </span>

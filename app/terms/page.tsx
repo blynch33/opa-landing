@@ -115,7 +115,7 @@ export default function Terms() {
     <>
       <nav style={styles.nav}>
         <div style={styles.navInner}>
-          <Link href="/" style={styles.logo}>opa</Link>
+          <Link href="/" style={styles.logo}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</Link>
           <Link href="/#cta" className="btn btn-primary">Get Early Access</Link>
         </div>
       </nav>

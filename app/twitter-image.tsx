@@ -38,11 +38,21 @@ export default async function TwitterImage() {
             style={{
               fontFamily: 'DM Serif Text',
               fontSize: 180,
+              color: '#C4725F',
+              lineHeight: 1,
+            }}
+          >
+            o
+          </span>
+          <span
+            style={{
+              fontFamily: 'DM Serif Text',
+              fontSize: 180,
               color: '#134611',
               lineHeight: 1,
             }}
           >
-            opa
+            pa
           </span>
         </div>
 
