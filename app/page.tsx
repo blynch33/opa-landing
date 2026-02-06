@@ -58,20 +58,6 @@ const styles = {
     position: 'relative' as const,
     zIndex: 2,
   },
-  heroEyebrow: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '8px',
-    padding: '0',
-    background: 'none',
-    borderRadius: '0',
-    fontSize: '0.75rem',
-    fontWeight: 500,
-    color: 'var(--sage)',
-    marginBottom: '16px',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.12em',
-  },
   heroTitle: {
     fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
     fontFamily: 'var(--font-display)',
@@ -199,42 +185,6 @@ const styles = {
     color: 'var(--sage-light)',
     lineHeight: 1.7,
     fontSize: '0.95rem',
-  },
-
-  // How It Works
-  stepsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '48px',
-    position: 'relative' as const,
-  },
-  stepCard: {
-    textAlign: 'center' as const,
-    position: 'relative' as const,
-  },
-  stepNumber: {
-    width: '64px',
-    height: '64px',
-    background: 'var(--forest)',
-    color: 'var(--white)',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'var(--font-display)',
-    fontSize: '1.5rem',
-    fontWeight: 500,
-    margin: '0 auto 24px',
-  },
-  stepTitle: {
-    fontFamily: 'var(--font-display)',
-    fontSize: '1.35rem',
-    fontWeight: 500,
-    marginBottom: '12px',
-  },
-  stepDesc: {
-    color: 'var(--sage)',
-    lineHeight: 1.7,
   },
 
   // FAQ
@@ -550,7 +500,7 @@ export default function Home() {
             {/* Desktop Nav */}
             <div style={styles.navLinks} className="nav-links">
               <a href="#features" style={styles.navLink}>Features</a>
-              <a href="#how-it-works" style={styles.navLink}>How It Works</a>
+              <a href="#how-it-works-quick" style={styles.navLink}>How It Works</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
               <a href="#cta" className="btn btn-primary">Join The Waitlist</a>
             </div>
@@ -588,7 +538,7 @@ export default function Home() {
               gap: '16px',
             }}>
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
-              <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
+              <a href="#how-it-works-quick" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
               <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Join The Waitlist</a>
             </div>
@@ -658,7 +608,7 @@ export default function Home() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '32px' }}>
-            <a href="#how-it-works" style={{
+            <a href="#features" style={{
               fontSize: '0.95rem',
               color: 'var(--forest)',
               fontWeight: 500,
@@ -675,7 +625,6 @@ export default function Home() {
       <section style={{ ...styles.section, ...styles.featureForest }} id="features">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>Shoot</div>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
               The toolkit.
             </h2>
@@ -912,7 +861,7 @@ export default function Home() {
               <div style={styles.footerColumn}>
                 <div style={styles.footerColumnTitle}>Product</div>
                 <a href="#features" style={styles.footerLink}>Features</a>
-                <a href="#how-it-works" style={styles.footerLink}>How It Works</a>
+                <a href="#how-it-works-quick" style={styles.footerLink}>How It Works</a>
                 <a href="#faq" style={styles.footerLink}>FAQ</a>
               </div>
             </div>
