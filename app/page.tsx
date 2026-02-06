@@ -42,7 +42,7 @@ const styles = {
     transition: 'color 0.2s ease',
     cursor: 'pointer',
   },
-  
+
   // Hero Section
   hero: {
     minHeight: '100vh',
@@ -111,7 +111,7 @@ const styles = {
     zIndex: 1,
     opacity: 0.9,
   },
-  
+
   // Section Base
   section: {
     padding: 'var(--space-5xl) 0',
@@ -148,7 +148,7 @@ const styles = {
     maxWidth: '600px',
     margin: '0 auto',
   },
-  
+
   // Problem Section
   problemGrid: {
     display: 'grid',
@@ -182,7 +182,7 @@ const styles = {
     color: 'var(--sage)',
     lineHeight: 1.7,
   },
-  
+
   // Features Section
   featureGrid: {
     display: 'grid',
@@ -219,7 +219,7 @@ const styles = {
     lineHeight: 1.7,
     fontSize: '0.95rem',
   },
-  
+
   // How It Works
   stepsGrid: {
     display: 'grid',
@@ -255,51 +255,7 @@ const styles = {
     color: 'var(--sage)',
     lineHeight: 1.7,
   },
-  
-  // Testimonials
-  testimonialGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-    gap: '32px',
-  },
-  testimonialCard: {
-    background: 'var(--white)',
-    borderRadius: 'var(--radius-xl)',
-    padding: '36px',
-    boxShadow: 'var(--shadow-md)',
-  },
-  testimonialQuote: {
-    fontSize: '1.1rem',
-    lineHeight: 1.8,
-    marginBottom: '24px',
-    fontStyle: 'italic',
-  },
-  testimonialAuthor: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px',
-  },
-  testimonialAvatar: {
-    width: '48px',
-    height: '48px',
-    borderRadius: '50%',
-    background: 'linear-gradient(135deg, var(--sage) 0%, var(--forest) 100%)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'var(--white)',
-    fontFamily: 'var(--font-display)',
-    fontWeight: 500,
-  },
-  testimonialName: {
-    fontWeight: 600,
-    marginBottom: '2px',
-  },
-  testimonialRole: {
-    fontSize: '0.85rem',
-    color: 'var(--sage)',
-  },
-  
+
   // FAQ
   faqGrid: {
     maxWidth: '800px',
@@ -332,7 +288,7 @@ const styles = {
     color: 'var(--sage)',
     lineHeight: 1.7,
   },
-  
+
   // CTA Section
   ctaSection: {
     textAlign: 'center' as const,
@@ -352,24 +308,7 @@ const styles = {
     maxWidth: '500px',
     margin: '0 auto 40px',
   },
-  ctaForm: {
-    display: 'flex',
-    gap: '12px',
-    maxWidth: '480px',
-    margin: '0 auto',
-    flexWrap: 'wrap' as const,
-    justifyContent: 'center',
-  },
-  ctaInput: {
-    flex: '1 1 260px',
-    padding: '16px 20px',
-    fontSize: '1rem',
-    borderRadius: 'var(--radius-md)',
-    border: 'none',
-    background: 'rgba(255, 255, 255, 0.1)',
-    color: 'var(--porcelain)',
-  },
-  
+
   // Footer
   footer: {
     background: 'var(--porcelain)',
@@ -439,52 +378,143 @@ const Receipt = () => (
     {/* Receipt Background */}
     <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" fill="#FFFFFF" />
     <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" stroke="#E8E8E8" strokeWidth="1" fill="none" />
-    
+
     {/* Header */}
     <text x="160" y="50" textAnchor="middle" fontFamily="Fraunces" fontSize="32" fontWeight="500" fill="#134611">opa</text>
     <text x="160" y="75" textAnchor="middle" fontFamily="Inter" fontSize="10" fill="#839788" letterSpacing="2">PETTY CASH TRACKING</text>
-    
+
     {/* Divider */}
     <line x1="50" y1="100" x2="270" y2="100" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
-    
+
     {/* Line Items */}
     <text x="50" y="135" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Coffee Run (Crew)</text>
     <text x="270" y="135" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$47.50</text>
-    
+
     <text x="50" y="165" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Gaff Tape (3x Rolls)</text>
     <text x="270" y="165" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$89.97</text>
-    
+
     <text x="50" y="195" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Craft Services Supplies</text>
     <text x="270" y="195" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$156.00</text>
-    
+
     <text x="50" y="225" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Parking - Location Scout</text>
     <text x="270" y="225" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$24.00</text>
-    
+
     {/* Divider */}
     <line x1="50" y1="255" x2="270" y2="255" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
-    
+
     {/* Total */}
     <text x="50" y="290" fontFamily="Inter" fontSize="16" fontWeight="600" fill="#0D1B2A">TOTAL</text>
     <text x="270" y="290" textAnchor="end" fontFamily="JetBrains Mono" fontSize="20" fontWeight="600" fill="#134611">$317.47</text>
-    
+
     {/* Status Tag */}
     <rect x="90" y="310" width="140" height="32" rx="16" fill="rgba(45, 106, 79, 0.1)" />
     <text x="160" y="331" textAnchor="middle" fontFamily="Inter" fontSize="13" fontWeight="500" fill="#2D6A4F">✓ Reconciled</text>
-    
+
     {/* Footer */}
-    <text x="160" y="365" textAnchor="middle" fontFamily="Inter" fontSize="11" fill="#839788">Nice work today ✨</text>
+    <text x="160" y="365" textAnchor="middle" fontFamily="Inter" fontSize="11" fill="#839788">Nice work today.</text>
   </svg>
 );
 
-const PaperCrane = ({ style }: { style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 80 80" fill="none" style={{ width: '48px', height: '48px', ...style }}>
-    <path d="M40 10 L65 40 L40 70 L15 40 Z" fill="#D4A855" stroke="#C4725F" strokeWidth="2"/>
-    <path d="M40 10 L40 70" stroke="#C4725F" strokeWidth="1.5"/>
-    <path d="M15 40 L65 40" stroke="#C4725F" strokeWidth="1.5"/>
-    <circle cx="32" cy="35" r="2.5" fill="#0D1B2A"/>
-    <path d="M28 48 Q40 54 52 48" stroke="#0D1B2A" strokeWidth="2" fill="none"/>
-  </svg>
-);
+// ===== WAITLIST FORM =====
+const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) return;
+
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div style={{
+        padding: '20px 32px',
+        background: variant === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(19,70,17,0.06)',
+        borderRadius: 'var(--radius-md)',
+        display: 'inline-block',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.15rem',
+          color: variant === 'dark' ? 'var(--porcelain)' : 'var(--forest)',
+          margin: 0,
+        }}>
+          You're on the list. We'll be in touch.
+        </p>
+      </div>
+    );
+  }
+
+  const isDark = variant === 'dark';
+
+  return (
+    <form onSubmit={handleSubmit} style={{
+      display: 'flex',
+      gap: '12px',
+      maxWidth: '480px',
+      margin: '0 auto',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    }}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
+        placeholder="Your email"
+        required
+        style={{
+          flex: '1 1 260px',
+          padding: '16px 20px',
+          fontSize: '1rem',
+          borderRadius: 'var(--radius-md)',
+          border: isDark ? '1.5px solid rgba(255,255,255,0.2)' : '1.5px solid rgba(13,27,42,0.15)',
+          background: isDark ? 'rgba(255,255,255,0.08)' : 'var(--white)',
+          color: isDark ? 'var(--porcelain)' : 'var(--ink)',
+          fontFamily: 'var(--font-body)',
+          outline: 'none',
+          transition: 'border-color 0.2s ease',
+        }}
+      />
+      <button
+        type="submit"
+        disabled={status === 'submitting'}
+        className={isDark ? 'btn btn-warm btn-large' : 'btn btn-primary btn-large'}
+        style={{ opacity: status === 'submitting' ? 0.7 : 1 }}
+      >
+        {status === 'submitting' ? 'Joining...' : 'Join The Waitlist'}
+      </button>
+      {status === 'error' && (
+        <p style={{
+          width: '100%',
+          textAlign: 'center',
+          fontSize: '0.9rem',
+          color: isDark ? 'var(--terracotta-light)' : 'var(--terracotta)',
+          marginTop: '8px',
+        }}>
+          Something went wrong. Try again.
+        </p>
+      )}
+    </form>
+  );
+};
 
 // ===== FAQ DATA =====
 const faqs = [
@@ -501,8 +531,8 @@ const faqs = [
     answer: "Excel is a blank canvas that requires you to build everything from scratch—and maintain it forever. OPA already knows how production works: envelopes, line items, petty cash reconciliation. You focus on the work, not the spreadsheet."
   },
   {
-    question: "Can I try it before committing?",
-    answer: "Absolutely. We're offering early access to production professionals who want to help shape the product. No credit card, no commitment. Just honest feedback in exchange for free access."
+    question: "When will I get access?",
+    answer: "We're opening access in waves to make sure every user gets a solid experience. Join the waitlist and we'll reach out when your spot opens up. Early signups get priority."
   },
   {
     question: "Is my data secure?",
@@ -515,7 +545,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -523,8 +553,7 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
-  // Close mobile menu on route change or link click
+
   const handleNavClick = () => {
     setMobileMenuOpen(false);
   };
@@ -536,17 +565,17 @@ export default function Home() {
         <div className="container">
           <div style={styles.navInner}>
             <a href="/" style={styles.logo}>opa</a>
-            
+
             {/* Desktop Nav */}
             <div style={styles.navLinks} className="nav-links">
               <a href="#features" style={styles.navLink}>Features</a>
               <a href="#how-it-works" style={styles.navLink}>How It Works</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
-              <a href="#cta" className="btn btn-primary">Get Early Access</a>
+              <a href="#cta" className="btn btn-primary">Join The Waitlist</a>
             </div>
-            
+
             {/* Mobile Menu Button */}
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
                 display: 'none',
@@ -562,7 +591,7 @@ export default function Home() {
               {mobileMenuOpen ? '✕' : '☰'}
             </button>
           </div>
-          
+
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div style={{
@@ -580,7 +609,7 @@ export default function Home() {
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
               <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
-              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Get Early Access</a>
+              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Join The Waitlist</a>
             </div>
           )}
         </div>
@@ -591,36 +620,35 @@ export default function Home() {
         <div className="container">
           <div style={styles.heroContent}>
             <div style={styles.heroEyebrow}>
-              <PaperCrane />
-              <span>Now in Early Access</span>
+              <span>🎬</span>
+              <span>Now accepting early signups</span>
             </div>
             <h1 style={styles.heroTitle}>
               The production office{' '}
               <span style={styles.heroTitleAccent}>everyone</span> deserves.
             </h1>
             <p style={styles.heroDescription}>
-              Wrap day shouldn't mean spreadsheet nightmares. OPA handles your petty cash, 
+              Wrap day shouldn't mean spreadsheet nightmares. OPA handles your petty cash,
               receipts, and budget tracking—so you can focus on making great things.
             </p>
             <div style={styles.heroCTA}>
               <a href="#cta" className="btn btn-primary btn-large">
-                Get Early Access
+                Join The Waitlist
               </a>
               <a href="#how-it-works" className="btn btn-secondary btn-large">
                 See How It Works
               </a>
             </div>
             <div style={styles.heroProof}>
-              <span>🎬</span>
               <span>Built by production people, for production people</span>
             </div>
           </div>
         </div>
-        
-        {/* Hero Visual - Hidden on mobile */}
+
+        {/* Hero Visual */}
         <div style={styles.heroVisual} className="hero-visual">
-          <div style={{ 
-            transform: 'rotate(-8deg)', 
+          <div style={{
+            transform: 'rotate(-8deg)',
             filter: 'drop-shadow(0 20px 40px rgba(13, 27, 42, 0.15))',
             animation: 'float 6s ease-in-out infinite'
           }}>
@@ -639,31 +667,31 @@ export default function Home() {
               These aren't hypothetical problems. We've lived them. Now we're fixing them.
             </p>
           </div>
-          
+
           <div style={styles.problemGrid}>
             <div style={styles.problemCard}>
               <div style={styles.problemIcon}>📦</div>
               <h3 style={styles.problemTitle}>The Camera Roll of Doom</h3>
               <p style={styles.problemDesc}>
-                327 receipt photos. No labels. Due in accounting by Friday. 
+                327 receipt photos. No labels. Due in accounting by Friday.
                 You know exactly which circle of Excel hell awaits.
               </p>
             </div>
-            
+
             <div style={styles.problemCard}>
               <div style={styles.problemIcon}>😰</div>
               <h3 style={styles.problemTitle}>Wrap Day Panic</h3>
               <p style={styles.problemDesc}>
-                Everyone's exhausted. Everyone's impatient. And somehow you're still 
+                Everyone's exhausted. Everyone's impatient. And somehow you're still
                 reconciling petty cash at 11pm while craft services gets packed up around you.
               </p>
             </div>
-            
+
             <div style={styles.problemCard}>
               <div style={styles.problemIcon}>📊</div>
               <h3 style={styles.problemTitle}>Spreadsheet Archaeology</h3>
               <p style={styles.problemDesc}>
-                "Where did that $200 go?" Opening seven versions of the same Excel file, 
+                "Where did that $200 go?" Opening seven versions of the same Excel file,
                 praying one of them has the answer. Spoiler: none of them do.
               </p>
             </div>
@@ -677,65 +705,64 @@ export default function Home() {
           <div style={styles.sectionHeader}>
             <div style={{ ...styles.sectionEyebrow, color: 'var(--honey)' }}>What OPA Does</div>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
-              Your calm in the chaos.
+              Built for how production actually works.
             </h2>
             <p style={{ ...styles.sectionSubtitle, color: 'var(--sage-light)' }}>
-              OPA thinks the way production managers think—receipts first, line items second. 
-              No paradigm shifts required.
+              Receipts first, line items second. No paradigm shifts required.
             </p>
           </div>
-          
+
           <div style={styles.featureGrid}>
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>📸</div>
               <h3 style={styles.featureTitle}>Snap & Sort</h3>
               <p style={styles.featureDesc}>
-                Photo a receipt. OPA pulls the details. Assign it to an envelope. Done. 
+                Photo a receipt. OPA pulls the details. Assign it to an envelope. Done.
                 No more camera roll archaeology.
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>📁</div>
               <h3 style={styles.featureTitle}>Smart Envelopes</h3>
               <p style={styles.featureDesc}>
-                Organize by department, by day, by whatever makes sense for your show. 
+                Organize by department, by day, by whatever makes sense for your show.
                 See totals at a glance. Always know where you stand.
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>💰</div>
               <h3 style={styles.featureTitle}>Budget Visibility</h3>
               <p style={styles.featureDesc}>
-                Real-time spending by line item. No more end-of-week surprises. 
+                Real-time spending by line item. No more end-of-week surprises.
                 Know exactly where every dollar went.
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>✨</div>
               <h3 style={styles.featureTitle}>Quiet Controls</h3>
               <p style={styles.featureDesc}>
-                Date adjustments that actually make sense for production accounting. 
+                Date adjustments that actually make sense for production accounting.
                 Back-date when you need to. OPA understands.
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>📤</div>
               <h3 style={styles.featureTitle}>Export Ready</h3>
               <p style={styles.featureDesc}>
-                When accounting asks for "the spreadsheet," you'll have it. 
+                When accounting asks for "the spreadsheet," you'll have it.
                 Clean, formatted, ready to send.
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>🔒</div>
               <h3 style={styles.featureTitle}>Production-Grade Security</h3>
               <p style={styles.featureDesc}>
-                Your budget data stays yours. Bank-level encryption. 
+                Your budget data stays yours. Bank-level encryption.
                 No sharing, no selling, no nonsense.
               </p>
             </div>
@@ -750,35 +777,35 @@ export default function Home() {
             <div style={styles.sectionEyebrow}>How It Works</div>
             <h2 style={styles.sectionTitle}>Three steps to sanity.</h2>
             <p style={styles.sectionSubtitle}>
-              No training sessions. No onboarding calls. 
+              No training sessions. No onboarding calls.
               If you can take a photo, you're already an expert.
             </p>
           </div>
-          
+
           <div style={styles.stepsGrid}>
             <div style={styles.stepCard}>
               <div style={styles.stepNumber}>1</div>
               <h3 style={styles.stepTitle}>Snap the receipt</h3>
               <p style={styles.stepDesc}>
-                Take a photo. OPA reads the details—vendor, amount, date. 
+                Take a photo. OPA reads the details—vendor, amount, date.
                 You just confirm and move on.
               </p>
             </div>
-            
+
             <div style={styles.stepCard}>
               <div style={styles.stepNumber}>2</div>
               <h3 style={styles.stepTitle}>Assign to an envelope</h3>
               <p style={styles.stepDesc}>
-                Camera Dept, Craft Services, Props—whatever makes sense. 
+                Camera Dept, Craft Services, Props—whatever makes sense.
                 Track spending by department or day.
               </p>
             </div>
-            
+
             <div style={styles.stepCard}>
               <div style={styles.stepNumber}>3</div>
               <h3 style={styles.stepTitle}>Reconcile in seconds</h3>
               <p style={styles.stepDesc}>
-                When wrap comes, your totals are ready. Export to Excel. 
+                When wrap comes, your totals are ready. Export to Excel.
                 Send to accounting. Go home on time.
               </p>
             </div>
@@ -789,33 +816,33 @@ export default function Home() {
       {/* ===== TRUST SIGNAL ===== */}
       <section style={{ ...styles.section, background: 'var(--blush-light)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <div style={{ 
-            maxWidth: '700px', 
+          <div style={{
+            maxWidth: '700px',
             margin: '0 auto',
           }}>
-            <div style={{ 
-              fontSize: '3rem', 
+            <div style={{
+              fontSize: '3rem',
               marginBottom: '24px',
             }}>
               🎬
             </div>
-            <h2 style={{ 
-              fontFamily: 'var(--font-display)', 
-              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', 
-              fontWeight: 400, 
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+              fontWeight: 400,
               marginBottom: '20px',
               lineHeight: 1.3,
             }}>
               Built by someone who's been in your shoes at 11pm the night before wrap is due.
             </h2>
-            <p style={{ 
-              fontSize: '1.1rem', 
-              color: 'var(--sage)', 
+            <p style={{
+              fontSize: '1.1rem',
+              color: 'var(--sage)',
               lineHeight: 1.7,
               maxWidth: '550px',
               margin: '0 auto',
             }}>
-              OPA exists because we got tired of the same Excel nightmare on every show. 
+              OPA exists because we got tired of the same Excel nightmare on every show.
               We're building the tool we wish we'd had.
             </p>
           </div>
@@ -829,16 +856,16 @@ export default function Home() {
             <div style={styles.sectionEyebrow}>Questions</div>
             <h2 style={styles.sectionTitle}>We've got answers.</h2>
           </div>
-          
+
           <div style={styles.faqGrid}>
             {faqs.map((faq, index) => (
               <div key={index} style={styles.faqItem}>
-                <button 
+                <button
                   style={styles.faqQuestion}
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 >
                   <span>{faq.question}</span>
-                  <span style={{ 
+                  <span style={{
                     transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0)',
                     transition: 'transform 0.2s ease'
                   }}>
@@ -857,22 +884,13 @@ export default function Home() {
       {/* ===== FINAL CTA ===== */}
       <section style={{ ...styles.sectionForest, ...styles.ctaSection }} id="cta">
         <div className="container">
-          <PaperCrane style={{ margin: '0 auto 24px', opacity: 0.9 }} />
           <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
           <p style={styles.ctaSubtitle}>
-            Join production professionals who are already working smarter. 
-            Early access is free—just bring your honest feedback.
+            We're opening access in waves. Drop your email and we'll save your spot.
           </p>
-          <a 
-            href="https://form.typeform.com/to/Zj1Pex72" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="btn btn-warm btn-large"
-          >
-            Get Early Access →
-          </a>
-          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.7 }}>
-            No credit card required. No commitment. Just better production accounting.
+          <WaitlistForm variant="dark" />
+          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.6 }}>
+            No spam. No selling your email. Just a heads up when it's your turn.
           </p>
         </div>
       </section>
@@ -887,7 +905,7 @@ export default function Home() {
                 The production office everyone deserves. Built by production people, for production people.
               </p>
             </div>
-            
+
             <div style={styles.footerLinks}>
               <div style={styles.footerColumn}>
                 <div style={styles.footerColumnTitle}>Product</div>
@@ -903,7 +921,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div style={styles.footerBottom}>
             <div style={styles.footerCopyright}>
               © {new Date().getFullYear()} OPA. Made with ☕ in production offices everywhere.
