@@ -600,9 +600,6 @@ export default function Home() {
       <section style={styles.hero}>
         <div className="container">
           <div style={styles.heroContent}>
-            <div style={styles.heroEyebrow}>
-              <span>Now accepting early signups</span>
-            </div>
             <h1 style={styles.heroTitle}>
               Petty cash.{' '}
               <span style={styles.heroTitleAccent}>Handled.</span>
@@ -774,6 +771,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== BOTTOM CTA (Repeat) ===== */}
+      <section style={{
+        padding: '64px 0',
+        textAlign: 'center' as const,
+        background: 'var(--porcelain)',
+      }}>
+        <div className="container">
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 400,
+            marginBottom: '24px',
+            color: 'var(--ink)',
+          }}>
+            Petty cash doesn't have to be chaos.
+          </h2>
+          <a href="#cta" className="btn btn-primary btn-large">
+            Join The Waitlist
+          </a>
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section style={styles.section} id="faq">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionEyebrow}>Questions</div>
+            <h2 style={styles.sectionTitle}>We've got answers.</h2>
+          </div>
+
+          <div style={styles.faqGrid}>
+            {faqs.map((faq, index) => (
+              <div key={index} style={styles.faqItem}>
+                <button
+                  style={styles.faqQuestion}
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <span>{faq.question}</span>
+                  <span style={{
+                    transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0)',
+                    transition: 'transform 0.2s ease'
+                  }}>
+                    ↓
+                  </span>
+                </button>
+                {openFaq === index && (
+                  <div style={styles.faqAnswer}>{faq.answer}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FINAL CTA ===== */}
+      <section style={{ ...styles.featureForest, ...styles.ctaSection }} id="cta">
+        <div className="container">
+          <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
+          <p style={styles.ctaSubtitle}>
+            We're opening access in waves. Drop your email and we'll save your spot.
+          </p>
+          <WaitlistForm variant="dark" />
+          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.6 }}>
+            No spam. No selling your email. Just a heads up when it's your turn.
+          </p>
+        </div>
+      </section>
+
       {/* ===== ORIGIN ===== */}
       <section style={{
         ...styles.section,
@@ -830,74 +895,6 @@ export default function Home() {
               <Receipt />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ===== FAQ ===== */}
-      <section style={styles.section} id="faq">
-        <div className="container">
-          <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Questions</div>
-            <h2 style={styles.sectionTitle}>We've got answers.</h2>
-          </div>
-
-          <div style={styles.faqGrid}>
-            {faqs.map((faq, index) => (
-              <div key={index} style={styles.faqItem}>
-                <button
-                  style={styles.faqQuestion}
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                >
-                  <span>{faq.question}</span>
-                  <span style={{
-                    transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0)',
-                    transition: 'transform 0.2s ease'
-                  }}>
-                    ↓
-                  </span>
-                </button>
-                {openFaq === index && (
-                  <div style={styles.faqAnswer}>{faq.answer}</div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FINAL CTA ===== */}
-      <section style={{ ...styles.featureForest, ...styles.ctaSection }} id="cta">
-        <div className="container">
-          <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
-          <p style={styles.ctaSubtitle}>
-            We're opening access in waves. Drop your email and we'll save your spot.
-          </p>
-          <WaitlistForm variant="dark" />
-          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.6 }}>
-            No spam. No selling your email. Just a heads up when it's your turn.
-          </p>
-        </div>
-      </section>
-
-      {/* ===== BOTTOM CTA (Repeat) ===== */}
-      <section style={{
-        padding: '64px 0',
-        textAlign: 'center' as const,
-        background: 'var(--porcelain)',
-      }}>
-        <div className="container">
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-            fontWeight: 400,
-            marginBottom: '24px',
-            color: 'var(--ink)',
-          }}>
-            Petty cash doesn't have to be chaos.
-          </h2>
-          <a href="#cta" className="btn btn-primary btn-large">
-            Join The Waitlist
-          </a>
         </div>
       </section>
 
