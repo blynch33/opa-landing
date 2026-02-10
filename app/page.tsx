@@ -1,6 +1,56 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+
+// ===== SCROLL REVEAL =====
+const RevealOnScroll = ({
+  children,
+  delay = 0,
+  direction = 'up',
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  direction?: 'up' | 'left' | 'right';
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px',
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [handleIntersection]);
+
+  const translateFrom = direction === 'up' ? 'translateY(24px)' : direction === 'left' ? 'translateX(-24px)' : 'translateX(24px)';
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translate(0, 0)' : translateFrom,
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 // ===== STYLES =====
 const styles = {
@@ -600,32 +650,38 @@ export default function Home() {
           </div>
 
           <div style={styles.momentsGrid}>
-            <div style={styles.momentCard}>
-              <div style={styles.momentTimestamp}>6:47 AM</div>
-              <h3 style={styles.momentTitle}>On set before the sun</h3>
-              <p style={styles.momentDesc}>
-                You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
-                One less thing rattling around in your head.
-              </p>
-            </div>
+            <RevealOnScroll delay={0}>
+              <div style={styles.momentCard}>
+                <div style={styles.momentTimestamp}>6:47 AM</div>
+                <h3 style={styles.momentTitle}>On set before the sun</h3>
+                <p style={styles.momentDesc}>
+                  You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
+                  One less thing rattling around in your head.
+                </p>
+              </div>
+            </RevealOnScroll>
 
-            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
-              <div style={styles.momentTimestamp}>2:13 PM</div>
-              <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
-              <p style={styles.momentDesc}>
-                Art dept's been uploading all morning. They're $847 from their limit.
-                You Zelle more cash before they even ask. Crisis averted.
-              </p>
-            </div>
+            <RevealOnScroll delay={150}>
+              <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
+                <div style={styles.momentTimestamp}>2:13 PM</div>
+                <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
+                <p style={styles.momentDesc}>
+                  Art dept's been uploading all morning. They're $847 from their limit.
+                  You Zelle more cash before they even ask. Crisis averted.
+                </p>
+              </div>
+            </RevealOnScroll>
 
-            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
-              <div style={styles.momentTimestamp}>11:34 PM</div>
-              <h3 style={styles.momentTitle}>Wrap chaos</h3>
-              <p style={styles.momentDesc}>
-                Producer texts you 7 receipts in various states of legibility. You bulk upload
-                to OPA, they're logged. You'll deal with it tomorrow when you're human again.
-              </p>
-            </div>
+            <RevealOnScroll delay={300}>
+              <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
+                <div style={styles.momentTimestamp}>11:34 PM</div>
+                <h3 style={styles.momentTitle}>Wrap chaos</h3>
+                <p style={styles.momentDesc}>
+                  Producer texts you 7 receipts in various states of legibility. You bulk upload
+                  to OPA, they're logged. You'll deal with it tomorrow when you're human again.
+                </p>
+              </div>
+            </RevealOnScroll>
           </div>
         </div>
       </section>
@@ -653,28 +709,30 @@ export default function Home() {
               { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, date, and budget line — automatically.' },
               { num: '02', title: 'Organize', desc: 'Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.' },
               { num: '03', title: 'Export', desc: 'One click. Clean top sheet in Excel or PDF. Line item breakdowns, totals, ready for accounting.' },
-            ].map((step) => (
-              <div key={step.num} style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.1em',
-                  color: 'var(--terracotta)',
-                  marginBottom: '12px',
-                }}>{step.num}</div>
-                <h3 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.35rem',
-                  fontWeight: 500,
-                  marginBottom: '12px',
-                  color: 'var(--ink)',
-                }}>{step.title}</h3>
-                <p style={{
-                  color: 'var(--sage)',
-                  lineHeight: 1.7,
-                  fontSize: '0.95rem',
-                }}>{step.desc}</p>
-              </div>
+            ].map((step, i) => (
+              <RevealOnScroll key={step.num} delay={i * 150}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.1em',
+                    color: 'var(--terracotta)',
+                    marginBottom: '12px',
+                  }}>{step.num}</div>
+                  <h3 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.35rem',
+                    fontWeight: 500,
+                    marginBottom: '12px',
+                    color: 'var(--ink)',
+                  }}>{step.title}</h3>
+                  <p style={{
+                    color: 'var(--sage)',
+                    lineHeight: 1.7,
+                    fontSize: '0.95rem',
+                  }}>{step.desc}</p>
+                </div>
+              </RevealOnScroll>
             ))}
           </div>
 
@@ -691,42 +749,50 @@ export default function Home() {
           </div>
 
           <div style={styles.featureGrid} className="feature-grid">
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Receipt Scanning</div>
-              <h3 style={styles.featureTitle}>Snap it. It's read.</h3>
-              <p style={styles.featureDesc}>
-                Take a photo. OPA extracts the vendor, amount, date, and suggests the right
-                budget line. Done before you've put the receipt down.
-              </p>
-            </div>
+            <RevealOnScroll delay={0}>
+              <div style={styles.featureCard}>
+                <div style={styles.featureLabel}>Receipt Scanning</div>
+                <h3 style={styles.featureTitle}>Snap it. It's read.</h3>
+                <p style={styles.featureDesc}>
+                  Take a photo. OPA extracts the vendor, amount, date, and suggests the right
+                  budget line. Done before you've put the receipt down.
+                </p>
+              </div>
+            </RevealOnScroll>
 
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Envelopes</div>
-              <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
-              <p style={styles.featureDesc}>
-                Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
-                Totals update in real time.
-              </p>
-            </div>
+            <RevealOnScroll delay={100}>
+              <div style={styles.featureCard}>
+                <div style={styles.featureLabel}>Envelopes</div>
+                <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
+                <p style={styles.featureDesc}>
+                  Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
+                  Totals update in real time.
+                </p>
+              </div>
+            </RevealOnScroll>
 
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Top Sheet Export</div>
-              <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
-              <p style={styles.featureDesc}>
-                One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
-                signature blocks. Ready to send, not cobbled together.
-              </p>
-            </div>
+            <RevealOnScroll delay={200}>
+              <div style={styles.featureCard}>
+                <div style={styles.featureLabel}>Top Sheet Export</div>
+                <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
+                <p style={styles.featureDesc}>
+                  One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
+                  signature blocks. Ready to send, not cobbled together.
+                </p>
+              </div>
+            </RevealOnScroll>
 
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>AICP Integration</div>
-              <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
-              <p style={styles.featureDesc}>
-                AICP budget lines come standard — Pages A through P. Every receipt maps to the
-                right line number. Custom lines when you need them. Your accountant gets exactly
-                what they expect.
-              </p>
-            </div>
+            <RevealOnScroll delay={300}>
+              <div style={styles.featureCard}>
+                <div style={styles.featureLabel}>AICP Integration</div>
+                <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
+                <p style={styles.featureDesc}>
+                  AICP budget lines come standard — Pages A through P. Every receipt maps to the
+                  right line number. Custom lines when you need them. Your accountant gets exactly
+                  what they expect.
+                </p>
+              </div>
+            </RevealOnScroll>
 
           </div>
         </div>
@@ -743,75 +809,77 @@ export default function Home() {
             <h2 style={styles.sectionTitle}>Simple pricing.</h2>
           </div>
 
-          <div style={{
-            maxWidth: '480px',
-            margin: '0 auto',
-            background: 'var(--white)',
-            borderRadius: 'var(--radius-xl)',
-            padding: '48px 40px',
-            boxShadow: 'var(--shadow-lg)',
-            textAlign: 'center' as const,
-          }}>
+          <RevealOnScroll>
             <div style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 400,
-              color: 'var(--ink)',
-              marginBottom: '4px',
+              maxWidth: '480px',
+              margin: '0 auto',
+              background: 'var(--white)',
+              borderRadius: 'var(--radius-xl)',
+              padding: '48px 40px',
+              boxShadow: 'var(--shadow-lg)',
+              textAlign: 'center' as const,
             }}>
-              $49<span style={{
-                fontSize: '1.1rem',
+              <div style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                fontWeight: 400,
+                color: 'var(--ink)',
+                marginBottom: '4px',
+              }}>
+                $49<span style={{
+                  fontSize: '1.1rem',
+                  color: 'var(--sage)',
+                  fontFamily: 'var(--font-body)',
+                }}>/month</span>
+              </div>
+              <p style={{
                 color: 'var(--sage)',
-                fontFamily: 'var(--font-body)',
-              }}>/month</span>
-            </div>
-            <p style={{
-              color: 'var(--sage)',
-              marginBottom: '32px',
-              fontSize: '1.05rem',
-            }}>
-              Everything you need. Nothing you don't.
-            </p>
+                marginBottom: '32px',
+                fontSize: '1.05rem',
+              }}>
+                Everything you need. Nothing you don't.
+              </p>
 
-            <div style={{
-              textAlign: 'left' as const,
-              marginBottom: '36px',
-            }}>
-              {[
-                'Unlimited jobs and receipts',
-                'AI-powered receipt scanning',
-                'AICP budget lines + custom lines',
-                'Envelope management',
-                'Top sheet export (Excel + PDF)',
-                'Team collaboration',
-                'Works offline on set',
-              ].map((feature) => (
-                <div key={feature} style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  padding: '10px 0',
-                  borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
-                  color: 'var(--ink)',
-                  fontSize: '0.95rem',
-                }}>
-                  <span style={{ color: 'var(--forest)', fontWeight: 600, fontSize: '1rem' }}>&#10003;</span>
-                  {feature}
-                </div>
-              ))}
-            </div>
+              <div style={{
+                textAlign: 'left' as const,
+                marginBottom: '36px',
+              }}>
+                {[
+                  'Unlimited jobs and receipts',
+                  'AI-powered receipt scanning',
+                  'AICP budget lines + custom lines',
+                  'Envelope management',
+                  'Top sheet export (Excel + PDF)',
+                  'Team collaboration',
+                  'Works offline on set',
+                ].map((feature) => (
+                  <div key={feature} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '10px 0',
+                    borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
+                    color: 'var(--ink)',
+                    fontSize: '0.95rem',
+                  }}>
+                    <span style={{ color: 'var(--forest)', fontWeight: 600, fontSize: '1rem' }}>&#10003;</span>
+                    {feature}
+                  </div>
+                ))}
+              </div>
 
-            <a href="#cta" className="btn btn-primary btn-large" style={{ width: '100%' }}>
-              Start 14-Day Free Trial
-            </a>
-            <p style={{
-              marginTop: '12px',
-              fontSize: '0.85rem',
-              color: 'var(--sage)',
-            }}>
-              No credit card required.
-            </p>
-          </div>
+              <a href="#cta" className="btn btn-primary btn-large" style={{ width: '100%' }}>
+                Start 14-Day Free Trial
+              </a>
+              <p style={{
+                marginTop: '12px',
+                fontSize: '0.85rem',
+                color: 'var(--sage)',
+              }}>
+                No credit card required.
+              </p>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
