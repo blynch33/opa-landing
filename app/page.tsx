@@ -386,106 +386,8 @@ const Receipt = () => (
   </svg>
 );
 
-// ===== SIGNUP FORM =====
-const SignupForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) return;
-
-    setStatus('submitting');
-    try {
-      const res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      if (res.ok) {
-        setStatus('success');
-        setEmail('');
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
-  };
-
-  if (status === 'success') {
-    return (
-      <div style={{
-        padding: '20px 32px',
-        background: variant === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(19,70,17,0.06)',
-        borderRadius: 'var(--radius-md)',
-        display: 'inline-block',
-      }}>
-        <p style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.15rem',
-          color: variant === 'dark' ? 'var(--porcelain)' : 'var(--forest)',
-          margin: 0,
-        }}>
-          You're in. Check your email to get started.
-        </p>
-      </div>
-    );
-  }
-
-  const isDark = variant === 'dark';
-
-  return (
-    <form onSubmit={handleSubmit} style={{
-      display: 'flex',
-      gap: '12px',
-      maxWidth: '480px',
-      margin: '0 auto',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-    }}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
-        placeholder="Your email"
-        required
-        style={{
-          flex: '1 1 260px',
-          padding: '16px 20px',
-          fontSize: '1rem',
-          borderRadius: 'var(--radius-md)',
-          border: isDark ? '1.5px solid rgba(255,255,255,0.2)' : '1.5px solid rgba(13,27,42,0.15)',
-          background: isDark ? 'rgba(255,255,255,0.08)' : 'var(--white)',
-          color: isDark ? 'var(--porcelain)' : 'var(--ink)',
-          fontFamily: 'var(--font-body)',
-          outline: 'none',
-          transition: 'border-color 0.2s ease',
-        }}
-      />
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className={isDark ? 'btn btn-warm btn-large' : 'btn btn-primary btn-large'}
-        style={{ opacity: status === 'submitting' ? 0.7 : 1 }}
-      >
-        {status === 'submitting' ? 'Submitting...' : 'Start Free Trial'}
-      </button>
-      {status === 'error' && (
-        <p style={{
-          width: '100%',
-          textAlign: 'center',
-          fontSize: '0.9rem',
-          color: isDark ? 'var(--terracotta-light)' : 'var(--terracotta)',
-          marginTop: '8px',
-        }}>
-          Something went wrong. Try again.
-        </p>
-      )}
-    </form>
-  );
-};
+// ===== APP URL =====
+const APP_URL = 'https://app.useopa.com/auth';
 
 // ===== FAQ DATA =====
 const faqs = [
@@ -542,7 +444,7 @@ export default function Home() {
               <a href="#how-it-works-quick" style={styles.navLink}>How It Works</a>
               <a href="#pricing" style={styles.navLink}>Pricing</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
-              <a href="#cta" className="btn btn-primary">Start Free Trial</a>
+              <a href={APP_URL} className="btn btn-primary">Start Free Trial</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -581,7 +483,7 @@ export default function Home() {
               <a href="#how-it-works-quick" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#pricing" style={styles.navLink} onClick={handleNavClick}>Pricing</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
-              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Start Free Trial</a>
+              <a href={APP_URL} className="btn btn-primary" onClick={handleNavClick}>Start Free Trial</a>
             </div>
           )}
         </div>
@@ -606,7 +508,9 @@ export default function Home() {
             }}>
               Built for coordinators, line producers, and anyone who's ever reconciled a shoebox of receipts at wrap.
             </p>
-            <SignupForm variant="light" />
+            <a href={APP_URL} className="btn btn-primary btn-large">
+              Start Free Trial
+            </a>
             <p style={{
               marginTop: '16px',
               fontSize: '0.85rem',
@@ -826,7 +730,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <a href="#cta" className="btn btn-primary btn-large" style={{ width: '100%' }}>
+              <a href={APP_URL} className="btn btn-primary btn-large" style={{ width: '100%' }}>
                 Start 14-Day Free Trial
               </a>
               <p style={{
@@ -880,7 +784,9 @@ export default function Home() {
           <p style={styles.ctaSubtitle}>
             14-day free trial. No credit card required.
           </p>
-          <SignupForm variant="dark" />
+          <a href={APP_URL} className="btn btn-warm btn-large">
+            Start Free Trial
+          </a>
         </div>
       </section>
 
