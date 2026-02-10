@@ -36,7 +36,7 @@ const RevealOnScroll = ({
     return () => observer.disconnect();
   }, [handleIntersection]);
 
-  const translateFrom = direction === 'up' ? 'translateY(24px)' : direction === 'left' ? 'translateX(-24px)' : 'translateX(24px)';
+  const translateFrom = direction === 'up' ? 'translateY(40px)' : direction === 'left' ? 'translateX(-40px)' : 'translateX(40px)';
 
   return (
     <div
@@ -44,7 +44,7 @@ const RevealOnScroll = ({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translate(0, 0)' : translateFrom,
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
       {children}
@@ -100,13 +100,9 @@ const styles = {
     alignItems: 'center',
     paddingTop: '104px',
     paddingBottom: '48px',
-    position: 'relative' as const,
-    overflow: 'hidden',
   },
   heroContent: {
     maxWidth: '720px',
-    position: 'relative' as const,
-    zIndex: 2,
     textAlign: 'center' as const,
     margin: '0 auto',
   },
@@ -134,17 +130,6 @@ const styles = {
     marginBottom: '0',
     justifyContent: 'center',
   },
-  heroVisual: {
-    position: 'absolute' as const,
-    right: '-10%',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    width: '55%',
-    maxWidth: '700px',
-    zIndex: 1,
-    opacity: 0.9,
-  },
-
   // Section Base
   section: {
     padding: 'var(--space-4xl) 0',
@@ -209,7 +194,7 @@ const styles = {
   },
   featureGrid: {
     display: 'grid',
-    gridTemplateColumns: '1.2fr 1fr',
+    gridTemplateColumns: '1fr 1fr',
     gap: '24px',
   },
   featureCard: {
@@ -217,6 +202,9 @@ const styles = {
     borderRadius: 'var(--radius-xl)',
     padding: '40px',
     border: '1px solid rgba(255, 255, 255, 0.12)',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    height: '100%',
   },
   featureLabel: {
     fontFamily: 'var(--font-mono)',
@@ -630,16 +618,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero Visual */}
-        <div style={styles.heroVisual} className="hero-visual">
-          <div style={{
-            transform: 'rotate(-8deg)',
-            filter: 'drop-shadow(0 20px 40px rgba(13, 27, 42, 0.15))',
-            animation: 'float 6s ease-in-out infinite'
-          }}>
-            <Receipt />
-          </div>
-        </div>
       </section>
 
       {/* ===== A DAY WITH OPA ===== */}
@@ -686,7 +664,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== HOW IT WORKS (Quick) ===== */}
+      {/* ===== HOW IT WORKS ===== */}
       <section style={{
         ...styles.section,
         background: 'var(--blush-light)',
@@ -699,38 +677,49 @@ export default function Home() {
           </div>
 
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
-            maxWidth: '900px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            maxWidth: '720px',
             margin: '0 auto',
-          }} className="steps-grid">
+          }}>
             {[
               { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, date, and budget line — automatically.' },
               { num: '02', title: 'Organize', desc: 'Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.' },
               { num: '03', title: 'Export', desc: 'One click. Clean top sheet in Excel or PDF. Line item breakdowns, totals, ready for accounting.' },
             ].map((step, i) => (
               <RevealOnScroll key={step.num} delay={i * 150}>
-                <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '24px',
+                  background: 'var(--white)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '32px 36px',
+                  boxShadow: 'var(--shadow-sm)',
+                }}>
                   <div style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.8rem',
                     letterSpacing: '0.1em',
                     color: 'var(--terracotta)',
-                    marginBottom: '12px',
+                    flexShrink: 0,
+                    paddingTop: '4px',
                   }}>{step.num}</div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.35rem',
-                    fontWeight: 500,
-                    marginBottom: '12px',
-                    color: 'var(--ink)',
-                  }}>{step.title}</h3>
-                  <p style={{
-                    color: 'var(--sage)',
-                    lineHeight: 1.7,
-                    fontSize: '0.95rem',
-                  }}>{step.desc}</p>
+                  <div>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.25rem',
+                      fontWeight: 500,
+                      marginBottom: '8px',
+                      color: 'var(--ink)',
+                    }}>{step.title}</h3>
+                    <p style={{
+                      color: 'var(--sage)',
+                      lineHeight: 1.7,
+                      fontSize: '1rem',
+                    }}>{step.desc}</p>
+                  </div>
                 </div>
               </RevealOnScroll>
             ))}
@@ -749,51 +738,20 @@ export default function Home() {
           </div>
 
           <div style={styles.featureGrid} className="feature-grid">
-            <RevealOnScroll delay={0}>
-              <div style={styles.featureCard}>
-                <div style={styles.featureLabel}>Receipt Scanning</div>
-                <h3 style={styles.featureTitle}>Snap it. It's read.</h3>
-                <p style={styles.featureDesc}>
-                  Take a photo. OPA extracts the vendor, amount, date, and suggests the right
-                  budget line. Done before you've put the receipt down.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={100}>
-              <div style={styles.featureCard}>
-                <div style={styles.featureLabel}>Envelopes</div>
-                <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
-                <p style={styles.featureDesc}>
-                  Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
-                  Totals update in real time.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={200}>
-              <div style={styles.featureCard}>
-                <div style={styles.featureLabel}>Top Sheet Export</div>
-                <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
-                <p style={styles.featureDesc}>
-                  One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
-                  signature blocks. Ready to send, not cobbled together.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={300}>
-              <div style={styles.featureCard}>
-                <div style={styles.featureLabel}>AICP Integration</div>
-                <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
-                <p style={styles.featureDesc}>
-                  AICP budget lines come standard — Pages A through P. Every receipt maps to the
-                  right line number. Custom lines when you need them. Your accountant gets exactly
-                  what they expect.
-                </p>
-              </div>
-            </RevealOnScroll>
-
+            {[
+              { label: 'Receipt Scanning', title: 'Snap it. It\'s read.', desc: 'Take a photo. OPA extracts the vendor, amount, date, and suggests the right budget line. Done before you\'ve put the receipt down.' },
+              { label: 'Envelopes', title: 'Organized the way you already work.', desc: 'Group receipts by envelope. Crafty, Styling, Production — whatever your show needs. Totals update in real time.' },
+              { label: 'Top Sheet Export', title: 'The report accounting actually wants.', desc: 'One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals, signature blocks. Ready to send, not cobbled together.' },
+              { label: 'AICP Budget Lines', title: 'Your line numbers. Already loaded.', desc: 'AICP budget lines come standard — Pages A through P. Every receipt maps to the right line number. Custom lines when you need them.' },
+            ].map((feature, i) => (
+              <RevealOnScroll key={feature.label} delay={i * 100}>
+                <div style={styles.featureCard}>
+                  <div style={styles.featureLabel}>{feature.label}</div>
+                  <h3 style={styles.featureTitle}>{feature.title}</h3>
+                  <p style={styles.featureDesc}>{feature.desc}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
         </div>
       </section>
