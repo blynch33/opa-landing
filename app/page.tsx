@@ -390,7 +390,7 @@ const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
           color: variant === 'dark' ? 'var(--porcelain)' : 'var(--forest)',
           margin: 0,
         }}>
-          You're on the list. We'll be in touch.
+          You're in. We'll reach out when your access is ready.
         </p>
       </div>
     );
@@ -432,7 +432,7 @@ const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
         className={isDark ? 'btn btn-warm btn-large' : 'btn btn-primary btn-large'}
         style={{ opacity: status === 'submitting' ? 0.7 : 1 }}
       >
-        {status === 'submitting' ? 'Joining...' : 'Join The Waitlist'}
+        {status === 'submitting' ? 'Submitting...' : 'Get Early Access'}
       </button>
       {status === 'error' && (
         <p style={{
@@ -478,6 +478,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -485,6 +486,13 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/waitlist')
+      .then(res => res.json())
+      .then(data => { if (data.count) setWaitlistCount(data.count); })
+      .catch(() => {});
   }, []);
 
   const handleNavClick = () => {
@@ -504,7 +512,7 @@ export default function Home() {
               <a href="#features" style={styles.navLink}>Features</a>
               <a href="#how-it-works-quick" style={styles.navLink}>How It Works</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
-              <a href="#cta" className="btn btn-primary">Join The Waitlist</a>
+              <a href="#cta" className="btn btn-primary">Get Early Access</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -542,7 +550,7 @@ export default function Home() {
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
               <a href="#how-it-works-quick" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
-              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Join The Waitlist</a>
+              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Get Early Access</a>
             </div>
           )}
         </div>
@@ -559,11 +567,17 @@ export default function Home() {
             <p style={styles.heroDescription}>
               Petty cash tracking and reconciliation for film & TV production.
             </p>
-            <div style={styles.heroCTA}>
-              <a href="#cta" className="btn btn-primary btn-large">
-                Join The Waitlist
-              </a>
-            </div>
+            <WaitlistForm variant="light" />
+            {waitlistCount !== null && waitlistCount >= 100 && (
+              <p style={{
+                marginTop: '16px',
+                fontSize: '0.85rem',
+                color: 'var(--sage)',
+                opacity: 0.7,
+              }}>
+                Join {waitlistCount.toLocaleString()}+ production professionals already signed up.
+              </p>
+            )}
           </div>
         </div>
 
@@ -579,112 +593,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== HOW IT WORKS (Quick) ===== */}
-      <section style={{ ...styles.section, paddingTop: '48px', paddingBottom: '64px' }} id="how-it-works-quick">
-        <div className="container">
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>How it works.</h2>
-          </div>
-
-          <div style={styles.momentsGrid}>
-            <div style={styles.momentCard}>
-              <h3 style={styles.momentTitle}>Scan</h3>
-              <p style={styles.momentDesc}>
-                Take a photo of any receipt. OPA reads the vendor, amount, and date — and files it automatically.
-              </p>
-            </div>
-
-            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
-              <h3 style={styles.momentTitle}>Organize</h3>
-              <p style={styles.momentDesc}>
-                Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.
-              </p>
-            </div>
-
-            <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
-              <h3 style={styles.momentTitle}>Reconcile</h3>
-              <p style={styles.momentDesc}>
-                When wrap comes, your numbers are ready. Export a clean top sheet to Excel or PDF and send it to accounting.
-              </p>
-            </div>
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '32px' }}>
-            <a href="#features" style={{
-              fontSize: '0.95rem',
-              color: 'var(--forest)',
-              fontWeight: 500,
-              textDecoration: 'underline',
-              textUnderlineOffset: '4px',
-            }}>
-              See the full breakdown
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FEATURES SECTION ===== */}
-      <section style={{ ...styles.section, ...styles.featureForest }} id="features">
-        <div className="container">
-          <div style={styles.sectionHeader}>
-            <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
-              The toolkit.
-            </h2>
-          </div>
-
-          <div style={styles.featureGrid} className="feature-grid">
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Receipt Scanning</div>
-              <h3 style={styles.featureTitle}>Scan it. It's handled.</h3>
-              <p style={styles.featureDesc}>
-                Take a photo of any receipt. OPA reads it and pulls the vendor, amount, date,
-                and budget line. It sorts itself. Done before you've sat down.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Envelopes</div>
-              <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
-              <p style={styles.featureDesc}>
-                Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
-                Totals update in real time.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Budget Tracking</div>
-              <h3 style={styles.featureTitle}>Know where you stand before anyone asks.</h3>
-              <p style={styles.featureDesc}>
-                See what you've spent on every line item, across every envelope. No more
-                end-of-week math. No more guessing if crafty blew through their number.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>Top Sheet Export</div>
-              <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
-              <p style={styles.featureDesc}>
-                One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
-                signature blocks. Ready to send, not cobbled together.
-              </p>
-            </div>
-
-            <div style={styles.featureCard}>
-              <div style={styles.featureLabel}>AICP Integration</div>
-              <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
-              <p style={styles.featureDesc}>
-                AICP budget lines come standard — Pages A through P. Every receipt maps to the
-                right line number. Custom lines when you need them. Your accountant gets exactly
-                what they expect.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       {/* ===== A DAY WITH OPA ===== */}
-      <section style={styles.section} id="your-day">
+      <section style={{ ...styles.section, paddingTop: '48px', paddingBottom: '64px' }} id="your-day">
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>A day with OPA.</h2>
@@ -721,25 +631,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== BOTTOM CTA (Repeat) ===== */}
+      {/* ===== HOW IT WORKS (Quick) ===== */}
       <section style={{
-        padding: '64px 0',
-        textAlign: 'center' as const,
-        background: 'var(--porcelain)',
-      }}>
+        ...styles.section,
+        background: 'var(--blush-light)',
+        borderTop: '1px solid rgba(13, 27, 42, 0.06)',
+        borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
+      }} id="how-it-works-quick">
         <div className="container">
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-            fontWeight: 400,
-            marginBottom: '24px',
-            color: 'var(--ink)',
-          }}>
-            Petty cash doesn't have to be chaos.
-          </h2>
-          <a href="#cta" className="btn btn-primary btn-large">
-            Join The Waitlist
-          </a>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>How it works.</h2>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '40px',
+            maxWidth: '900px',
+            margin: '0 auto',
+          }} className="steps-grid">
+            {[
+              { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, and date — and files it automatically.' },
+              { num: '02', title: 'Organize', desc: 'Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.' },
+              { num: '03', title: 'Reconcile', desc: 'When wrap comes, your numbers are ready. Export a clean top sheet to Excel or PDF and send it to accounting.' },
+            ].map((step) => (
+              <div key={step.num} style={{ textAlign: 'center' }}>
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.1em',
+                  color: 'var(--terracotta)',
+                  marginBottom: '12px',
+                }}>{step.num}</div>
+                <h3 style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.35rem',
+                  fontWeight: 500,
+                  marginBottom: '12px',
+                  color: 'var(--ink)',
+                }}>{step.title}</h3>
+                <p style={{
+                  color: 'var(--sage)',
+                  lineHeight: 1.7,
+                  fontSize: '0.95rem',
+                }}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ===== FEATURES SECTION ===== */}
+      <section style={{ ...styles.section, ...styles.featureForest }} id="features">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
+              The toolkit.
+            </h2>
+          </div>
+
+          <div style={styles.featureGrid} className="feature-grid">
+            <div style={styles.featureCard}>
+              <div style={styles.featureLabel}>Receipt Scanning</div>
+              <h3 style={styles.featureTitle}>Scan it. It's handled.</h3>
+              <p style={styles.featureDesc}>
+                Take a photo of any receipt. OPA reads it and pulls the vendor, amount, date,
+                and budget line. It sorts itself. Done before you've sat down.
+              </p>
+            </div>
+
+            <div style={styles.featureCard}>
+              <div style={styles.featureLabel}>Envelopes</div>
+              <h3 style={styles.featureTitle}>Organized the way you already work.</h3>
+              <p style={styles.featureDesc}>
+                Group receipts by envelope. Crafty, Styling, Production — whatever your show needs.
+                Totals update in real time.
+              </p>
+            </div>
+
+            <div style={styles.featureCard}>
+              <div style={styles.featureLabel}>Top Sheet Export</div>
+              <h3 style={styles.featureTitle}>The report accounting actually wants.</h3>
+              <p style={styles.featureDesc}>
+                One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals,
+                signature blocks. Ready to send, not cobbled together.
+              </p>
+            </div>
+
+            <div style={styles.featureCard}>
+              <div style={styles.featureLabel}>AICP Integration</div>
+              <h3 style={styles.featureTitle}>Your line numbers. Already loaded.</h3>
+              <p style={styles.featureDesc}>
+                AICP budget lines come standard — Pages A through P. Every receipt maps to the
+                right line number. Custom lines when you need them. Your accountant gets exactly
+                what they expect.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -783,9 +773,6 @@ export default function Home() {
             We're opening access in waves. Drop your email and we'll save your spot.
           </p>
           <WaitlistForm variant="dark" />
-          <p style={{ marginTop: '24px', fontSize: '0.9rem', opacity: 0.6 }}>
-            No spam. No selling your email. Just a heads up when it's your turn.
-          </p>
         </div>
       </section>
 
