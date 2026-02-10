@@ -387,7 +387,7 @@ const Receipt = () => (
 );
 
 // ===== APP URL =====
-const APP_URL = 'https://app.useopa.com/auth';
+const APP_URL = 'https://app.useopa.com';
 
 // ===== FAQ DATA =====
 const faqs = [
