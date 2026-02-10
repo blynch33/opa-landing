@@ -101,56 +101,46 @@ export default function About() {
       <nav style={styles.nav}>
         <div style={styles.navInner}>
           <Link href="/" style={styles.logo}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</Link>
-          <Link href="/#cta" className="btn btn-primary">Get Early Access</Link>
+          <Link href="/#cta" className="btn btn-primary">Start Free Trial</Link>
         </div>
       </nav>
 
       <main style={styles.main}>
         <div style={styles.container}>
           <div style={styles.eyebrow}>About</div>
-          <h1 style={styles.title}>We've been where you are.</h1>
-          
+          <h1 style={styles.title}>Built by someone who's been where you are.</h1>
+
           <p style={styles.paragraph}>
-            OPA was born out of frustration. The kind you feel at 11pm the night before wrap, 
-            staring at a spreadsheet that doesn't add up, with a camera roll full of receipts 
+            OPA was born out of frustration. The kind you feel at 11pm the night before wrap,
+            staring at a spreadsheet that doesn't add up, with a camera roll full of receipts
             you can't remember taking.
           </p>
-          
+
           <p style={styles.paragraph}>
-            We've worked in production. We've lived the chaos of petty cash tracking, the 
-            "where did that $200 go?" panic, the endless reformatting of Excel sheets that 
+            I've worked in production. I've lived the chaos of petty cash tracking, the
+            "where did that $200 go?" panic, the endless reformatting of top sheets that
             accounting will inevitably ask you to redo anyway.
           </p>
-          
+
           <p style={styles.paragraph}>
-            <span style={styles.highlight}>So we decided to build the tool we wished we'd had.</span>
+            <span style={styles.highlight}>So I built the tool I wished I'd had.</span>
           </p>
 
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>What OPA Is</h2>
             <p style={styles.paragraph}>
-              OPA (Office Production Assistant) is a simple, focused tool for tracking petty cash 
-              and receipts on film and TV productions. It thinks the way production managers 
-              think—receipts first, line items second. No complicated setup, no learning curve, 
-              no paradigm shifts.
+              OPA is a focused tool for tracking petty cash and receipts on film and TV
+              productions. It thinks the way production people think — receipts first, line
+              items second. No complicated setup. No learning curve.
             </p>
           </div>
 
           <div style={styles.section}>
-            <h2 style={styles.sectionTitle}>What We Believe</h2>
+            <h2 style={styles.sectionTitle}>What I Believe</h2>
             <p style={styles.paragraph}>
-              Production accounting shouldn't require a PhD in Excel. The tools you use should 
-              match your mental model, not force you into theirs. And you should be able to 
-              leave wrap with the crew—not three hours after them.
-            </p>
-          </div>
-
-          <div style={styles.section}>
-            <h2 style={styles.sectionTitle}>Early Access</h2>
-            <p style={styles.paragraph}>
-              We're building OPA in public, with real production professionals shaping what 
-              comes next. If you want to be part of that—and get free access while we're in 
-              beta—we'd love to have you.
+              Production accounting shouldn't require a PhD in Excel. The tools you use should
+              match your workflow, not fight it. And you should be able to leave wrap with the
+              crew — not three hours after them.
             </p>
           </div>
 
@@ -161,7 +151,7 @@ export default function About() {
       </main>
 
       <footer style={styles.footer}>
-        <p style={styles.footerText}>© {new Date().getFullYear()} OPA. Made with ☕ in production offices everywhere.</p>
+        <p style={styles.footerText}>© {new Date().getFullYear()} OPA</p>
       </footer>
     </>
   );

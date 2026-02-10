@@ -348,8 +348,8 @@ const Receipt = () => (
   </svg>
 );
 
-// ===== WAITLIST FORM =====
-const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
+// ===== SIGNUP FORM =====
+const SignupForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -390,7 +390,7 @@ const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
           color: variant === 'dark' ? 'var(--porcelain)' : 'var(--forest)',
           margin: 0,
         }}>
-          You're in. We'll reach out when your access is ready.
+          You're in. Check your email to get started.
         </p>
       </div>
     );
@@ -432,7 +432,7 @@ const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
         className={isDark ? 'btn btn-warm btn-large' : 'btn btn-primary btn-large'}
         style={{ opacity: status === 'submitting' ? 0.7 : 1 }}
       >
-        {status === 'submitting' ? 'Submitting...' : 'Get Early Access'}
+        {status === 'submitting' ? 'Submitting...' : 'Start Free Trial'}
       </button>
       {status === 'error' && (
         <p style={{
@@ -452,24 +452,24 @@ const WaitlistForm = ({ variant = 'dark' }: { variant?: 'dark' | 'light' }) => {
 // ===== FAQ DATA =====
 const faqs = [
   {
-    question: "Is this just for petty cash, or does it handle more?",
-    answer: "We're starting with petty cash because that's where the chaos usually begins. But OPA is designed to grow into a full production office toolkit—envelopes, POs, budget tracking, and more. Get in early and help shape what comes next."
+    question: "Is this just for petty cash?",
+    answer: "Today, yes. OPA is focused on doing petty cash exceptionally well — receipts, envelopes, budget lines, and top sheets. Purchase orders, vendor management, and more are on the roadmap."
   },
   {
     question: "What if I'm not tech-savvy?",
-    answer: "Perfect. We built OPA for people who'd rather be on set than debugging software. If you can take a photo of a receipt, you can use OPA. No training required, no 47-step setup process."
+    answer: "Perfect. OPA was built for people who'd rather be on set than debugging software. If you can take a photo of a receipt, you can use OPA. No training required, no 47-step setup process."
   },
   {
     question: "How is this different from Excel?",
-    answer: "Excel is a blank canvas that requires you to build everything from scratch—and maintain it forever. OPA already knows how production works: envelopes, line items, petty cash reconciliation. You focus on the work, not the spreadsheet."
-  },
-  {
-    question: "When will I get access?",
-    answer: "We're opening access in waves to make sure every user gets a solid experience. Join the waitlist and we'll reach out when your spot opens up. Early signups get priority."
+    answer: "Excel is a blank canvas that requires you to build everything from scratch — and maintain it forever. OPA already knows how production works: envelopes, line items, petty cash reconciliation. You focus on the work, not the spreadsheet."
   },
   {
     question: "Is my data secure?",
-    answer: "Yes. We use bank-level encryption and your data is never shared with third parties. We know production budgets are sensitive—they're safe with us."
+    answer: "Yes. We use bank-level encryption and your data is never shared with third parties. Production budgets are sensitive — they're safe with us."
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer: "Yes. No contracts. Cancel from your account settings and your subscription ends at the end of the billing period."
   },
 ];
 
@@ -478,21 +478,12 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    fetch('/api/waitlist')
-      .then(res => res.json())
-      .then(data => { if (data.count) setWaitlistCount(data.count); })
-      .catch(() => {});
   }, []);
 
   const handleNavClick = () => {
@@ -511,8 +502,9 @@ export default function Home() {
             <div style={styles.navLinks} className="nav-links">
               <a href="#features" style={styles.navLink}>Features</a>
               <a href="#how-it-works-quick" style={styles.navLink}>How It Works</a>
+              <a href="#pricing" style={styles.navLink}>Pricing</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
-              <a href="#cta" className="btn btn-primary">Get Early Access</a>
+              <a href="#cta" className="btn btn-primary">Start Free Trial</a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -549,8 +541,9 @@ export default function Home() {
             }}>
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
               <a href="#how-it-works-quick" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
+              <a href="#pricing" style={styles.navLink} onClick={handleNavClick}>Pricing</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
-              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Get Early Access</a>
+              <a href="#cta" className="btn btn-primary" onClick={handleNavClick}>Start Free Trial</a>
             </div>
           )}
         </div>
@@ -565,19 +558,25 @@ export default function Home() {
               <span style={styles.heroTitleAccent}>Handled.</span>
             </h1>
             <p style={styles.heroDescription}>
-              Petty cash tracking and reconciliation for film & TV production.
+              AI-powered receipt management and top sheets for film and TV production.
             </p>
-            <WaitlistForm variant="light" />
-            {waitlistCount !== null && waitlistCount >= 100 && (
-              <p style={{
-                marginTop: '16px',
-                fontSize: '0.85rem',
-                color: 'var(--sage)',
-                opacity: 0.7,
-              }}>
-                Join {waitlistCount.toLocaleString()}+ production professionals already signed up.
-              </p>
-            )}
+            <p style={{
+              fontSize: '0.95rem',
+              color: 'var(--sage)',
+              marginBottom: '32px',
+              lineHeight: 1.6,
+            }}>
+              Built for coordinators, line producers, and anyone who's ever reconciled a shoebox of receipts at wrap.
+            </p>
+            <SignupForm variant="light" />
+            <p style={{
+              marginTop: '16px',
+              fontSize: '0.85rem',
+              color: 'var(--sage)',
+              opacity: 0.7,
+            }}>
+              14-day free trial. No credit card required.
+            </p>
           </div>
         </div>
 
@@ -651,9 +650,9 @@ export default function Home() {
             margin: '0 auto',
           }} className="steps-grid">
             {[
-              { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, and date — and files it automatically.' },
+              { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, date, and budget line — automatically.' },
               { num: '02', title: 'Organize', desc: 'Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.' },
-              { num: '03', title: 'Reconcile', desc: 'When wrap comes, your numbers are ready. Export a clean top sheet to Excel or PDF and send it to accounting.' },
+              { num: '03', title: 'Export', desc: 'One click. Clean top sheet in Excel or PDF. Line item breakdowns, totals, ready for accounting.' },
             ].map((step) => (
               <div key={step.num} style={{ textAlign: 'center' }}>
                 <div style={{
@@ -687,17 +686,17 @@ export default function Home() {
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
-              The toolkit.
+              What OPA does.
             </h2>
           </div>
 
           <div style={styles.featureGrid} className="feature-grid">
             <div style={styles.featureCard}>
               <div style={styles.featureLabel}>Receipt Scanning</div>
-              <h3 style={styles.featureTitle}>Scan it. It's handled.</h3>
+              <h3 style={styles.featureTitle}>Snap it. It's read.</h3>
               <p style={styles.featureDesc}>
-                Take a photo of any receipt. OPA reads it and pulls the vendor, amount, date,
-                and budget line. It sorts itself. Done before you've sat down.
+                Take a photo. OPA extracts the vendor, amount, date, and suggests the right
+                budget line. Done before you've put the receipt down.
               </p>
             </div>
 
@@ -733,12 +732,95 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== PRICING ===== */}
+      <section style={{
+        ...styles.section,
+        background: 'var(--porcelain)',
+        borderTop: '1px solid rgba(13, 27, 42, 0.06)',
+      }} id="pricing">
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>Simple pricing.</h2>
+          </div>
+
+          <div style={{
+            maxWidth: '480px',
+            margin: '0 auto',
+            background: 'var(--white)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '48px 40px',
+            boxShadow: 'var(--shadow-lg)',
+            textAlign: 'center' as const,
+          }}>
+            <div style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontWeight: 400,
+              color: 'var(--ink)',
+              marginBottom: '4px',
+            }}>
+              $49<span style={{
+                fontSize: '1.1rem',
+                color: 'var(--sage)',
+                fontFamily: 'var(--font-body)',
+              }}>/month</span>
+            </div>
+            <p style={{
+              color: 'var(--sage)',
+              marginBottom: '32px',
+              fontSize: '1.05rem',
+            }}>
+              Everything you need. Nothing you don't.
+            </p>
+
+            <div style={{
+              textAlign: 'left' as const,
+              marginBottom: '36px',
+            }}>
+              {[
+                'Unlimited jobs and receipts',
+                'AI-powered receipt scanning',
+                'AICP budget lines + custom lines',
+                'Envelope management',
+                'Top sheet export (Excel + PDF)',
+                'Team collaboration',
+                'Works offline on set',
+              ].map((feature) => (
+                <div key={feature} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '10px 0',
+                  borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
+                  color: 'var(--ink)',
+                  fontSize: '0.95rem',
+                }}>
+                  <span style={{ color: 'var(--forest)', fontWeight: 600, fontSize: '1rem' }}>&#10003;</span>
+                  {feature}
+                </div>
+              ))}
+            </div>
+
+            <a href="#cta" className="btn btn-primary btn-large" style={{ width: '100%' }}>
+              Start 14-Day Free Trial
+            </a>
+            <p style={{
+              marginTop: '12px',
+              fontSize: '0.85rem',
+              color: 'var(--sage)',
+            }}>
+              No credit card required.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ===== FAQ ===== */}
       <section style={styles.section} id="faq">
         <div className="container">
           <div style={styles.sectionHeader}>
             <div style={styles.sectionEyebrow}>Questions</div>
-            <h2 style={styles.sectionTitle}>We've got answers.</h2>
+            <h2 style={styles.sectionTitle}>Common questions.</h2>
           </div>
 
           <div style={styles.faqGrid}>
@@ -768,11 +850,11 @@ export default function Home() {
       {/* ===== FINAL CTA ===== */}
       <section style={{ ...styles.featureForest, ...styles.ctaSection }} id="cta">
         <div className="container">
-          <h2 style={styles.ctaTitle}>Ready to leave Excel hell?</h2>
+          <h2 style={styles.ctaTitle}>Your top sheet is waiting.</h2>
           <p style={styles.ctaSubtitle}>
-            We're opening access in waves. Drop your email and we'll save your spot.
+            14-day free trial. No credit card required.
           </p>
-          <WaitlistForm variant="dark" />
+          <SignupForm variant="dark" />
         </div>
       </section>
 
@@ -817,7 +899,7 @@ export default function Home() {
                 color: 'var(--sage)',
                 lineHeight: 1.7,
               }}>
-                We got tired of the same spreadsheet on every show. So we built something better.
+                Built by a production professional who got tired of the same broken spreadsheet on every show.
               </p>
             </div>
 
