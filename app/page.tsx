@@ -518,7 +518,7 @@ export default function Home() {
               color: 'var(--sage)',
               opacity: 0.7,
             }}>
-              14-day free trial. No credit card required.
+              30-day free trial. No credit card required.
             </p>
           </div>
         </div>
@@ -732,7 +732,7 @@ export default function Home() {
               </div>
 
               <a href={APP_URL} className="btn btn-primary btn-large" style={{ width: '100%' }}>
-                Start 14-Day Free Trial
+                Start 30-Day Free Trial
               </a>
               <p style={{
                 marginTop: '12px',
@@ -783,7 +783,7 @@ export default function Home() {
         <div className="container">
           <h2 style={styles.ctaTitle}>Your top sheet is waiting.</h2>
           <p style={styles.ctaSubtitle}>
-            14-day free trial. No credit card required.
+            30-day free trial. No credit card required.
           </p>
           <a href={APP_URL} className="btn btn-warm btn-large">
             Start Free Trial
