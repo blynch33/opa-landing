@@ -873,6 +873,8 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '0.85rem', color: 'var(--sage)' }}>
             <span>© {new Date().getFullYear()} OPA</span>
+            <a href="/terms" style={styles.footerLink}>Terms</a>
+            <a href="/privacy" style={styles.footerLink}>Privacy</a>
             <a href="mailto:hello@useopa.com" style={styles.footerLink}>hello@useopa.com</a>
           </div>
         </div>
