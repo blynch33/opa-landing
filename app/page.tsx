@@ -122,6 +122,7 @@ const styles = {
     color: 'var(--sage)',
     marginBottom: '32px',
     lineHeight: 1.6,
+    margin: '0 auto 32px',
   },
   heroCTA: {
     display: 'flex',
@@ -505,7 +506,7 @@ export default function Home() {
               color: 'var(--sage)',
               marginBottom: '32px',
               lineHeight: 1.6,
-              textAlign: 'center' as const,
+              margin: '0 auto 32px',
             }}>
               Built for coordinators, line producers, and anyone who's ever reconciled a shoebox of receipts at wrap.
             </p>
@@ -517,6 +518,7 @@ export default function Home() {
               fontSize: '0.85rem',
               color: 'var(--sage)',
               opacity: 0.7,
+              margin: '16px auto 0',
             }}>
               30-day free trial. No credit card required.
             </p>
