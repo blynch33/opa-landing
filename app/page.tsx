@@ -505,6 +505,7 @@ export default function Home() {
               color: 'var(--sage)',
               marginBottom: '32px',
               lineHeight: 1.6,
+              textAlign: 'center' as const,
             }}>
               Built for coordinators, line producers, and anyone who's ever reconciled a shoebox of receipts at wrap.
             </p>
