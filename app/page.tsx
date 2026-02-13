@@ -185,9 +185,9 @@ const styles = {
   // Who It's For
   rolesGrid: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 1fr 1fr',
     gap: '20px',
-    maxWidth: '720px',
+    maxWidth: '960px',
     margin: '0 auto',
   },
   roleCard: {
@@ -643,16 +643,16 @@ export default function Home() {
           <div style={styles.rolesGrid} className="roles-grid">
             {[
               {
+                title: 'Production Coordinators',
+                desc: 'Scan receipts, drop them into envelopes, export the top sheet. The wrap workflow you already do, without the spreadsheet.',
+              },
+              {
                 title: 'Line Producers',
-                desc: 'Track every envelope across every job. See where the money went before accounting asks.',
+                desc: 'See what\'s been spent across every envelope before you have to report it. No more chasing coordinators for numbers.',
               },
               {
                 title: 'Production Managers',
-                desc: 'Real-time visibility into spend across departments. No more waiting until wrap to know where you stand.',
-              },
-              {
-                title: 'Production Coordinators',
-                desc: 'Stop building top sheets in Excel. Upload receipts as they come in, export when you\'re done.',
+                desc: 'Check department spend without waiting for a top sheet to get built. The information\'s there when you need it.',
               },
             ].map((role, i) => (
               <RevealOnScroll key={role.title} delay={i * 100}>
