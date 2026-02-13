@@ -302,6 +302,14 @@ a {
     grid-template-columns: 1fr !important;
   }
 
+  .how-it-works-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .roles-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .origin-receipt {
     display: none;
   }

@@ -98,39 +98,37 @@ const styles = {
     minHeight: 'auto',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: '104px',
-    paddingBottom: '48px',
+    paddingTop: '120px',
+    paddingBottom: '64px',
   },
   heroContent: {
     maxWidth: '720px',
-    textAlign: 'center' as const,
-    margin: '0 auto',
   },
   heroTitle: {
-    fontSize: 'clamp(2.25rem, 8vw, 4.5rem)',
+    fontSize: 'clamp(2.25rem, 8vw, 4rem)',
     fontFamily: 'var(--font-display)',
     fontWeight: 500,
     lineHeight: 1.08,
-    marginBottom: '16px',
+    marginBottom: '24px',
     color: 'var(--ink)',
   },
   heroTitleAccent: {
     color: 'var(--forest)',
   },
   heroDescription: {
-    fontSize: '1.125rem',
+    fontSize: '1.2rem',
     color: 'var(--sage)',
     marginBottom: '32px',
-    lineHeight: 1.6,
-    margin: '0 auto 32px',
+    lineHeight: 1.7,
+    maxWidth: '540px',
   },
   heroCTA: {
     display: 'flex',
     flexWrap: 'wrap' as const,
+    alignItems: 'center',
     gap: '16px',
-    marginBottom: '0',
-    justifyContent: 'center',
   },
+
   // Section Base
   section: {
     padding: 'var(--space-4xl) 0',
@@ -139,14 +137,6 @@ const styles = {
     textAlign: 'center' as const,
     marginBottom: 'var(--space-2xl)',
   },
-  sectionEyebrow: {
-    fontFamily: 'var(--font-mono)',
-    fontSize: '0.8rem',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.15em',
-    color: 'var(--terracotta)',
-    marginBottom: '12px',
-  },
   sectionTitle: {
     fontFamily: 'var(--font-display)',
     fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -154,41 +144,72 @@ const styles = {
     marginBottom: '16px',
   },
 
-  // Moments Section
-  momentsGrid: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '24px',
-    maxWidth: '720px',
+  // How It Works
+  howItWorksGrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gap: '32px',
+    maxWidth: '960px',
     margin: '0 auto',
   },
-  momentCard: {
+  howItWorksCard: {
     background: 'var(--white)',
     borderRadius: 'var(--radius-xl)',
-    padding: '40px 40px 40px 44px',
+    padding: '40px 32px',
     boxShadow: 'var(--shadow-md)',
-    borderLeft: '4px solid var(--forest-light)',
   },
-  momentTimestamp: {
-    fontFamily: 'var(--font-mono)',
-    fontSize: '0.85rem',
-    color: 'var(--terracotta)',
-    letterSpacing: '0.02em',
-    marginBottom: '8px',
+  howItWorksIcon: {
+    width: '48px',
+    height: '48px',
+    borderRadius: 'var(--radius-md)',
+    background: 'rgba(19, 70, 17, 0.08)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '20px',
   },
-  momentTitle: {
+  howItWorksTitle: {
     fontFamily: 'var(--font-display)',
-    fontSize: '1.35rem',
+    fontSize: '1.25rem',
     fontWeight: 500,
     marginBottom: '12px',
     color: 'var(--ink)',
   },
-  momentDesc: {
+  howItWorksDesc: {
     color: 'var(--sage)',
     lineHeight: 1.7,
+    fontSize: '0.95rem',
   },
 
-  // Features Section
+  // Who It's For
+  rolesGrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '20px',
+    maxWidth: '720px',
+    margin: '0 auto',
+  },
+  roleCard: {
+    background: 'var(--white)',
+    borderRadius: 'var(--radius-lg)',
+    padding: '28px 24px',
+    border: '1px solid rgba(13, 27, 42, 0.08)',
+    boxShadow: 'var(--shadow-sm)',
+  },
+  roleTitle: {
+    fontFamily: 'var(--font-body)',
+    fontSize: '0.95rem',
+    fontWeight: 600,
+    color: 'var(--ink)',
+    marginBottom: '6px',
+  },
+  roleDesc: {
+    color: 'var(--sage)',
+    lineHeight: 1.7,
+    fontSize: '0.9rem',
+  },
+
+  // Features Section (dark)
   featureForest: {
     background: 'linear-gradient(135deg, var(--forest-dark) 0%, #0d3a0b 100%)',
     color: 'var(--porcelain)',
@@ -268,17 +289,10 @@ const styles = {
   },
   ctaTitle: {
     fontFamily: 'var(--font-display)',
-    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+    fontSize: 'clamp(2rem, 5vw, 3rem)',
     fontWeight: 400,
     marginBottom: '24px',
-    color: 'var(--porcelain)',
-  },
-  ctaSubtitle: {
-    fontSize: '1.2rem',
-    opacity: 0.85,
-    marginBottom: '40px',
-    maxWidth: '500px',
-    margin: '0 auto 40px',
+    color: 'var(--ink)',
   },
 
   // Footer
@@ -288,104 +302,12 @@ const styles = {
     padding: '20px 0',
     borderTop: '1px solid rgba(13, 27, 42, 0.06)',
   },
-  footerInner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap' as const,
-    gap: '48px',
-    marginBottom: 'var(--space-3xl)',
-  },
-  footerBrand: {
-    maxWidth: '320px',
-  },
-  footerLogo: {
-    fontFamily: 'var(--font-display)',
-    fontSize: '1.75rem',
-    fontWeight: 500,
-    marginBottom: '16px',
-    color: 'var(--forest)',
-  },
-  footerTagline: {
-    color: 'var(--sage)',
-    lineHeight: 1.7,
-  },
-  footerLinks: {
-    display: 'flex',
-    gap: '64px',
-  },
-  footerColumn: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '12px',
-  },
-  footerColumnTitle: {
-    fontWeight: 600,
-    marginBottom: '8px',
-  },
   footerLink: {
     color: 'var(--sage)',
     transition: 'color 0.2s ease',
     cursor: 'pointer',
   },
-  footerBottom: {
-    borderTop: '1px solid rgba(13, 27, 42, 0.1)',
-    paddingTop: 'var(--space-xl)',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexWrap: 'wrap' as const,
-    gap: '16px',
-  },
-  footerCopyright: {
-    color: 'var(--sage)',
-    fontSize: '0.9rem',
-  },
 };
-
-// ===== COMPONENTS =====
-
-const Receipt = () => (
-  <svg viewBox="0 0 320 400" fill="none" style={{ width: '100%', height: 'auto' }}>
-    {/* Receipt Background */}
-    <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" fill="#FFFFFF" />
-    <path d="M20 0 L20 380 Q30 390 40 380 Q50 370 60 380 Q70 390 80 380 Q90 370 100 380 Q110 390 120 380 Q130 370 140 380 Q150 390 160 380 Q170 370 180 380 Q190 390 200 380 Q210 370 220 380 Q230 390 240 380 Q250 370 260 380 Q270 390 280 380 Q290 370 300 380 L300 0 Z" stroke="#E8E8E8" strokeWidth="1" fill="none" />
-
-    {/* Header */}
-    <text y="50" fontFamily="DM Serif Text" fontSize="32" fontWeight="400"><tspan x="131" fill="#C4725F">o</tspan><tspan fill="#134611">pa</tspan></text>
-    <text x="160" y="75" textAnchor="middle" fontFamily="Inter" fontSize="10" fill="#839788" letterSpacing="2">PETTY CASH TRACKING</text>
-
-    {/* Divider */}
-    <line x1="50" y1="100" x2="270" y2="100" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
-
-    {/* Line Items */}
-    <text x="50" y="135" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Coffee Run (Crew)</text>
-    <text x="270" y="135" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$47.50</text>
-
-    <text x="50" y="165" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Gaff Tape (3x Rolls)</text>
-    <text x="270" y="165" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$89.97</text>
-
-    <text x="50" y="195" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Craft Services Supplies</text>
-    <text x="270" y="195" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$156.00</text>
-
-    <text x="50" y="225" fontFamily="Inter" fontSize="14" fill="#0D1B2A">Parking - Location Scout</text>
-    <text x="270" y="225" textAnchor="end" fontFamily="JetBrains Mono" fontSize="14" fill="#0D1B2A">$24.00</text>
-
-    {/* Divider */}
-    <line x1="50" y1="255" x2="270" y2="255" stroke="#E8E8E8" strokeWidth="1" strokeDasharray="5,5" />
-
-    {/* Total */}
-    <text x="50" y="290" fontFamily="Inter" fontSize="16" fontWeight="600" fill="#0D1B2A">TOTAL</text>
-    <text x="270" y="290" textAnchor="end" fontFamily="JetBrains Mono" fontSize="20" fontWeight="600" fill="#134611">$317.47</text>
-
-    {/* Status Tag */}
-    <rect x="90" y="310" width="140" height="32" rx="16" fill="rgba(45, 106, 79, 0.1)" />
-    <text x="160" y="331" textAnchor="middle" fontFamily="Inter" fontSize="13" fontWeight="500" fill="#2D6A4F">✓ Reconciled</text>
-
-    {/* Footer */}
-    <text x="160" y="365" textAnchor="middle" fontFamily="Inter" fontSize="11" fill="#839788">Nice work today.</text>
-  </svg>
-);
 
 // ===== APP URL =====
 const APP_URL = 'https://app.useopa.com';
@@ -414,11 +336,37 @@ const faqs = [
   },
 ];
 
+// ===== ICONS =====
+const CameraIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+    <circle cx="12" cy="13" r="3" />
+  </svg>
+);
+
+const FolderIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" />
+  </svg>
+);
+
+const SpreadsheetIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    <path d="M8 13h2" />
+    <path d="M14 13h2" />
+    <path d="M8 17h2" />
+    <path d="M14 17h2" />
+  </svg>
+);
+
 // ===== MAIN PAGE =====
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -441,8 +389,8 @@ export default function Home() {
 
             {/* Desktop Nav */}
             <div style={styles.navLinks} className="nav-links">
+              <a href="#how-it-works" style={styles.navLink}>How It Works</a>
               <a href="#features" style={styles.navLink}>Features</a>
-              <a href="#how-it-works-quick" style={styles.navLink}>How It Works</a>
               <a href="#pricing" style={styles.navLink}>Pricing</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
               <a href={APP_URL} className="btn btn-primary">Start Free Trial</a>
@@ -480,8 +428,8 @@ export default function Home() {
               flexDirection: 'column',
               gap: '16px',
             }}>
+              <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
-              <a href="#how-it-works-quick" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
               <a href="#pricing" style={styles.navLink} onClick={handleNavClick}>Pricing</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
               <a href={APP_URL} className="btn btn-primary" onClick={handleNavClick}>Start Free Trial</a>
@@ -495,78 +443,25 @@ export default function Home() {
         <div className="container">
           <div style={styles.heroContent}>
             <h1 style={styles.heroTitle}>
-              Petty cash.{' '}
-              <span style={styles.heroTitleAccent}>Handled.</span>
+              Stop sorting receipts{' '}
+              <span style={styles.heroTitleAccent}>at midnight.</span>
             </h1>
             <p style={styles.heroDescription}>
-              AI-powered receipt management and top sheets for film and TV production.
+              OPA is expense tracking built for production. Scan receipts, organize
+              by envelope, export your top sheet. The wrap process that used to take
+              hours now takes minutes.
             </p>
-            <p style={{
-              fontSize: '0.95rem',
-              color: 'var(--sage)',
-              marginBottom: '32px',
-              lineHeight: 1.6,
-              margin: '0 auto 32px',
-            }}>
-              Built for coordinators, line producers, and anyone who's ever reconciled a shoebox of receipts at wrap.
-            </p>
-            <a href={APP_URL} className="btn btn-primary btn-large">
-              Start Free Trial
-            </a>
-            <p style={{
-              marginTop: '16px',
-              fontSize: '0.85rem',
-              color: 'var(--sage)',
-              opacity: 0.7,
-              margin: '16px auto 0',
-            }}>
-              30-day free trial. No credit card required.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== A DAY WITH OPA ===== */}
-      <section style={{ ...styles.section, paddingTop: '48px', paddingBottom: '64px' }} id="your-day">
-        <div className="container">
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>A day with OPA.</h2>
-          </div>
-
-          <div style={styles.momentsGrid}>
-            <RevealOnScroll delay={0}>
-              <div style={styles.momentCard}>
-                <div style={styles.momentTimestamp}>6:47 AM</div>
-                <h3 style={styles.momentTitle}>On set before the sun</h3>
-                <p style={styles.momentDesc}>
-                  You grab coffee, scan the receipt. OPA reads it, categorizes it, done.
-                  One less thing rattling around in your head.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={150}>
-              <div style={{ ...styles.momentCard, borderLeftColor: 'var(--forest)' }}>
-                <div style={styles.momentTimestamp}>2:13 PM</div>
-                <h3 style={styles.momentTitle}>Mid-shoot check-in</h3>
-                <p style={styles.momentDesc}>
-                  Art dept's been uploading all morning. They're $847 from their limit.
-                  You Zelle more cash before they even ask. Crisis averted.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={300}>
-              <div style={{ ...styles.momentCard, borderLeftColor: 'var(--ink)' }}>
-                <div style={styles.momentTimestamp}>11:34 PM</div>
-                <h3 style={styles.momentTitle}>Wrap chaos</h3>
-                <p style={styles.momentDesc}>
-                  Producer texts you 7 receipts in various states of legibility. You bulk upload
-                  to OPA, they're logged. You'll deal with it tomorrow when you're human again.
-                </p>
-              </div>
-            </RevealOnScroll>
+            <div style={styles.heroCTA}>
+              <a href={APP_URL} className="btn btn-primary btn-large">
+                Start Free Trial
+              </a>
+              <span style={{
+                fontSize: '0.9rem',
+                color: 'var(--sage)',
+              }}>
+                30 days free. No credit card.
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -577,61 +472,41 @@ export default function Home() {
         background: 'var(--blush-light)',
         borderTop: '1px solid rgba(13, 27, 42, 0.06)',
         borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
-      }} id="how-it-works-quick">
+      }} id="how-it-works">
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>How it works.</h2>
           </div>
 
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            maxWidth: '720px',
-            margin: '0 auto',
-          }}>
+          <div style={styles.howItWorksGrid} className="how-it-works-grid">
             {[
-              { num: '01', title: 'Scan', desc: 'Take a photo of any receipt. OPA reads the vendor, amount, date, and budget line — automatically.' },
-              { num: '02', title: 'Organize', desc: 'Assign receipts to envelopes — Crafty, Styling, Production, whatever your show needs. Totals update in real time.' },
-              { num: '03', title: 'Export', desc: 'One click. Clean top sheet in Excel or PDF. Line item breakdowns, totals, ready for accounting.' },
+              {
+                icon: <CameraIcon />,
+                title: 'Scan it',
+                desc: 'Snap a photo or upload a PDF. OPA reads the merchant, date, amount, and line items automatically.',
+              },
+              {
+                icon: <FolderIcon />,
+                title: 'Organize it',
+                desc: 'Receipts go into envelopes — just like real production. Track petty cash, POs, and per diems the way you already think about them.',
+              },
+              {
+                icon: <SpreadsheetIcon />,
+                title: 'Export it',
+                desc: 'One click. Production-ready top sheet. Done. Hand it to accounting and go home.',
+              },
             ].map((step, i) => (
-              <RevealOnScroll key={step.num} delay={i * 150}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '24px',
-                  background: 'var(--white)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '32px 36px',
-                  boxShadow: 'var(--shadow-sm)',
-                }}>
-                  <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.1em',
-                    color: 'var(--terracotta)',
-                    flexShrink: 0,
-                    paddingTop: '4px',
-                  }}>{step.num}</div>
-                  <div>
-                    <h3 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.25rem',
-                      fontWeight: 500,
-                      marginBottom: '8px',
-                      color: 'var(--ink)',
-                    }}>{step.title}</h3>
-                    <p style={{
-                      color: 'var(--sage)',
-                      lineHeight: 1.7,
-                      fontSize: '1rem',
-                    }}>{step.desc}</p>
+              <RevealOnScroll key={step.title} delay={i * 150}>
+                <div style={styles.howItWorksCard}>
+                  <div style={styles.howItWorksIcon}>
+                    {step.icon}
                   </div>
+                  <h3 style={styles.howItWorksTitle}>{step.title}</h3>
+                  <p style={styles.howItWorksDesc}>{step.desc}</p>
                 </div>
               </RevealOnScroll>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -685,6 +560,15 @@ export default function Home() {
               textAlign: 'center' as const,
             }}>
               <div style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '1.1rem',
+                fontWeight: 500,
+                color: 'var(--ink)',
+                marginBottom: '8px',
+              }}>
+                OPA
+              </div>
+              <div style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
                 fontWeight: 400,
@@ -700,9 +584,9 @@ export default function Home() {
               <p style={{
                 color: 'var(--sage)',
                 marginBottom: '32px',
-                fontSize: '1.05rem',
+                fontSize: '0.95rem',
               }}>
-                Everything you need. Nothing you don't.
+                or $468/year — save 20%
               </p>
 
               <div style={{
@@ -710,13 +594,10 @@ export default function Home() {
                 marginBottom: '36px',
               }}>
                 {[
-                  'Unlimited jobs and receipts',
-                  'AI-powered receipt scanning',
-                  'AICP budget lines + custom lines',
-                  'Envelope management',
-                  'Top sheet export (Excel + PDF)',
-                  'Team collaboration',
-                  'Works offline on set',
+                  'Smart receipt scanning',
+                  'Envelope-based expense tracking',
+                  'One-click top sheet export',
+                  'Unlimited jobs and envelopes',
                 ].map((feature) => (
                   <div key={feature} style={{
                     display: 'flex',
@@ -734,25 +615,69 @@ export default function Home() {
               </div>
 
               <a href={APP_URL} className="btn btn-primary btn-large" style={{ width: '100%' }}>
-                Start 30-Day Free Trial
+                Start Free Trial
               </a>
               <p style={{
                 marginTop: '12px',
                 fontSize: '0.85rem',
                 color: 'var(--sage)',
               }}>
-                No credit card required.
+                30 days free. No credit card required. Cancel anytime.
               </p>
             </div>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
-      <section style={styles.section} id="faq">
+      {/* ===== WHO IT'S FOR ===== */}
+      <section style={{
+        ...styles.section,
+        borderTop: '1px solid rgba(13, 27, 42, 0.06)',
+      }} id="who-its-for">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <div style={styles.sectionEyebrow}>Questions</div>
+            <h2 style={styles.sectionTitle}>Built for people who actually wrap shoots.</h2>
+          </div>
+
+          <div style={styles.rolesGrid} className="roles-grid">
+            {[
+              {
+                title: 'Line Producers',
+                desc: 'Track every envelope across every job. See where the money went before accounting asks.',
+              },
+              {
+                title: 'Coordinators',
+                desc: 'Stop building top sheets in Excel. Upload receipts as they come in, export when you\'re done.',
+              },
+              {
+                title: 'Production Accountants',
+                desc: 'Get clean, organized receipt data with budget line classifications. Less chasing, more reconciling.',
+              },
+              {
+                title: 'Production Managers',
+                desc: 'Real-time visibility into spend across departments. No more waiting until wrap to know where you stand.',
+              },
+            ].map((role, i) => (
+              <RevealOnScroll key={role.title} delay={i * 100}>
+                <div style={styles.roleCard}>
+                  <p style={styles.roleTitle}>{role.title}</p>
+                  <p style={styles.roleDesc}>{role.desc}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section style={{
+        ...styles.section,
+        background: 'var(--blush-light)',
+        borderTop: '1px solid rgba(13, 27, 42, 0.06)',
+        borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
+      }} id="faq">
+        <div className="container">
+          <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>Common questions.</h2>
           </div>
 
@@ -781,74 +706,12 @@ export default function Home() {
       </section>
 
       {/* ===== FINAL CTA ===== */}
-      <section style={{ ...styles.featureForest, ...styles.ctaSection }} id="cta">
+      <section style={styles.ctaSection}>
         <div className="container">
-          <h2 style={styles.ctaTitle}>Your top sheet is waiting.</h2>
-          <p style={styles.ctaSubtitle}>
-            30-day free trial. No credit card required.
-          </p>
-          <a href={APP_URL} className="btn btn-warm btn-large">
+          <h2 style={styles.ctaTitle}>Your Friday nights deserve better.</h2>
+          <a href={APP_URL} className="btn btn-primary btn-large">
             Start Free Trial
           </a>
-        </div>
-      </section>
-
-      {/* ===== ORIGIN ===== */}
-      <section style={{
-        ...styles.section,
-        background: 'var(--porcelain)',
-        borderTop: '1px solid rgba(13, 27, 42, 0.08)',
-        overflow: 'hidden',
-        position: 'relative' as const,
-      }}>
-        <div className="container">
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '64px',
-          }} className="origin-inner">
-            <div style={{ maxWidth: '560px', position: 'relative' as const, zIndex: 2 }}>
-              <div style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                textTransform: 'uppercase' as const,
-                letterSpacing: '0.1em',
-                color: 'var(--terracotta)',
-                marginBottom: '16px',
-              }}>
-                Los Angeles, CA
-              </div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                fontWeight: 400,
-                marginBottom: '16px',
-                lineHeight: 1.3,
-                color: 'var(--ink)',
-              }}>
-                Made on set. Built between jobs.
-              </h2>
-              <p style={{
-                fontSize: '1.1rem',
-                color: 'var(--sage)',
-                lineHeight: 1.7,
-              }}>
-                Built by a production professional who got tired of the same broken spreadsheet on every show.
-              </p>
-            </div>
-
-            {/* Receipt Visual */}
-            <div style={{
-              flexShrink: 0,
-              width: '280px',
-              opacity: 0.9,
-              transform: 'rotate(-4deg)',
-              filter: 'drop-shadow(0 16px 40px rgba(13, 27, 42, 0.1))',
-            }} className="origin-receipt">
-              <Receipt />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -868,7 +731,7 @@ export default function Home() {
               color: 'var(--forest)',
             }}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</span>
             <span style={{ color: 'var(--sage)', fontSize: '0.85rem' }}>
-              — Petty cash. Handled.
+              — Expense tracking for production.
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '0.85rem', color: 'var(--sage)' }}>
