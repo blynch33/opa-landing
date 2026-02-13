@@ -311,7 +311,7 @@ const styles = {
 };
 
 // ===== APP URL =====
-const APP_URL = 'https://app.useopa.com';
+const APP_URL = 'https://app.useopa.com/login';
 
 // ===== FAQ DATA =====
 const faqs = [

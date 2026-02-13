@@ -101,7 +101,7 @@ export default function About() {
       <nav style={styles.nav}>
         <div style={styles.navInner}>
           <Link href="/" style={styles.logo}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</Link>
-          <Link href="https://app.useopa.com" className="btn btn-primary">Start Free Trial</Link>
+          <Link href="https://app.useopa.com/login" className="btn btn-primary">Start Free Trial</Link>
         </div>
       </nav>
 
