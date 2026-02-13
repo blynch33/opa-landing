@@ -157,6 +157,7 @@ const styles = {
     borderRadius: 'var(--radius-xl)',
     padding: '40px 32px',
     boxShadow: 'var(--shadow-md)',
+    height: '100%',
   },
   howItWorksIcon: {
     width: '48px',
@@ -233,7 +234,7 @@ const styles = {
     fontSize: '0.75rem',
     textTransform: 'uppercase' as const,
     letterSpacing: '0.1em',
-    color: 'var(--honey)',
+    color: 'var(--lichen)',
     marginBottom: '12px',
   },
   featureTitle: {
@@ -297,7 +298,7 @@ const styles = {
 
   // Footer
   footer: {
-    background: 'var(--blush-light)',
+    background: 'var(--moss-light)',
     color: 'var(--ink)',
     padding: '20px 0',
     borderTop: '1px solid rgba(13, 27, 42, 0.06)',
@@ -469,7 +470,7 @@ export default function Home() {
       {/* ===== HOW IT WORKS ===== */}
       <section style={{
         ...styles.section,
-        background: 'var(--blush-light)',
+        background: 'var(--moss-light)',
         borderTop: '1px solid rgba(13, 27, 42, 0.06)',
         borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
       }} id="how-it-works">
@@ -636,7 +637,7 @@ export default function Home() {
       }} id="who-its-for">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Built for people who actually wrap shoots.</h2>
+            <h2 style={styles.sectionTitle}>Built for those who wrap.</h2>
           </div>
 
           <div style={styles.rolesGrid} className="roles-grid">
@@ -646,16 +647,12 @@ export default function Home() {
                 desc: 'Track every envelope across every job. See where the money went before accounting asks.',
               },
               {
-                title: 'Coordinators',
-                desc: 'Stop building top sheets in Excel. Upload receipts as they come in, export when you\'re done.',
-              },
-              {
-                title: 'Production Accountants',
-                desc: 'Get clean, organized receipt data with budget line classifications. Less chasing, more reconciling.',
-              },
-              {
                 title: 'Production Managers',
                 desc: 'Real-time visibility into spend across departments. No more waiting until wrap to know where you stand.',
+              },
+              {
+                title: 'Production Coordinators',
+                desc: 'Stop building top sheets in Excel. Upload receipts as they come in, export when you\'re done.',
               },
             ].map((role, i) => (
               <RevealOnScroll key={role.title} delay={i * 100}>
@@ -672,7 +669,7 @@ export default function Home() {
       {/* ===== FAQ ===== */}
       <section style={{
         ...styles.section,
-        background: 'var(--blush-light)',
+        background: 'var(--moss-light)',
         borderTop: '1px solid rgba(13, 27, 42, 0.06)',
         borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
       }} id="faq">

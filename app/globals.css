@@ -13,14 +13,16 @@
   --ink-light: #1a2d42;
   --white: #FFFFFF;
   
-  /* Warm Accents */
+  /* Accent */
   --terracotta: #C4725F;
   --terracotta-light: #E8A799;
   --terracotta-dark: #a85d4a;
-  --honey: #D4A855;
-  --honey-light: #F0D99A;
-  --blush: #E8C4BE;
-  --blush-light: #f5e0db;
+
+  /* Moss Tones */
+  --lichen: #A8B5AB;
+  --lichen-light: #D4DDD6;
+  --moss: #DEE3DC;
+  --moss-light: #ECEEEB;
   
   /* Semantic Colors */
   --success: #2D6A4F;
@@ -353,7 +355,7 @@ a {
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: var(--honey-light);
+  background: var(--lichen-light);
   color: var(--ink);
 }
 
