@@ -394,6 +394,7 @@ export default function Home() {
               <a href="#features" style={styles.navLink}>Features</a>
               <a href="#pricing" style={styles.navLink}>Pricing</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
+              <a href={APP_URL} style={styles.navLink}>Log in</a>
               <a href={APP_URL} className="btn btn-primary">Start Free Trial</a>
             </div>
 
@@ -433,6 +434,7 @@ export default function Home() {
               <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
               <a href="#pricing" style={styles.navLink} onClick={handleNavClick}>Pricing</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
+              <a href={APP_URL} style={styles.navLink} onClick={handleNavClick}>Log in</a>
               <a href={APP_URL} className="btn btn-primary" onClick={handleNavClick}>Start Free Trial</a>
             </div>
           )}
