@@ -457,12 +457,10 @@ export default function Home() {
                 Start Free Trial
               </a>
               <span style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem',
+                fontSize: '0.9rem',
                 color: 'var(--sage)',
-                letterSpacing: '0.01em',
               }}>
-                $49/mo &middot; 30 days free &middot; No credit card
+                30 days free. No credit card.
               </span>
             </div>
           </div>
@@ -494,8 +492,8 @@ export default function Home() {
             {[
               {
                 icon: <CameraIcon />,
-                title: 'Snap it. It\'s read.',
-                desc: 'Take a photo or upload a PDF. OPA extracts the vendor, amount, date, and suggests the right budget line. Done before you\'ve put the receipt down.',
+                title: 'Scan it. It\'s handled.',
+                desc: 'Take a photo or upload a PDF. Vendor, amount, date, budget line — extracted automatically. Done before you\'ve put the receipt down.',
               },
               {
                 icon: <FolderIcon />,
@@ -542,10 +540,10 @@ export default function Home() {
 
           <div style={styles.featureGrid} className="feature-grid">
             {[
-              { label: 'Receipt Scanning', title: 'Snap it. It\'s read.', desc: 'Take a photo. OPA extracts the vendor, amount, date, and suggests the right budget line. Done before you\'ve put the receipt down.' },
-              { label: 'Envelopes', title: 'Organized the way you already work.', desc: 'Group receipts by envelope. Crafty, Styling, Production — whatever your show needs. Totals update in real time.' },
-              { label: 'Top Sheet Export', title: 'The report accounting actually wants.', desc: 'One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals, signature blocks. Ready to send, not cobbled together.' },
-              { label: 'AICP Budget Lines', title: 'Your line numbers. Already loaded.', desc: 'AICP budget lines come standard — Pages A through P. Every receipt maps to the right line number. Custom lines when you need them.' },
+              { label: 'Receipt Scanning', title: 'Photo in. Data out.', desc: 'Snap a receipt with your phone. OPA pulls the vendor, amount, date, and suggests the budget line. No manual entry unless you want it.' },
+              { label: 'Envelopes', title: 'Organized the way you already work.', desc: 'Group receipts by envelope — Petty Cash, Art, Wardrobe, whatever the show needs. Totals and budget lines update in real time.' },
+              { label: 'Top Sheet Export', title: 'The report accounting actually wants.', desc: 'One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals, signature blocks. Ready to hand off.' },
+              { label: 'AICP Budget Lines', title: 'Your line numbers. Already loaded.', desc: 'AICP budget lines come standard — Pages A through P. Every receipt maps to the right line. Custom lines when you need them.' },
             ].map((feature, i) => (
               <RevealOnScroll key={feature.label} delay={i * 100}>
                 <div style={styles.featureCard}>
@@ -732,7 +730,7 @@ export default function Home() {
                 color: 'var(--sage)',
                 fontStyle: 'italic',
               }}>
-                Less than an hour of your day rate. Saves you a full day at wrap.
+                Fits right in your kit fee. Pays for itself at wrap.
               </p>
             </div>
           </RevealOnScroll>
@@ -770,7 +768,7 @@ export default function Home() {
               },
               {
                 title: 'Production Companies',
-                desc: 'Faster wrap books, fewer accounting errors, cleaner handoffs. $49/month is a rounding error on a production budget.',
+                desc: 'Faster wrap books, fewer accounting errors, cleaner handoffs. One subscription covers every job your coordinator touches.',
               },
             ].map((role, i) => (
               <RevealOnScroll key={role.title} delay={i * 100}>
