@@ -450,9 +450,18 @@ export default function Home() {
               <span style={styles.heroTitleAccent}>at midnight.</span>
             </h1>
             <p style={styles.heroDescription}>
-              OPA is expense tracking built for production. Scan receipts, organize
-              by envelope, export your top sheet. The wrap process that used to take
-              hours now takes minutes.
+              Built by a production manager. For the people who do the paperwork.
+              Scan receipts, organize by envelope, export your top sheet. The wrap
+              process that used to take hours now takes minutes.
+            </p>
+            <p style={{
+              fontSize: '0.95rem',
+              color: 'var(--sage)',
+              fontStyle: 'italic',
+              marginBottom: '32px',
+              lineHeight: 1.6,
+            }}>
+              &ldquo;I built OPA because I was the one sorting receipts at midnight.&rdquo; — Brendan, founder &amp; PM
             </p>
             <div style={styles.heroCTA}>
               <a href={APP_URL} className="btn btn-primary btn-large">
@@ -520,6 +529,15 @@ export default function Home() {
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
               What OPA does.
             </h2>
+            <p style={{
+              color: 'var(--sage-light)',
+              fontSize: '1rem',
+              maxWidth: '540px',
+              margin: '0 auto',
+              lineHeight: 1.7,
+            }}>
+              Not a budgeting platform. Not enterprise software. Just the receipts.
+            </p>
           </div>
 
           <div style={styles.featureGrid} className="feature-grid">
@@ -627,6 +645,14 @@ export default function Home() {
               }}>
                 30 days free. No credit card required. Cancel anytime.
               </p>
+              <p style={{
+                marginTop: '8px',
+                fontSize: '0.85rem',
+                color: 'var(--sage)',
+                fontStyle: 'italic',
+              }}>
+                Less than one hour of your day rate. Saves you a full day at wrap.
+              </p>
             </div>
           </RevealOnScroll>
         </div>
@@ -640,21 +666,30 @@ export default function Home() {
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>Built for those who wrap.</h2>
+            <p style={{
+              color: 'var(--sage)',
+              fontSize: '1rem',
+              maxWidth: '540px',
+              margin: '0 auto',
+              lineHeight: 1.7,
+            }}>
+              You&rsquo;re freelance. You move between jobs. You need a tool that moves with you.
+            </p>
           </div>
 
           <div style={styles.rolesGrid} className="roles-grid">
             {[
               {
-                title: 'Production Coordinators',
-                desc: 'Scan receipts, drop them into envelopes, export the top sheet. The wrap workflow you already do, without the spreadsheet.',
+                title: 'Freelance Coordinators & PMs',
+                desc: 'Your tool. Your subscription. It goes where you go. Scan receipts, drop them into envelopes, export the top sheet — no spreadsheet, no IT department.',
               },
               {
                 title: 'Line Producers',
                 desc: 'See what\'s been spent across every envelope before you have to report it. No more chasing coordinators for numbers.',
               },
               {
-                title: 'Production Managers',
-                desc: 'Check department spend without waiting for a top sheet to get built. The information\'s there when you need it.',
+                title: 'Production Companies',
+                desc: 'Faster wrap books, fewer accounting errors, cleaner handoffs. $49/month is a rounding error on a production budget.',
               },
             ].map((role, i) => (
               <RevealOnScroll key={role.title} delay={i * 100}>
