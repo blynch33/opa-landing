@@ -65,7 +65,7 @@ const styles = {
     transition: 'all 0.3s ease',
   },
   navScrolled: {
-    background: 'rgba(250, 249, 245, 0.95)',
+    background: 'rgba(246, 244, 238, 0.95)',
     backdropFilter: 'blur(10px)',
     boxShadow: '0 2px 20px rgba(13, 27, 42, 0.08)',
   },
@@ -450,35 +450,26 @@ export default function Home() {
               <span style={styles.heroTitleAccent}>at midnight.</span>
             </h1>
             <p style={styles.heroDescription}>
-              Built by a production manager. For the people who do the paperwork.
-              Scan receipts, organize by envelope, export your top sheet. The wrap
-              process that used to take hours now takes minutes.
-            </p>
-            <p style={{
-              fontSize: '0.95rem',
-              color: 'var(--sage)',
-              fontStyle: 'italic',
-              marginBottom: '32px',
-              lineHeight: 1.6,
-            }}>
-              &ldquo;I built OPA because I was the one sorting receipts at midnight.&rdquo; — Brendan, founder &amp; PM
+              Expense tracking built for production. Scan receipts, organize by envelope, export your top sheet. The wrap process that used to take hours now takes minutes.
             </p>
             <div style={styles.heroCTA}>
               <a href={APP_URL} className="btn btn-primary btn-large">
                 Start Free Trial
               </a>
               <span style={{
-                fontSize: '0.9rem',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.85rem',
                 color: 'var(--sage)',
+                letterSpacing: '0.01em',
               }}>
-                30 days free. No credit card.
+                $49/mo &middot; 30 days free &middot; No credit card
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== HOW IT WORKS ===== */}
+      {/* ===== THE SHOEBOX IS RETIRED ===== */}
       <section style={{
         ...styles.section,
         background: 'var(--moss-light)',
@@ -487,25 +478,34 @@ export default function Home() {
       }} id="how-it-works">
         <div className="container">
           <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>How it works.</h2>
+            <h2 style={styles.sectionTitle}>The shoebox is retired.</h2>
+            <p style={{
+              color: 'var(--sage)',
+              fontSize: '1rem',
+              maxWidth: '540px',
+              margin: '0 auto',
+              lineHeight: 1.7,
+            }}>
+              Receipt capture, envelope organization, and top sheet export — built for how production actually works.
+            </p>
           </div>
 
           <div style={styles.howItWorksGrid} className="how-it-works-grid">
             {[
               {
                 icon: <CameraIcon />,
-                title: 'Scan it',
-                desc: 'Snap a photo or upload a PDF. OPA reads the merchant, date, amount, and line items automatically.',
+                title: 'Snap it. It\'s read.',
+                desc: 'Take a photo or upload a PDF. OPA extracts the vendor, amount, date, and suggests the right budget line. Done before you\'ve put the receipt down.',
               },
               {
                 icon: <FolderIcon />,
-                title: 'Organize it',
+                title: 'Organized the way you already work.',
                 desc: 'Receipts go into envelopes — just like real production. Track petty cash, POs, and per diems the way you already think about them.',
               },
               {
                 icon: <SpreadsheetIcon />,
-                title: 'Export it',
-                desc: 'One click. Production-ready top sheet. Done. Hand it to accounting and go home.',
+                title: 'The report accounting actually wants.',
+                desc: 'One click. Clean Excel or PDF. Line item breakdowns, reconciliation totals. Ready to send, not cobbled together.',
               },
             ].map((step, i) => (
               <RevealOnScroll key={step.title} delay={i * 150}>
@@ -527,7 +527,7 @@ export default function Home() {
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
-              What OPA does.
+              One tool. One job. Done right.
             </h2>
             <p style={{
               color: 'var(--sage-light)',
@@ -552,6 +552,85 @@ export default function Home() {
                   <div style={styles.featureLabel}>{feature.label}</div>
                   <h3 style={styles.featureTitle}>{feature.title}</h3>
                   <p style={styles.featureDesc}>{feature.desc}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WORKFLOW ===== */}
+      <section style={{
+        ...styles.section,
+        borderTop: '1px solid rgba(13, 27, 42, 0.06)',
+      }}>
+        <div className="container">
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>Four steps. Then you&rsquo;re done.</h2>
+          </div>
+
+          <div style={{
+            maxWidth: '640px',
+            margin: '0 auto',
+          }}>
+            {[
+              {
+                step: '01',
+                title: 'Create your job',
+                desc: 'Name the production. Add your envelopes — Petty Cash, Art, Wardrobe, whatever the show needs.',
+              },
+              {
+                step: '02',
+                title: 'Scan your receipts',
+                desc: 'Snap a photo. OPA reads the vendor, amount, and date. Confirm the details, assign a line number, drop it in an envelope.',
+              },
+              {
+                step: '03',
+                title: 'Reconcile at wrap',
+                desc: 'Match receipts plus remaining cash to the original disbursement. OPA lines it up for you. Wrap in hours, not days.',
+              },
+              {
+                step: '04',
+                title: 'Export and go home',
+                desc: 'One click. Production-ready top sheet. Hand it to accounting. Your Friday night is yours.',
+              },
+            ].map((item, i) => (
+              <RevealOnScroll key={item.step} delay={i * 100}>
+                <div style={{
+                  display: 'flex',
+                  gap: '24px',
+                  padding: '32px 0',
+                  borderBottom: i < 3 ? '1px solid rgba(13, 27, 42, 0.06)' : 'none',
+                }}>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8rem',
+                    fontWeight: 500,
+                    color: 'var(--forest)',
+                    letterSpacing: '0.05em',
+                    paddingTop: '4px',
+                    flexShrink: 0,
+                  }}>
+                    {item.step}
+                  </div>
+                  <div>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.2rem',
+                      fontWeight: 500,
+                      marginBottom: '8px',
+                      color: 'var(--ink)',
+                    }}>
+                      {item.title}
+                    </h3>
+                    <p style={{
+                      color: 'var(--sage)',
+                      lineHeight: 1.7,
+                      fontSize: '0.95rem',
+                    }}>
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </RevealOnScroll>
             ))}
@@ -603,9 +682,11 @@ export default function Home() {
                 }}>/month</span>
               </div>
               <p style={{
+                fontFamily: 'var(--font-mono)',
                 color: 'var(--sage)',
                 marginBottom: '32px',
-                fontSize: '0.95rem',
+                fontSize: '0.85rem',
+                letterSpacing: '0.01em',
               }}>
                 or $468/year — save 20%
               </p>
@@ -651,7 +732,7 @@ export default function Home() {
                 color: 'var(--sage)',
                 fontStyle: 'italic',
               }}>
-                Less than one hour of your day rate. Saves you a full day at wrap.
+                Less than an hour of your day rate. Saves you a full day at wrap.
               </p>
             </div>
           </RevealOnScroll>
@@ -765,7 +846,7 @@ export default function Home() {
               color: 'var(--forest)',
             }}><span style={{ color: 'var(--terracotta)' }}>o</span>pa</span>
             <span style={{ color: 'var(--sage)', fontSize: '0.85rem' }}>
-              — Expense tracking for production.
+              — Expense tracking built for production.
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '0.85rem', color: 'var(--sage)' }}>
