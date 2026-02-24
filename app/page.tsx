@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import MobilePreviewSection from './components/MobilePreviewSection';
 
 // ===== SCROLL REVEAL =====
 const RevealOnScroll = ({
@@ -635,6 +636,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== MOBILE PREVIEW — iOS WIREFRAMES ===== */}
+      <MobilePreviewSection />
 
       {/* ===== PRICING ===== */}
       <section style={{
