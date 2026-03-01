@@ -589,10 +589,10 @@ export default function Home() {
                 solve: 'OPA eliminates re-entry. Scan a receipt — vendor, amount, date, and budget line extracted automatically.',
               },
               {
-                stat: 'End of show',
+                stat: 'Wrap chaos',
                 title: 'The reconciliation nightmare.',
-                desc: 'Three envelopes don\u2019t add up. A receipt is missing. Accounting needs the top sheet by Friday. You\u2019re at your kitchen table with a shoebox and a spreadsheet someone else saved over.',
-                solve: 'OPA tracks cash given, cash spent, and remaining \u2014 in real time. Top sheet exports in one click. Go home on time.',
+                desc: 'Three envelopes don\u2019t add up. Broken Excel formulas. Data entry errors. Missing receipts. You told them you would have everything in by today.',
+                solve: 'OPA tracks cash given, cash spent, and remaining \u2014 in real time. Top sheet exports in one click. Yeah.',
               },
               {
                 stat: 'Mac only',
