@@ -4,13 +4,13 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://useopa.com'),
-  title: 'OPA — Petty Cash. Handled.',
-  description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews. Scan receipts, assign to envelopes, reconcile, export.',
-  keywords: ['production accounting', 'petty cash', 'film production', 'TV production', 'receipt tracking', 'production management', 'entertainment accounting'],
+  title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
+  description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. Works on Mac, Windows, and phone. $29/month flat — no per-transaction fees.',
+  keywords: ['production expense tracking', 'petty cash tracking', 'top sheet export', 'AICP budget', 'receipt scanning', 'production coordinator tools', 'commercial production software'],
   authors: [{ name: 'OPA' }],
   openGraph: {
-    title: 'OPA — Petty Cash. Handled.',
-    description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
+    title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
+    description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. $29/month flat.',
     url: 'https://useopa.com',
     siteName: 'OPA',
     locale: 'en_US',
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OPA — Petty Cash. Handled.',
-    description: 'Petty cash tracking, receipt management, and budget visibility for film & TV production crews.',
+    title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
+    description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. $29/month flat.',
   },
   robots: {
     index: true,

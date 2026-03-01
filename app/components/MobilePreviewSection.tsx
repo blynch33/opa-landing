@@ -533,7 +533,7 @@ export default function MobilePreviewSection() {
               color: 'var(--terracotta)',
               marginBottom: '12px',
             }}>
-              Coming to iOS
+              Coming to iOS &amp; Android
             </p>
             <h2 style={{
               fontFamily: 'var(--font-display)',
