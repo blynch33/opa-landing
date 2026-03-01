@@ -18,20 +18,22 @@ export async function GET() {
   try {
     const supabase = getSupabase();
 
-    // Get total receipts scanned (all receipts ever created)
-    const { count: receiptCount, error: receiptError } = await supabase
-      .from('receipts')
-      .select('*', { count: 'exact', head: true });
+    // Count across all receipt-related tables
+    const [receipts, lineItems, scannedReceipts, subscribers] = await Promise.all([
+      supabase.from('receipts').select('*', { count: 'exact', head: true }),
+      supabase.from('line_items').select('*', { count: 'exact', head: true }),
+      supabase.from('scanned_receipts').select('*', { count: 'exact', head: true }),
+      supabase.from('subscriptions').select('*', { count: 'exact', head: true }).eq('status', 'active'),
+    ]);
 
-    // Get active subscriptions (founding member count)
-    const { count: subscriberCount, error: subError } = await supabase
-      .from('subscriptions')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active');
+    const totalReceipts =
+      (receipts.count ?? 0) +
+      (lineItems.count ?? 0) +
+      (scannedReceipts.count ?? 0);
 
     return NextResponse.json({
-      receiptsScanned: receiptError ? 0 : (receiptCount ?? 0),
-      foundingMembers: subError ? 0 : (subscriberCount ?? 0),
+      receiptsScanned: totalReceipts,
+      foundingMembers: subscribers.count ?? 0,
       foundingMemberCap: 100,
     });
   } catch {
