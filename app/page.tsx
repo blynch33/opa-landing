@@ -589,10 +589,10 @@ export default function Home() {
                 solve: 'OPA eliminates re-entry. Scan a receipt — vendor, amount, date, and budget line extracted automatically.',
               },
               {
-                stat: '$0 → $18',
-                title: 'Per-transaction pricing.',
-                desc: 'The tool you built your workflow around went from $0.49 to $18 per transaction in three years. That\u2019s a 3,673% increase. Your budget didn\u2019t get a 3,673% increase.',
-                solve: '$29/month flat. No per-transaction fees. No per-receipt charges. No surprises. Ever.',
+                stat: 'End of show',
+                title: 'The reconciliation nightmare.',
+                desc: 'Three envelopes don\u2019t add up. A receipt is missing. Accounting needs the top sheet by Friday. You\u2019re at your kitchen table with a shoebox and a spreadsheet someone else saved over.',
+                solve: 'OPA tracks cash given, cash spent, and remaining \u2014 in real time. Top sheet exports in one click. Go home on time.',
               },
               {
                 stat: 'Mac only',
