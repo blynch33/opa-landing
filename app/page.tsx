@@ -1329,6 +1329,7 @@ export default function Home() {
             color: 'var(--sage)',
             fontSize: '1.05rem',
             marginBottom: '28px',
+            maxWidth: 'none',
           }}>
             $29/month. 30 days free. The receipts are handled.
           </p>
