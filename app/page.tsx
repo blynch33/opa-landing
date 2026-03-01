@@ -329,7 +329,7 @@ export default function Home() {
 
             <div style={styles.navLinks} className="nav-links">
               <a href="#how-it-works" style={styles.navLink}>How It Works</a>
-              <a href="#features" style={styles.navLink}>Features</a>
+              <a href="#how-it-works" style={styles.navLink}>Features</a>
               <a href="#pricing" style={styles.navLink}>Pricing</a>
               <a href="#faq" style={styles.navLink}>FAQ</a>
               <a href={APP_URL} style={styles.navLink}>Log in</a>
@@ -367,7 +367,7 @@ export default function Home() {
               gap: '16px',
             }}>
               <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>How It Works</a>
-              <a href="#features" style={styles.navLink} onClick={handleNavClick}>Features</a>
+              <a href="#how-it-works" style={styles.navLink} onClick={handleNavClick}>Features</a>
               <a href="#pricing" style={styles.navLink} onClick={handleNavClick}>Pricing</a>
               <a href="#faq" style={styles.navLink} onClick={handleNavClick}>FAQ</a>
               <a href={APP_URL} style={styles.navLink} onClick={handleNavClick}>Log in</a>
@@ -783,90 +783,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== THE SHOEBOX IS RETIRED ===== */}
-      <section style={{
-        ...styles.section,
-        borderBottom: '1px solid rgba(13, 27, 42, 0.06)',
-      }} id="how-it-works">
-        <div className="container">
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>The shoebox is retired.</h2>
-            <p style={{
-              color: 'var(--sage)',
-              fontSize: '1rem',
-              maxWidth: '540px',
-              margin: '0 auto',
-              lineHeight: 1.7,
-            }}>
-              Receipt capture, envelope organization, and top sheet export &mdash; built for how production actually works.
-            </p>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: '32px',
-            maxWidth: '960px',
-            margin: '0 auto',
-          }} className="how-it-works-grid">
-            {[
-              {
-                icon: <CameraIcon />,
-                title: 'Scan it. It\u2019s handled.',
-                desc: 'Take a photo or upload a PDF. Vendor, amount, date, AICP budget line \u2014 extracted automatically. Done before you\u2019ve put the receipt down.',
-              },
-              {
-                icon: <FolderIcon />,
-                title: 'Organized the way you already work.',
-                desc: 'Receipts go into envelopes \u2014 just like real production. Track petty cash, reimbursements, and per diems the way you already think about them.',
-              },
-              {
-                icon: <SpreadsheetIcon />,
-                title: 'The report accounting actually wants.',
-                desc: 'One click. Clean Excel or PDF. AICP-formatted line item breakdowns, reconciliation totals. Ready to send, not cobbled together.',
-              },
-            ].map((step, i) => (
-              <RevealOnScroll key={step.title} delay={i * 150}>
-                <div style={{
-                  background: 'var(--white)',
-                  borderRadius: 'var(--radius-xl)',
-                  padding: '40px 32px',
-                  boxShadow: 'var(--shadow-md)',
-                  height: '100%',
-                }}>
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(19, 70, 17, 0.08)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '20px',
-                  }}>
-                    {step.icon}
-                  </div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.25rem',
-                    fontWeight: 500,
-                    marginBottom: '12px',
-                    color: 'var(--ink)',
-                  }}>{step.title}</h3>
-                  <p style={{
-                    color: 'var(--sage)',
-                    lineHeight: 1.7,
-                    fontSize: '0.95rem',
-                  }}>{step.desc}</p>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===== FEATURES (DARK) ===== */}
-      <section style={{ ...styles.section, ...styles.featureForest }} id="features">
+      <section style={{ ...styles.section, ...styles.featureForest }} id="how-it-works">
         <div className="container">
           <div style={styles.sectionHeader}>
             <h2 style={{ ...styles.sectionTitle, color: 'var(--porcelain)' }}>
