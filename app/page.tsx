@@ -455,7 +455,7 @@ export default function Home() {
 
             {/* Right — App Screenshot */}
             <div style={{ position: 'relative' }}>
-              <div style={{
+              <div className="hero-screenshot-wrap" style={{
                 borderRadius: 'var(--radius-xl)',
                 overflow: 'hidden',
                 boxShadow: 'var(--shadow-xl)',
@@ -1285,6 +1285,13 @@ export default function Home() {
           .hero-layout {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
+          }
+          .hero-screenshot-wrap {
+            max-height: 360px !important;
+          }
+          .hero-screenshot-wrap img {
+            width: 115% !important;
+            margin-left: -7.5% !important;
           }
           .pain-grid {
             grid-template-columns: 1fr !important;
