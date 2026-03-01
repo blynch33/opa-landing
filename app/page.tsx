@@ -1237,7 +1237,7 @@ export default function Home() {
                 desc: 'Your tool. Your subscription. Scan receipts on set, organize by envelope, export clean top sheets. No spreadsheet gymnastics. No end-of-show panic. Works on any device you\u2019ve got.',
               },
               {
-                title: 'Line Producers',
+                title: 'Line Producers / Production Managers',
                 desc: 'See what\u2019s been spent across every envelope before you have to report it. No more chasing coordinators for numbers. Review top sheets from your phone on the way to the production meeting.',
               },
               {
