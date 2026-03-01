@@ -694,18 +694,18 @@ export default function Home() {
                   boxShadow: 'var(--shadow-lg)',
                   border: '1px solid rgba(13, 27, 42, 0.08)',
                   marginBottom: '16px',
+                  height: '340px',
                 }}>
                   <img
                     src="/screenshots/jobs-view.png"
                     alt="OPA — Jobs dashboard showing active and wrapped productions"
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top left' }}
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.style.display = 'none';
                       const parent = target.parentElement;
                       if (parent) {
                         parent.style.background = 'linear-gradient(135deg, var(--moss) 0%, var(--lichen-light) 100%)';
-                        parent.style.minHeight = '280px';
                       }
                     }}
                   />
@@ -737,18 +737,18 @@ export default function Home() {
                   boxShadow: 'var(--shadow-lg)',
                   border: '1px solid rgba(13, 27, 42, 0.08)',
                   marginBottom: '16px',
+                  height: '340px',
                 }}>
                   <img
                     src="/screenshots/envelope-view.png"
                     alt="OPA — Envelope detail with petty cash received, spent, and remaining"
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top left' }}
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.style.display = 'none';
                       const parent = target.parentElement;
                       if (parent) {
                         parent.style.background = 'linear-gradient(135deg, var(--moss) 0%, var(--lichen-light) 100%)';
-                        parent.style.minHeight = '280px';
                       }
                     }}
                   />
