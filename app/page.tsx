@@ -237,7 +237,7 @@ const styles = {
     fontSize: '0.75rem',
     textTransform: 'uppercase' as const,
     letterSpacing: '0.1em',
-    color: 'var(--lichen)',
+    color: 'var(--terracotta)',
     marginBottom: '12px',
   },
   featureTitle: {
