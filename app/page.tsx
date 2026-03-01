@@ -583,25 +583,22 @@ export default function Home() {
           }}>
             {[
               {
-                stat: '15-20 hrs/week',
-                title: 'Lost to data entry.',
-                desc: 'Production coordinators re-enter receipt data across spreadsheets, email, and accounting systems. One wrong formula. One overwritten cell. Hours of reconciliation at wrap.',
-                solve: 'OPA eliminates re-entry. Scan a receipt — vendor, amount, date, and budget line extracted automatically.',
+                solveLabel: 'Smart scanning',
+                solve: 'OPA eliminates re-entry. Scan a receipt \u2014 vendor, amount, date, and budget line extracted automatically.',
+                pain: '15-20 hrs/week lost to manual data entry across spreadsheets, email, and accounting systems. One wrong formula. One overwritten cell. Hours of reconciliation at wrap.',
               },
               {
-                stat: 'Wrap chaos',
-                title: 'The reconciliation nightmare.',
-                desc: 'Three envelopes don\u2019t add up. Broken Excel formulas. Data entry errors. Missing receipts. You told them you would have everything in by today.',
+                solveLabel: 'Real-time tracking',
                 solve: 'OPA tracks cash given, cash spent, and remaining \u2014 in real time. Top sheet exports in one click. Yeah.',
+                pain: 'Three envelopes don\u2019t add up. Broken Excel formulas. Data entry errors. Missing receipts. You told them you would have everything in by today.',
               },
               {
-                stat: 'Mac only',
-                title: 'Desktop-only. 2006 energy.',
-                desc: 'The industry-standard budgeting tool doesn\u2019t work on Windows. It doesn\u2019t work on your phone. It doesn\u2019t work in a browser. It\u2019s been like this for twenty years.',
+                solveLabel: 'Works everywhere',
                 solve: 'OPA is browser-based. Open it on any device. Scan receipts on set. Review envelopes at home.',
+                pain: 'The industry-standard budgeting tool doesn\u2019t work on Windows. It doesn\u2019t work on your phone. It doesn\u2019t work in a browser. It\u2019s been like this for twenty years.',
               },
-            ].map((pain, i) => (
-              <RevealOnScroll key={pain.title} delay={i * 150}>
+            ].map((card, i) => (
+              <RevealOnScroll key={card.solveLabel} delay={i * 150}>
                 <div style={{
                   background: 'var(--white)',
                   borderRadius: 'var(--radius-xl)',
@@ -616,39 +613,34 @@ export default function Home() {
                     fontSize: '0.7rem',
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase' as const,
-                    color: 'var(--terracotta)',
-                    marginBottom: '4px',
+                    color: 'var(--forest)',
+                    marginBottom: '8px',
                   }}>
-                    {pain.stat}
+                    {card.solveLabel}
                   </div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.3rem',
-                    fontWeight: 500,
-                    marginBottom: '12px',
-                    color: 'var(--ink)',
-                  }}>
-                    {pain.title}
-                  </h3>
                   <p style={{
-                    color: 'var(--sage)',
+                    color: 'var(--ink)',
                     lineHeight: 1.7,
-                    fontSize: '0.9rem',
-                    marginBottom: '16px',
+                    fontSize: '0.95rem',
+                    fontWeight: 500,
+                    marginBottom: '20px',
                     flex: 1,
                   }}>
-                    {pain.desc}
+                    {card.solve}
                   </p>
-                  <p style={{
-                    color: 'var(--forest)',
-                    lineHeight: 1.7,
-                    fontSize: '0.9rem',
-                    fontWeight: 500,
+                  <div style={{
                     borderTop: '1px solid rgba(13, 27, 42, 0.06)',
                     paddingTop: '16px',
                   }}>
-                    {pain.solve}
-                  </p>
+                    <p style={{
+                      color: 'var(--sage)',
+                      lineHeight: 1.6,
+                      fontSize: '0.8rem',
+                      fontStyle: 'italic',
+                    }}>
+                      Replaces: {card.pain}
+                    </p>
+                  </div>
                 </div>
               </RevealOnScroll>
             ))}
