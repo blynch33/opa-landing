@@ -460,15 +460,17 @@ export default function Home() {
                 overflow: 'hidden',
                 boxShadow: 'var(--shadow-xl)',
                 border: '1px solid rgba(13, 27, 42, 0.08)',
+                maxHeight: '500px',
               }}>
-                {/* Screenshot placeholder — replace src with actual screenshot */}
+                {/* Screenshot — cropped to hide feedback bubble in bottom-right */}
                 <img
                   src="/screenshots/envelopes-detail.png"
                   alt="OPA — Job detail view showing envelopes, petty cash tracking, and expense totals"
                   style={{
-                    width: '100%',
+                    width: '110%',
                     height: 'auto',
                     display: 'block',
+                    marginLeft: '-5%',
                   }}
                   onError={(e) => {
                     // Fallback gradient if screenshot not yet added
