@@ -886,14 +886,9 @@ export default function Home() {
           <div style={styles.featureGrid} className="feature-grid">
             {[
               {
-                label: 'Receipt Scanning',
-                title: 'Photo in. Data out.',
-                desc: 'Snap a receipt with your phone. OPA reads the vendor, amount, date, and suggests the AICP budget line. No manual entry unless you want it. Works with crumpled gas station receipts and faded craft services runs alike.',
-              },
-              {
-                label: 'Envelopes',
-                title: 'Organized the way you already work.',
-                desc: 'Group receipts by envelope \u2014 Petty Cash, Art, Wardrobe, whatever the show needs. Track cash given, cash returned, and variance in real time. Totals update as receipts land.',
+                label: 'Receipts + Envelopes',
+                title: 'Scan it. Organize it. Done.',
+                desc: 'Snap a receipt with your phone. OPA reads the vendor, amount, date, and suggests the budget line. Drop it into an envelope \u2014 Petty Cash, Art, Wardrobe, whatever the show needs. Cash given, cash spent, and remaining update in real time.',
               },
               {
                 label: 'Top Sheet Export',
@@ -904,6 +899,11 @@ export default function Home() {
                 label: 'Share With Crew',
                 title: 'Send a link. They\u2019re done.',
                 desc: 'Share an envelope link with your crew. They bulk upload their receipts from their phone \u2014 no account needed. Everything pushes to your dashboard and gets categorized without you touching it.',
+              },
+              {
+                label: 'Team Access',
+                title: 'Your crew, your rules.',
+                desc: 'Invite coordinators, PAs, and line producers to a shared job. Everyone sees what they need \u2014 nothing they don\u2019t. Role-based access keeps things clean without the IT department.',
               },
             ].map((feature, i) => (
               <RevealOnScroll key={feature.label} delay={i * 100}>
