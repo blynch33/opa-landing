@@ -901,9 +901,9 @@ export default function Home() {
                 desc: 'One click. Clean PDF or Excel. AICP-formatted line item breakdowns, reconciliation totals, signature blocks. The exact document your production accountant expects.',
               },
               {
-                label: 'AICP Budget Lines',
-                title: 'Your line numbers. Already loaded.',
-                desc: 'AICP standard budget lines \u2014 Pages A through P \u2014 come pre-loaded. Every receipt maps to the right line. Custom lines when you need them. Import from Hot Budget if you\u2019re coming from there.',
+                label: 'Share With Crew',
+                title: 'Send a link. They\u2019re done.',
+                desc: 'Share an envelope link with your crew. They bulk upload their receipts from their phone \u2014 no account needed. Everything pushes to your dashboard and gets categorized without you touching it.',
               },
             ].map((feature, i) => (
               <RevealOnScroll key={feature.label} delay={i * 100}>
