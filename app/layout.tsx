@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
+import { copy } from './copy';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://useopa.com'),
-  title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
-  description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. Works on Mac, Windows, and phone. $29/month flat — no per-transaction fees.',
-  keywords: ['production expense tracking', 'petty cash tracking', 'top sheet export', 'AICP budget', 'receipt scanning', 'production coordinator tools', 'commercial production software'],
+  title: copy.seo.title,
+  description: copy.seo.description,
+  keywords: ['petty cash tracking', 'receipt scanning', 'top sheet export', 'Hot Budget import', 'production coordinator tools', 'commercial production software'],
   authors: [{ name: 'OPA' }],
   openGraph: {
-    title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
-    description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. $29/month flat.',
+    title: copy.seo.title,
+    description: copy.seo.ogDescription,
     url: 'https://useopa.com',
     siteName: 'OPA',
     locale: 'en_US',
@@ -18,13 +19,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OPA — Petty Cash Tracking & Top Sheet Export for Production',
-    description: 'Browser-based expense tracking for commercial production. Receipt scanning, petty cash envelopes, AICP-formatted top sheet export. $29/month flat.',
+    title: copy.seo.title,
+    description: copy.seo.ogDescription,
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 export default function RootLayout({
@@ -35,12 +46,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
         <Script
           src="https://plausible.io/js/pa-wXFqQfZ1M4hBXsvtnTXqL.js"
           strategy="afterInteractive"
